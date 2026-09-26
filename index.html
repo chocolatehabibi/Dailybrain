@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DailyBrain</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0f1115;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 25px;
+        }
+
+        .logo {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            color: #9ca3af;
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding-bottom: 50px;
+        }
+
+        .date {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 20px;
+        }
+
+        .streak {
+            background: #171a21;
+            border: 1px solid #292e38;
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .streak-number {
+            font-size: 28px;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .game-card {
+            background: #171a21;
+            border: 1px solid #292e38;
+            border-radius: 18px;
+            padding: 22px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: #4b5563;
+        }
+
+        .game-icon {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .game-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .game-card p {
+            color: #9ca3af;
+            line-height: 1.5;
+            min-height: 70px;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 13px 18px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            background: white;
+            color: #111;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            opacity: 0.88;
+        }
+
+        .secondary {
+            background: #272c35;
+            color: white;
+        }
+
+        .game-screen {
+            display: none;
+            margin-top: 25px;
+            background: #171a21;
+            border: 1px solid #292e38;
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .game-screen.active {
+            display: block;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .game-header h2 {
+            font-size: 25px;
+        }
+
+        .close-btn {
+            margin: 0;
+        }
+
+        .question {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin: 30px 0 15px;
+        }
+
+        .clue {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 15px auto;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #0f1115;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            outline: none;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            min-height: 25px;
+            font-weight: 700;
+        }
+
+        .attempts {
+            text-align: center;
+            color: #9ca3af;
+            margin-top: 10px;
+        }
+
+        .number-sequence {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin: 30px 0;
+            overflow-wrap: break-word;
+        }
+
+        .pixel-grid {
+            width: min(420px, 100%);
+            margin: 25px auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .pixel {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            background: #707782;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .pixel:hover {
+            transform: scale(0.94);
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+            background: #171a21;
+            border: 1px solid #292e38;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .result.active {
+            display: block;
+        }
+
+        .share-text {
+            background: #0f1115;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 18px 0;
+            font-family: monospace;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .games {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 32px;
+            }
+
+            .number-sequence {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🧠 DailyBrain</div>
+    <div class="tagline">Your daily 3-minute brain challenge</div>
+</header>
+
+<div class="container">
+
+    <div class="date" id="todayDate"></div>
+
+    <div class="streak">
+        🔥 STREAK
+        <div class="streak-number">
+            <span id="streak">0</span> days
+        </div>
+    </div>
+
+    <div class="games">
+
+        <div class="game-card">
+            <div class="game-icon">🔤</div>
+            <h2>Word Grid</h2>
+            <p>
+                Figure out today's mystery word from the clue.
+                You have 6 attempts.
+            </p>
+            <button onclick="openGame('word')">Play Word Grid</button>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">🔢</div>
+            <h2>Number Chain</h2>
+            <p>
+                Find the missing number in today's mathematical sequence.
+            </p>
+            <button onclick="openGame('number')">Play Number Chain</button>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">👁️</div>
+            <h2>Odd Pixel</h2>
+            <p>
+                One tile is slightly different. Find it as quickly as possible.
+            </p>
+            <button onclick="openGame('pixel')">Play Odd Pixel</button>
+        </div>
+
+    </div>
+
+    <!-- WORD GAME -->
+
+    <div class="game-screen" id="wordGame">
+
+        <div class="game-header">
+            <h2>🔤 Word Grid</h2>
+            <button class="secondary close-btn" onclick="closeGames()">Close</button>
+        </div>
+
+        <div class="question">Guess the mystery word</div>
+
+        <div class="clue" id="wordClue"></div>
+
+        <div class="attempts">
+            Attempts left: <span id="wordAttempts">6</span>
+        </div>
+
+        <input
+            id="wordInput"
+            type="text"
+            placeholder="Enter your guess"
+            autocomplete="off"
+        >
+
+        <div class="center">
+            <button onclick="checkWord()">Submit Guess</button>
+        </div>
+
+        <div class="message" id="wordMessage"></div>
+
+    </div>
+
+    <!-- NUMBER GAME -->
+
+    <div class="game-screen" id="numberGame">
+
+        <div class="game-header">
+            <h2>🔢 Number Chain</h2>
+            <button class="secondary close-btn" onclick="closeGames()">Close</button>
+        </div>
+
+        <div class="question">What number comes next?</div>
+
+        <div class="number-sequence" id="numberSequence"></div>
+
+        <input
+            id="numberInput"
+            type="number"
+            placeholder="Your answer"
+        >
+
+        <div class="center">
+            <button onclick="checkNumber()">Submit Answer</button>
+        </div>
+
+        <div class="message" id="numberMessage"></div>
+
+    </div>
+
+    <!-- PIXEL GAME -->
+
+    <div class="game-screen" id="pixelGame">
+
+        <div class="game-header">
+            <h2>👁️ Odd Pixel</h2>
+            <button class="secondary close-btn" onclick="closeGames()">Close</button>
+        </div>
+
+        <div class="question">Find the different tile</div>
+
+        <div class="clue">
+            Click the odd tile as quickly as possible.
+        </div>
+
+        <div class="center">
+            ⏱️ <span id="timer">0.00</span>s
+        </div>
+
+        <div class="pixel-grid" id="pixelGrid"></div>
+
+        <div class="message" id="pixelMessage"></div>
+
+    </div>
+
+    <!-- RESULT -->
+
+    <div class="result" id="result">
+
+        <h2>🎉 DailyBrain Complete!</h2>
+
+        <p style="margin-top:10px;color:#9ca3af;">
+            You completed today's challenges.
+        </p>
+
+        <div class="share-text" id="shareText"></div>
+
+        <button onclick="shareResult()">📤 Share Result</button>
+
+        <button class="secondary" onclick="closeGames()">Back to Games</button>
+
+    </div>
+
+</div>
+
+<footer>
+    DailyBrain © 2026
+</footer>
+
+<script>
+
+    /* =========================
+       BASIC DATE
+    ========================= */
+
+    const today = new Date();
+
+    const dateKey =
+        today.getFullYear() + "-" +
+        String(today.getMonth() + 1).padStart(2, "0") + "-" +
+        String(today.getDate()).padStart(2, "0");
+
+    document.getElementById("todayDate").textContent =
+        today.toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+
+
+    /* =========================
+       STREAK
+    ========================= */
+
+    let streak = Number(localStorage.getItem("dailyBrainStreak") || 0);
+
+    document.getElementById("streak").textContent = streak;
+
+
+    function updateStreak() {
+
+        const lastCompleted =
+            localStorage.getItem("dailyBrainLastCompleted");
+
+        if (lastCompleted === dateKey) {
+            return;
+        }
+
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        const yesterdayKey =
+            yesterday.getFullYear() + "-" +
+            String(yesterday.getMonth() + 1).padStart(2, "0") + "-" +
+            String(yesterday.getDate()).padStart(2, "0");
+
+        if (lastCompleted === yesterdayKey) {
+            streak++;
+        } else {
+            streak = 1;
+        }
+
+        localStorage.setItem("dailyBrainStreak", streak);
+        localStorage.setItem("dailyBrainLastCompleted", dateKey);
+
+        document.getElementById("streak").textContent = streak;
+    }
+
+
+    /* =========================
+       GAME STATE
+    ========================= */
+
+    let completed = {
+        word: false,
+        number: false,
+        pixel: false
+    };
+
+    let wordAttempts = 6;
+
+    let pixelStartTime = 0;
+
+    let pixelTimerInterval = null;
+
+    let pixelFinished = false;
+
+    let pixelResultTime = null;
+
+
+    /* =========================
+       WORD PUZZLES
+    ========================= */
+
+    const wordPuzzles = [
+
+        {
+            answer: "cloud",
+            clue: "Something you may see in the sky."
+        },
+
+        {
+            answer: "ocean",
+            clue: "A huge body of salt water."
+        },
+
+        {
+            answer: "planet",
+            clue: "Earth is one."
+        },
+
+        {
+            answer: "forest",
+            clue: "A large area filled with trees."
+        },
+
+        {
+            answer: "rocket",
+            clue: "Used to travel into space."
+        },
+
+        {
+            answer: "piano",
+            clue: "A musical instrument with black and white keys."
+        },
+
+        {
+            answer: "tiger",
+            clue: "A large striped wild cat."
+        },
+
+        {
+            answer: "bridge",
+            clue: "Something that helps people cross a gap."
+        },
+
+        {
+            answer: "coffee",
+            clue: "A popular caffeinated drink."
+        },
+
+        {
+            answer: "castle",
+            clue: "A large historic fortified building."
+        }
+
+    ];
+
+
+    function getDayIndex(arrayLength) {
+
+        const start =
+            new Date(today.getFullYear(), 0, 0);
+
+        const diff =
+            today - start;
+
+        const oneDay =
+            1000 * 60 * 60 * 24;
+
+        const dayOfYear =
+            Math.floor(diff / oneDay);
+
+        return dayOfYear % arrayLength;
+    }
+
+
+    const wordPuzzle =
+        wordPuzzles[getDayIndex(wordPuzzles.length)];
+
+
+    document.getElementById("wordClue").textContent =
+        "Clue: " + wordPuzzle.clue;
+
+
+    function checkWord() {
+
+        const input =
+            document.getElementById("wordInput");
+
+        const guess =
+            input.value.trim().toLowerCase();
+
+        const message =
+            document.getElementById("wordMessage");
+
+        if (!guess) {
+            message.textContent = "Enter a word first.";
+            return;
+        }
+
+        if (guess === wordPuzzle.answer) {
+
+            message.textContent = "✅ Correct! Great job.";
+
+            completed.word = true;
+
+            input.disabled = true;
+
+            checkAllGames();
+
+            return;
+        }
+
+        wordAttempts--;
+
+        document.getElementById("wordAttempts").textContent =
+            wordAttempts;
+
+        if (wordAttempts <= 0) {
+
+            message.textContent =
+                "❌ Game over. Today's answer was " +
+                wordPuzzle.answer.toUpperCase() + ".";
+
+            input.disabled = true;
+
+            checkAllGames();
+
+        } else {
+
+            message.textContent =
+                "❌ Not quite. Try again.";
+        }
+    }
+
+
+    /* =========================
+       NUMBER PUZZLES
+    ========================= */
+
+    const numberPuzzles = [
+
+        {
+            sequence: "2 → 6 → 12 → 20 → ?",
+            answer: 30
+        },
+
+        {
+            sequence: "3 → 6 → 12 → 24 → ?",
+            answer: 48
+        },
+
+        {
+            sequence: "5 → 10 → 15 → 20 → ?",
+            answer: 25
+        },
+
+        {
+            sequence: "1 → 4 → 9 → 16 → ?",
+            answer: 25
+        },
+
+        {
+            sequence: "2 → 4 → 8 → 16 → ?",
+            answer: 32
+        },
+
+        {
+            sequence: "10 → 15 → 20 → 25 → ?",
+            answer: 30
+        },
+
+        {
+            sequence: "1 → 3 → 6 → 10 → ?",
+            answer: 15
+        },
+
+        {
+            sequence: "4 → 8 → 16 → 32 → ?",
+            answer: 64
+        },
+
+        {
+            sequence: "6 → 12 → 18 → 24 → ?",
+            answer: 30
+        },
+
+        {
+            sequence: "1 → 2 → 4 → 8 → ?",
+            answer: 16
+        }
+
+    ];
+
+
+    const numberPuzzle =
+        numberPuzzles[getDayIndex(numberPuzzles.length)];
+
+
+    document.getElementById("numberSequence").textContent =
+        numberPuzzle.sequence;
+
+
+    function checkNumber() {
+
+        const input =
+            document.getElementById("numberInput");
+
+        const answer =
+            Number(input.value);
+
+        const message =
+            document.getElementById("numberMessage");
+
+        if (!input.value) {
+            message.textContent = "Enter a number first.";
+            return;
+        }
+
+        if (answer === numberPuzzle.answer) {
+
+            message.textContent =
+                "✅ Correct! You solved it.";
+
+            completed.number = true;
+
+            input.disabled = true;
+
+            checkAllGames();
+
+        } else {
+
+            message.textContent =
+                "❌ That's not correct. Think about the pattern.";
+        }
+    }
+
+
+    /* =========================
+       ODD PIXEL
+    ========================= */
+
+    function startPixelGame() {
+
+        if (pixelFinished) {
+            return;
+        }
+
+        const grid =
+            document.getElementById("pixelGrid");
+
+        grid.innerHTML = "";
+
+        document.getElementById("pixelMessage").textContent = "";
+
+        const oddIndex =
+            Math.floor(Math.random() * 25);
+
+        pixelStartTime = Date.now();
+
+        clearInterval(pixelTimerInterval);
+
+        pixelTimerInterval =
+            setInterval(function() {
+
+                if (pixelFinished) return;
+
+                const elapsed =
+                    (Date.now() - pixelStartTime) / 1000;
+
+                document.getElementById("timer").textContent =
+                    elapsed.toFixed(2);
+
+            }, 50);
+
+
+        for (let i = 0; i < 25; i++) {
+
+            const tile =
+                document.createElement("div");
+
+            tile.className = "pixel";
+
+            if (i === oddIndex) {
+
+                tile.style.background = "#767d89";
+
+                tile.dataset.odd = "true";
+
+            } else {
+
+                tile.style.background = "#707782";
+
+                tile.dataset.odd = "false";
+            }
+
+            tile.onclick = function() {
+
+                if (pixelFinished) return;
+
+                const elapsed =
+                    (Date.now() - pixelStartTime) / 1000;
+
+                if (this.dataset.odd === "true") {
+
+                    pixelFinished = true;
+
+                    pixelResultTime =
+                        elapsed.toFixed(2);
+
+                    clearInterval(pixelTimerInterval);
+
+                    document.getElementById("timer").textContent =
+                        pixelResultTime;
+
+                    document.getElementById("pixelMessage").textContent =
+                        "✅ Found it in " +
+                        pixelResultTime +
+                        " seconds!";
+
+                    completed.pixel = true;
+
+                    checkAllGames();
+
+                } else {
+
+                    document.getElementById("pixelMessage").textContent =
+                        "❌ Wrong tile. Keep looking!";
+                }
+            };
+
+            grid.appendChild(tile);
+        }
+    }
+
+
+    /* =========================
+       OPEN / CLOSE GAMES
+    ========================= */
+
+    function openGame(game) {
+
+        closeGames();
+
+        if (game === "word") {
+
+            document.getElementById("wordGame")
+                .classList.add("active");
+
+        }
+
+        if (game === "number") {
+
+            document.getElementById("numberGame")
+                .classList.add("active");
+
+        }
+
+        if (game === "pixel") {
+
+            document.getElementById("pixelGame")
+                .classList.add("active");
+
+            if (!pixelFinished) {
+                startPixelGame();
+            }
+        }
+
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
+    }
+
+
+    function closeGames() {
+
+        document.getElementById("wordGame")
+            .classList.remove("active");
+
+        document.getElementById("numberGame")
+            .classList.remove("active");
+
+        document.getElementById("pixelGame")
+            .classList.remove("active");
+
+        document.getElementById("result")
+            .classList.remove("active");
+    }
+
+
+    /* =========================
+       COMPLETION
+    ========================= */
+
+    function checkAllGames() {
+
+        if (
+            completed.word &&
+            completed.number &&
+            completed.pixel
+        ) {
+
+            updateStreak();
+
+            const share =
+                "DAILYBRAIN " +
+                dateKey +
+                "\n" +
+                "🔤 Word Grid ✅\n" +
+                "🔢 Number Chain ✅\n" +
+                "👁️ Odd Pixel " +
+                pixelResultTime +
+                "s\n" +
+                "🔥 " +
+                streak +
+                " day streak";
+
+            document.getElementById("shareText").textContent =
+                share;
+
+            document.getElementById("result")
+                .classList.add("active");
+
+        }
+    }
+
+
+    /* =========================
+       SHARE RESULT
+    ========================= */
+
+    async function shareResult() {
+
+        const text =
+            document.getElementById("shareText")
+                .textContent;
+
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+                    title: "My DailyBrain Result",
+                    text: text
+                });
+
+            } catch (error) {
+
+                console.log("Share cancelled.");
+
+            }
+
+        } else {
+
+            try {
+
+                await navigator.clipboard.writeText(text);
+
+                alert(
+                    "✅ Result copied!\n\nPaste it into WhatsApp or Telegram."
+                );
+
+            } catch (error) {
+
+                alert(
+                    "Copy this result manually:\n\n" +
+                    text
+                );
+            }
+        }
+    }
+
+</script>
+
+</body>
+</html>
