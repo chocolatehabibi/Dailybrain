@@ -3,2726 +3,1889 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>DailyBrain — Daily Brain Games</title>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --bg: #08090d;
-    --panel: #11131a;
-    --panel2: #171a23;
-    --border: #292d38;
-    --text: #f7f7f8;
-    --muted: #9096a3;
-    --green: #58c879;
-    --yellow: #d6b84c;
-    --gray: #343842;
-    --red: #e05b63;
-}
-
-body {
-    font-family: "DM Sans", Arial, sans-serif;
-    background:
-        radial-gradient(circle at 50% -10%, #202637 0%, transparent 40%),
-        var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-}
-
-button,
-input {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
+*{box-sizing:border-box}
 
-/* =========================
-   HEADER
-========================= */
-
-header {
-    text-align: center;
-    padding: 65px 20px 35px;
-}
-
-.logo {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(42px, 7vw, 70px);
-    font-weight: 700;
-    letter-spacing: -3px;
-}
-
-.logo span {
-    color: #8c7cff;
+body{
+  margin:0;
+  font-family:"DM Sans",Arial,sans-serif;
+  background:
+    radial-gradient(circle at top left,#24345f 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#351d50 0%,transparent 35%),
+    #080b14;
+  color:#f7f8fc;
+  min-height:100vh;
 }
-
-.tagline {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 17px;
-}
-
-.subtag {
-    margin-top: 8px;
-    color: #666c79;
-    font-size: 14px;
-}
-
-/* =========================
-   MAIN
-========================= */
 
-.container {
-    width: min(1150px, 92%);
-    margin: auto;
-    padding-bottom: 70px;
-}
+button,input{font:inherit}
 
-.date {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 20px;
+.container{
+  width:min(1100px,92%);
+  margin:auto;
 }
 
-.streak {
-    width: min(500px, 100%);
-    margin: 0 auto 35px;
-    padding: 18px;
-    text-align: center;
-    background: rgba(23,26,35,.8);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    backdrop-filter: blur(10px);
+header{
+  padding:55px 0 30px;
+  text-align:center;
 }
 
-.streak-title {
-    color: var(--muted);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.logo{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(42px,8vw,72px);
+  font-weight:700;
+  letter-spacing:-4px;
+  margin:0;
 }
 
-.streak-number {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    margin-top: 3px;
+.tagline{
+  color:#aeb5c8;
+  margin:12px 0 0;
+  font-size:17px;
 }
-
-/* =========================
-   GAME GRID
-========================= */
 
-.section-title {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 25px;
-    margin-bottom: 17px;
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:28px 0 35px;
+  flex-wrap:wrap;
 }
 
-.games {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 17px;
+.stat{
+  background:#111625;
+  border:1px solid #252c40;
+  border-radius:14px;
+  padding:11px 18px;
+  color:#b8bfd0;
 }
 
-.game-card {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(145deg, #151821, #101219);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 25px;
-    transition: .25s;
+.stat strong{
+  color:white;
+  margin-left:5px;
 }
 
-.game-card:hover {
-    transform: translateY(-5px);
-    border-color: #555b69;
-    box-shadow: 0 15px 35px rgba(0,0,0,.25);
+.games{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  padding-bottom:50px;
 }
 
-.game-card::after {
-    content: "";
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    background: #756cff;
-    filter: blur(80px);
-    opacity: .08;
-    right: -60px;
-    top: -60px;
+.game{
+  background:rgba(17,22,37,.92);
+  border:1px solid #252c40;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
 }
 
-.game-icon {
-    font-size: 35px;
-    margin-bottom: 17px;
+.game.full{
+  grid-column:1/-1;
 }
 
-.game-card h2 {
-    font-family: "Space Grotesk", sans-serif;
-    margin-bottom: 8px;
+.game-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+  margin-bottom:20px;
 }
 
-.game-card p {
-    color: var(--muted);
-    line-height: 1.55;
-    min-height: 70px;
+.game-title{
+  margin:0;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:24px;
 }
 
-.play {
-    width: 100%;
-    margin-top: 17px;
-    border: 0;
-    border-radius: 12px;
-    padding: 13px;
-    background: white;
-    color: #090a0d;
-    font-weight: 700;
-    transition: .2s;
+.game-desc{
+  color:#8f98ad;
+  font-size:14px;
+  margin-top:5px;
 }
 
-.play:hover {
-    transform: scale(1.02);
+.badge{
+  padding:6px 10px;
+  border-radius:999px;
+  background:#1b2234;
+  color:#9fa9c0;
+  font-size:12px;
+  white-space:nowrap;
 }
 
-/* =========================
-   GAME SCREEN
-========================= */
-
-.game-screen {
-    display: none;
-    margin-top: 25px;
-    background: rgba(17,19,26,.96);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 28px;
-    animation: appear .3s ease;
+.play-area{
+  background:#0c101c;
+  border-radius:17px;
+  padding:18px;
+  border:1px solid #20273a;
 }
 
-.game-screen.active {
-    display: block;
+.message{
+  min-height:22px;
+  text-align:center;
+  color:#aeb7ca;
+  font-size:14px;
+  margin:8px 0;
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.primary{
+  border:0;
+  border-radius:12px;
+  padding:12px 18px;
+  background:#f4f5f7;
+  color:#10131c;
+  font-weight:700;
+  cursor:pointer;
+  transition:.15s;
 }
 
-.game-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
+.primary:hover{
+  transform:translateY(-1px);
 }
 
-.game-header h2 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 25px;
+.secondary{
+  border:1px solid #30384d;
+  border-radius:12px;
+  padding:11px 16px;
+  background:#151b2a;
+  color:white;
+  cursor:pointer;
 }
 
-.close {
-    border: 0;
-    background: #272b35;
-    color: white;
-    padding: 9px 15px;
-    border-radius: 10px;
-}
+/* WORDLE */
 
-.question {
-    text-align: center;
-    font-size: 23px;
-    font-weight: 700;
-    margin: 30px 0 8px;
+.wordle-board{
+  width:280px;
+  margin:0 auto 15px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
 }
 
-.clue {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 20px;
+.tile{
+  aspect-ratio:1;
+  border:2px solid #30384d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:25px;
+  font-weight:700;
+  border-radius:5px;
+}
+
+.tile.correct{
+  background:#3b8f65;
+  border-color:#3b8f65;
 }
 
-.message {
-    text-align: center;
-    min-height: 26px;
-    margin-top: 16px;
-    font-weight: 700;
+.tile.present{
+  background:#a18a35;
+  border-color:#a18a35;
+}
+
+.tile.wrong{
+  background:#343a49;
+  border-color:#343a49;
 }
 
-.center {
-    text-align: center;
+.keyboard{
+  max-width:450px;
+  margin:auto;
 }
-
-/* =========================
-   WORDLE
-========================= */
 
-.wordle-board {
-    width: min(350px, 100%);
-    margin: 25px auto 20px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
+.key-row{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  margin:5px 0;
+}
+
+.key{
+  min-width:30px;
+  height:42px;
+  border:0;
+  border-radius:6px;
+  background:#252c3d;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  font-size:12px;
 }
 
-.letter-box {
-    aspect-ratio: 1;
-    border: 2px solid #343843;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 25px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 5px;
+.key.wide{
+  min-width:55px;
 }
 
-.letter-box.correct {
-    background: var(--green);
-    border-color: var(--green);
-}
+.key.correct{background:#3b8f65}
+.key.present{background:#a18a35}
+.key.wrong{background:#343a49}
 
-.letter-box.present {
-    background: var(--yellow);
-    border-color: var(--yellow);
+.word-input{
+  width:100%;
+  padding:12px;
+  background:#121827;
+  border:1px solid #30384d;
+  color:white;
+  border-radius:10px;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:5px;
+  outline:none;
+  margin-bottom:10px;
 }
 
-.letter-box.absent {
-    background: #30333b;
-    border-color: #30333b;
-}
+/* NUMBER CHAIN */
 
-.word-input {
-    width: min(330px, 100%);
-    display: block;
-    margin: 20px auto;
-    background: #0a0b0f;
-    color: white;
-    border: 1px solid #363b47;
-    border-radius: 10px;
-    padding: 14px;
-    text-align: center;
-    font-size: 19px;
-    text-transform: uppercase;
-    outline: none;
+.sequence{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:20px 0;
 }
 
-/* =========================
-   KEYPAD
-========================= */
-
-.keypad {
-    width: min(600px, 100%);
-    margin: 20px auto;
+.num-box{
+  min-width:55px;
+  height:55px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#171e2d;
+  border:1px solid #313a51;
+  border-radius:10px;
+  font-weight:700;
 }
 
-.key-row {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 6px;
+.num-box.question{
+  border-style:dashed;
+  color:#aeb7ca;
 }
 
-.key {
-    flex: 1;
-    max-width: 45px;
-    min-height: 48px;
-    border: 0;
-    border-radius: 6px;
-    background: #818590;
-    color: white;
-    font-weight: 700;
-    font-size: 14px;
-    transition: .15s;
+.number-input{
+  width:130px;
+  display:block;
+  margin:15px auto;
+  padding:12px;
+  text-align:center;
+  background:#111827;
+  color:white;
+  border:1px solid #30384d;
+  border-radius:10px;
 }
 
-.key.correct {
-    background: var(--green);
-}
+/* QUICKFIRE */
 
-.key.present {
-    background: var(--yellow);
+.quickfire-category{
+  text-align:center;
+  color:#9da8be;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:2px;
 }
 
-.key.absent {
-    background: #292c34;
-    color: #777c87;
+.quickfire-word{
+  text-align:center;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:38px;
+  margin:12px 0 18px;
 }
 
-.key:hover {
-    filter: brightness(1.12);
+.quickfire-input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #30384d;
+  background:#111827;
+  color:white;
+  outline:none;
+  text-transform:uppercase;
 }
 
-.enter-key,
-.back-key {
-    max-width: 75px;
-    font-size: 12px;
+.quickfire-info{
+  display:flex;
+  justify-content:space-between;
+  color:#9da8be;
+  margin-bottom:12px;
 }
-
-/* =========================
-   CONNECTIONS
-========================= */
 
-.connections-grid {
-    width: min(650px, 100%);
-    margin: 25px auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+.timer{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:28px;
+  color:white;
 }
 
-.connection-word {
-    min-height: 80px;
-    background: #252932;
-    border: 2px solid transparent;
-    border-radius: 9px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    transition: .15s;
-}
+/* ODD PIXEL */
 
-.connection-word:hover {
-    background: #30343e;
+.pixel-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:7px;
+  max-width:360px;
+  margin:15px auto;
 }
 
-.connection-word.selected {
-    background: #e8e8e8;
-    color: #111;
+.pixel{
+  aspect-ratio:1;
+  border-radius:8px;
+  border:2px solid transparent;
+  cursor:pointer;
 }
 
-.connection-word.found {
-    opacity: .45;
-    pointer-events: none;
+.pixel.bad{
+  border-color:#ff6875;
 }
 
-.groups {
-    width: min(650px, 100%);
-    margin: auto;
+.pixel-info{
+  text-align:center;
+  color:#aeb7ca;
 }
 
-.group {
-    padding: 14px;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    background: #222630;
-}
+/* COLOR RECALL */
 
-.group strong {
-    display: block;
-    margin-bottom: 4px;
+.color-target{
+  height:110px;
+  border-radius:15px;
+  margin-bottom:15px;
+  border:1px solid #343d53;
 }
 
-.group span {
-    color: var(--muted);
-    font-size: 14px;
+.sliders label{
+  display:block;
+  color:#aeb7ca;
+  margin:10px 0 5px;
 }
 
-.lives {
-    text-align: center;
-    color: var(--muted);
+.sliders input{
+  width:100%;
 }
 
-/* =========================
-   COLOR RECALL
-========================= */
+/* WORD LINKS */
 
-.color-preview {
-    width: min(350px, 100%);
-    height: 170px;
-    margin: 25px auto;
-    border-radius: 18px;
-    border: 1px solid var(--border);
+.links-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
 }
 
-.color-label {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 20px;
+.link-word{
+  min-height:65px;
+  border:1px solid #30384d;
+  background:#151b29;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
 }
 
-.slider-area {
-    width: min(600px, 100%);
-    margin: auto;
+.link-word.selected{
+  background:#313a55;
+  border-color:#7987aa;
 }
 
-.slider-row {
-    margin: 20px 0;
+.link-word.found{
+  opacity:.35;
+  cursor:default;
 }
 
-.slider-row label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
+.groups{
+  margin-top:15px;
+  display:grid;
+  gap:8px;
 }
 
-input[type="range"] {
-    width: 100%;
+.group{
+  background:#151b29;
+  border:1px solid #30384d;
+  padding:12px;
+  border-radius:10px;
 }
 
-.color-actions {
-    text-align: center;
-    margin-top: 20px;
+.group strong{
+  display:block;
+  margin-bottom:5px;
 }
 
-.color-score {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 40px;
-    margin-top: 20px;
+.group span{
+  color:#9fa9bd;
+  font-size:13px;
 }
 
-/* =========================
-   NUMBER
-========================= */
+/* RESULTS */
 
-.number-sequence {
-    text-align: center;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 31px;
-    font-weight: 700;
-    margin: 35px 0;
+#results{
+  display:none;
+  margin:25px auto 60px;
 }
-
-.number-input {
-    width: 250px;
-    padding: 14px;
-    display: block;
-    margin: auto;
-    background: #0b0c10;
-    border: 1px solid #373c47;
-    color: white;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 19px;
-}
-
-/* =========================
-   ODD PIXEL
-========================= */
 
-.pixel-info {
-    text-align: center;
-    color: var(--muted);
-    margin: 15px;
+.results-card{
+  background:
+    radial-gradient(circle at top right,#26345a,transparent 45%),
+    #101522;
+  border:1px solid #30384d;
+  border-radius:28px;
+  padding:40px 28px;
+  text-align:center;
 }
 
-.pixel-grid {
-    width: min(420px, 100%);
-    margin: 25px auto;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 6px;
+.results-eyebrow{
+  text-transform:uppercase;
+  letter-spacing:4px;
+  color:#9ca7bd;
+  font-size:12px;
+  font-weight:700;
 }
 
-.pixel {
-    aspect-ratio: 1;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: transform .1s;
+.results-title{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(40px,8vw,70px);
+  letter-spacing:-3px;
+  margin:8px 0;
+  line-height:1;
 }
 
-.pixel:hover {
-    transform: scale(.93);
+.results-subtitle{
+  color:#aeb7ca;
+  margin-bottom:30px;
 }
 
-.pixel.wrong {
-    outline: 3px solid var(--red);
+.final-score{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:64px;
+  font-weight:700;
+  line-height:1;
+  margin:10px 0;
 }
 
-/* =========================
-   RESULT
-========================= */
-
-.result {
-    display: none;
-    margin-top: 25px;
-    background: linear-gradient(145deg,#161923,#101218);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 35px;
-    text-align: center;
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:25px 0;
 }
 
-.result.active {
-    display: block;
+.result-item{
+  background:#171e2c;
+  border:1px solid #293247;
+  border-radius:15px;
+  padding:17px 10px;
 }
 
-.final-score {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 48px;
-    margin: 15px;
+.result-icon{
+  font-size:25px;
 }
 
-.share-text {
-    background: #0a0b0f;
-    border-radius: 12px;
-    padding: 17px;
-    margin: 20px auto;
-    max-width: 500px;
-    white-space: pre-wrap;
-    font-family: monospace;
-    line-height: 1.6;
+.result-name{
+  color:#aab3c6;
+  font-size:12px;
+  margin:5px 0;
 }
 
-.share-btn {
-    border: 0;
-    background: white;
-    color: black;
-    padding: 13px 20px;
-    border-radius: 10px;
-    font-weight: 700;
+.result-score{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:700;
+  font-size:20px;
 }
-
-/* =========================
-   FOOTER
-========================= */
 
-footer {
-    text-align: center;
-    color: #575d68;
-    padding: 35px 20px;
-    font-size: 13px;
+footer{
+  text-align:center;
+  color:#606a7e;
+  padding:20px 0 50px;
+  font-size:13px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+@media(max-width:700px){
+  header{padding-top:35px}
 
-@media(max-width:800px) {
+  .games{
+    grid-template-columns:1fr;
+  }
 
-    header {
-        padding-top: 45px;
-    }
+  .game.full{
+    grid-column:auto;
+  }
 
-    .games {
-        grid-template-columns: 1fr;
-    }
+  .links-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .connections-grid {
-        grid-template-columns: repeat(4,1fr);
-    }
+  .result-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .connection-word {
-        min-height: 68px;
-        font-size: 12px;
-    }
-
-    .game-screen {
-        padding: 20px 14px;
-    }
-
-    .key {
-        min-height: 43px;
-        font-size: 12px;
-    }
+  .game{
+    padding:17px;
+  }
 }
-
 </style>
 </head>
 
 <body>
 
-<header>
-
-    <div class="logo">Daily<span>Brain</span></div>
-
-    <div class="tagline">
-        A few minutes. Six challenges. One daily brain workout.
-    </div>
-
-    <div class="subtag">
-        Come back tomorrow and try to beat your score.
-    </div>
-
-</header>
-
-
 <div class="container">
 
-    <div class="date" id="todayDate"></div>
+<header>
+  <h1 class="logo">DailyBrain</h1>
+  <p class="tagline">Six games. One daily challenge. How sharp are you?</p>
 
-    <div class="streak">
+  <div class="stats">
+    <div class="stat">🔥 Streak <strong id="streak">0</strong></div>
+    <div class="stat">🏆 Daily Score <strong id="dailyScore">0</strong></div>
+  </div>
+</header>
 
-        <div class="streak-title">🔥 Daily Streak</div>
+<main class="games">
 
-        <div class="streak-number">
-            <span id="streak">0</span> days
-        </div>
+<!-- ENGLISH WORDLE -->
+<section class="game">
+  <div class="game-header">
+    <div>
+      <h2 class="game-title">🇬🇧 Word Grid</h2>
+      <div class="game-desc">Guess the 5-letter English word.</div>
+    </div>
+    <span class="badge">6 guesses</span>
+  </div>
 
+  <div class="play-area">
+    <div id="englishBoard" class="wordle-board"></div>
+    <div id="englishMessage" class="message"></div>
+    <div id="englishKeyboard" class="keyboard"></div>
+  </div>
+</section>
+
+<!-- MALAY WORDLE -->
+<section class="game">
+  <div class="game-header">
+    <div>
+      <h2 class="game-title">🇲🇾 Kata Hari Ini</h2>
+      <div class="game-desc">Teka perkataan Bahasa Melayu 5 huruf.</div>
+    </div>
+    <span class="badge">6 percubaan</span>
+  </div>
+
+  <div class="play-area">
+    <div id="malayBoard" class="wordle-board"></div>
+    <div id="malayMessage" class="message"></div>
+    <div id="malayKeyboard" class="keyboard"></div>
+  </div>
+</section>
+
+<!-- NUMBER CHAIN -->
+<section class="game">
+  <div class="game-header">
+    <div>
+      <h2 class="game-title">🔢 Number Chain</h2>
+      <div class="game-desc">Find the hidden pattern.</div>
+    </div>
+    <span class="badge">3 attempts</span>
+  </div>
+
+  <div class="play-area">
+    <div id="sequence" class="sequence"></div>
+
+    <input id="numberAnswer"
+           class="number-input"
+           type="number"
+           placeholder="?">
+
+    <div style="text-align:center">
+      <button class="primary" onclick="checkNumber()">Check</button>
     </div>
 
+    <div id="numberMessage" class="message"></div>
+  </div>
+</section>
 
-    <div class="section-title">
-        Today's Challenges
+<!-- QUICKFIRE -->
+<section class="game">
+  <div class="game-header">
+    <div>
+      <h2 class="game-title">⚡ Quickfire</h2>
+      <div class="game-desc">Type as many answers as possible before time runs out.</div>
+    </div>
+    <span class="badge">30 seconds</span>
+  </div>
+
+  <div class="play-area">
+
+    <div class="quickfire-info">
+      <span>Score: <strong id="quickScore">0</strong></span>
+      <span class="timer" id="quickTimer">30</span>
     </div>
 
+    <div class="quickfire-category" id="quickCategory">PRESS START</div>
 
-    <div class="games">
-
-        <div class="game-card">
-
-            <div class="game-icon">🇬🇧</div>
-
-            <h2>Word Grid</h2>
-
-            <p>
-                Guess today's five-letter English word.
-                Green means correct, yellow means misplaced.
-            </p>
-
-            <button class="play" onclick="openGame('word')">
-                Play Word Grid
-            </button>
-
-        </div>
-
-
-        <div class="game-card">
-
-            <div class="game-icon">🇲🇾</div>
-
-            <h2>Kata Hari Ini</h2>
-
-            <p>
-                The Malay Wordle. Find today's five-letter
-                Malay word in six attempts.
-            </p>
-
-            <button class="play" onclick="openGame('malay')">
-                Main Sekarang
-            </button>
-
-        </div>
-
-
-        <div class="game-card">
-
-            <div class="game-icon">🔢</div>
-
-            <h2>Number Chain</h2>
-
-            <p>
-                Discover the hidden mathematical pattern
-                and predict what comes next.
-            </p>
-
-            <button class="play" onclick="openGame('number')">
-                Play Number Chain
-            </button>
-
-        </div>
-
-
-        <div class="game-card">
-
-            <div class="game-icon">👁️</div>
-
-            <h2>Odd Pixel</h2>
-
-            <p>
-                One tile is different. Find it quickly —
-                but every wrong click counts against you.
-            </p>
-
-            <button class="play" onclick="openGame('pixel')">
-                Play Odd Pixel
-            </button>
-
-        </div>
-
-
-        <div class="game-card">
-
-            <div class="game-icon">🎨</div>
-
-            <h2>Color Recall</h2>
-
-            <p>
-                Memorise a colour, then recreate it using
-                hue, saturation and lightness.
-            </p>
-
-            <button class="play" onclick="openGame('color')">
-                Play Color Recall
-            </button>
-
-        </div>
-
-
-        <div class="game-card">
-
-            <div class="game-icon">🧩</div>
-
-            <h2>Word Links</h2>
-
-            <p>
-                Find four hidden groups among sixteen words.
-                But beware — some words have multiple meanings.
-            </p>
-
-            <button class="play" onclick="openGame('links')">
-                Play Word Links
-            </button>
-
-        </div>
-
+    <div class="quickfire-word" id="quickPrompt">
+      Ready?
     </div>
-
-
-<!-- =========================
-     ENGLISH WORDLE
-========================= -->
-
-<div class="game-screen" id="wordGame">
-
-    <div class="game-header">
-
-        <h2>🇬🇧 Word Grid</h2>
-
-        <button class="close" onclick="closeGames()">
-            Close
-        </button>
-
-    </div>
-
-    <div class="question">
-        Guess the mystery word
-    </div>
-
-    <div class="clue" id="wordClue"></div>
-
-    <div class="wordle-board" id="wordBoard"></div>
 
     <input
-        id="wordInput"
-        class="word-input"
-        maxlength="5"
-        placeholder="TYPE 5 LETTERS"
-        autocomplete="off"
+      id="quickInput"
+      class="quickfire-input"
+      placeholder="Type your answer..."
+      disabled
+      autocomplete="off"
     >
 
-    <div class="center">
-
-        <button class="play" style="width:220px"
-        onclick="checkWord()">
-            Submit
-        </button>
-
+    <div style="text-align:center;margin-top:15px">
+      <button id="quickStart" class="primary" onclick="startQuickfire()">
+        Start
+      </button>
     </div>
 
-    <div class="keypad" id="englishKeypad"></div>
+    <div id="quickMessage" class="message"></div>
 
-    <div class="message" id="wordMessage"></div>
+  </div>
+</section>
 
-</div>
-
-
-<!-- =========================
-     MALAY WORDLE
-========================= -->
-
-<div class="game-screen" id="malayGame">
-
-    <div class="game-header">
-
-        <h2>🇲🇾 Kata Hari Ini</h2>
-
-        <button class="close" onclick="closeGames()">
-            Close
-        </button>
-
+<!-- ODD PIXEL -->
+<section class="game">
+  <div class="game-header">
+    <div>
+      <h2 class="game-title">👁️ Odd Pixel</h2>
+      <div class="game-desc">Find the one tile that doesn't belong.</div>
     </div>
+    <span class="badge">Speed</span>
+  </div>
 
-    <div class="question">
-        Cari perkataan hari ini
-    </div>
-
-    <div class="clue" id="malayClue"></div>
-
-    <div class="wordle-board" id="malayBoard"></div>
-
-    <input
-        id="malayInput"
-        class="word-input"
-        maxlength="5"
-        placeholder="5 HURUF"
-        autocomplete="off"
-    >
-
-    <div class="center">
-
-        <button class="play" style="width:220px"
-        onclick="checkMalay()">
-            Hantar
-        </button>
-
-    </div>
-
-    <div class="keypad" id="malayKeypad"></div>
-
-    <div class="message" id="malayMessage"></div>
-
-</div>
-
-
-<!-- =========================
-     NUMBER
-========================= -->
-
-<div class="game-screen" id="numberGame">
-
-    <div class="game-header">
-
-        <h2>🔢 Number Chain</h2>
-
-        <button class="close" onclick="closeGames()">
-            Close
-        </button>
-
-    </div>
-
-    <div class="question">
-        What number comes next?
-    </div>
-
-    <div class="clue">
-        You have three attempts.
-    </div>
-
-    <div class="number-sequence" id="numberSequence"></div>
-
-    <input
-        id="numberInput"
-        class="number-input"
-        type="number"
-        placeholder="Your answer"
-    >
-
-    <div class="center">
-
-        <button class="play" style="width:220px"
-        onclick="checkNumber()">
-            Submit
-        </button>
-
-    </div>
-
-    <div class="message" id="numberMessage"></div>
-
-</div>
-
-
-<!-- =========================
-     PIXEL
-========================= -->
-
-<div class="game-screen" id="pixelGame">
-
-    <div class="game-header">
-
-        <h2>👁️ Odd Pixel</h2>
-
-        <button class="close" onclick="closeGames()">
-            Close
-        </button>
-
-    </div>
-
-    <div class="question">
-        Find the odd tile
-    </div>
+  <div class="play-area">
 
     <div class="pixel-info">
-
-        Time:
-        <strong id="timer">0.00</strong>s
-
-        &nbsp; | &nbsp;
-
-        Mistakes:
-        <strong id="mistakes">0</strong>
-
+      Time: <strong id="pixelTime">0.0</strong>s
+      &nbsp;•&nbsp;
+      Mistakes: <strong id="pixelMistakes">0</strong>
     </div>
 
-    <div class="pixel-grid" id="pixelGrid"></div>
+    <div id="pixelGrid" class="pixel-grid"></div>
 
-    <div class="message" id="pixelMessage"></div>
+    <div id="pixelMessage" class="message"></div>
 
-</div>
+  </div>
+</section>
 
+<!-- COLOR RECALL -->
+<section class="game">
+  <div class="game-header">
+    <div>
+      <h2 class="game-title">🎨 Color Recall</h2>
+      <div class="game-desc">Remember the colour, then recreate it.</div>
+    </div>
+    <span class="badge">Memory</span>
+  </div>
 
-<!-- =========================
-     COLOR RECALL
-========================= -->
+  <div class="play-area">
 
-<div class="game-screen" id="colorGame">
+    <div id="colorTarget" class="color-target"></div>
 
-    <div class="game-header">
+    <div id="colorInstructions" class="message">
+      Memorise the colour...
+    </div>
 
-        <h2>🎨 Color Recall</h2>
+    <div class="sliders">
+      <label>Hue</label>
+      <input id="hue" type="range" min="0" max="360" value="180">
 
-        <button class="close" onclick="closeGames()">
-            Close
+      <label>Saturation</label>
+      <input id="sat" type="range" min="0" max="100" value="50">
+
+      <label>Lightness</label>
+      <input id="light" type="range" min="0" max="100" value="50">
+    </div>
+
+    <div style="text-align:center;margin-top:15px">
+      <button class="primary" onclick="checkColor()">Submit Colour</button>
+    </div>
+
+    <div id="colorMessage" class="message"></div>
+
+  </div>
+</section>
+
+<!-- WORD LINKS -->
+<section class="game full">
+  <div class="game-header">
+    <div>
+      <h2 class="game-title">🧩 Word Links: Double Link</h2>
+      <div class="game-desc">
+        Find 4 groups — then solve the final connection.
+      </div>
+    </div>
+    <span class="badge">4 mistakes</span>
+  </div>
+
+  <div class="play-area">
+
+    <div id="linksGrid" class="links-grid"></div>
+
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:15px">
+      <button class="primary" onclick="submitGroup()">Submit Group</button>
+      <button class="secondary" onclick="clearSelection()">Clear</button>
+    </div>
+
+    <div id="linksMessage" class="message"></div>
+
+    <div id="groups" class="groups"></div>
+
+    <div id="finalLink" style="display:none;margin-top:20px">
+
+      <div style="text-align:center">
+        <div style="color:#9da8be;font-size:13px;text-transform:uppercase;letter-spacing:2px">
+          FINAL LINK
+        </div>
+
+        <h3 style="font-family:'Space Grotesk';font-size:26px">
+          What connects these four groups?
+        </h3>
+
+        <input
+          id="finalAnswer"
+          class="word-input"
+          style="letter-spacing:0"
+          placeholder="Type the final connection..."
+        >
+
+        <button class="primary" onclick="checkFinalLink()">
+          Solve Final Link
         </button>
 
-    </div>
-
-    <div class="question">
-        Memorise this colour
-    </div>
-
-    <div class="clue">
-        You have 3 seconds. Then recreate it.
-    </div>
-
-    <div class="color-preview" id="targetColor"></div>
-
-    <div class="color-label" id="targetHex">
-        Memorise the colour...
-    </div>
-
-    <div id="colorControls" style="display:none">
-
-        <div class="slider-area">
-
-            <div class="slider-row">
-
-                <label>
-                    <span>Hue</span>
-                    <strong id="hueValue">180°</strong>
-                </label>
-
-                <input
-                    id="hue"
-                    type="range"
-                    min="0"
-                    max="360"
-                    value="180"
-                >
-
-            </div>
-
-
-            <div class="slider-row">
-
-                <label>
-                    <span>Saturation</span>
-                    <strong id="satValue">50%</strong>
-                </label>
-
-                <input
-                    id="sat"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="50"
-                >
-
-            </div>
-
-
-            <div class="slider-row">
-
-                <label>
-                    <span>Lightness</span>
-                    <strong id="lightValue">50%</strong>
-                </label>
-
-                <input
-                    id="light"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="50"
-                >
-
-            </div>
-
-        </div>
-
-        <div
-            class="color-preview"
-            id="guessColor">
-        </div>
-
-        <div class="color-label" id="guessHex">
-            #000000
-        </div>
-
-        <div class="center">
-
-            <button class="play"
-            style="width:220px"
-            onclick="submitColor()">
-                Lock In Colour
-            </button>
-
-        </div>
+        <div id="finalMessage" class="message"></div>
+      </div>
 
     </div>
 
-    <div class="message" id="colorMessage"></div>
+  </div>
+</section>
 
-</div>
+</main>
 
+<!-- RESULTS -->
 
-<!-- =========================
-     CONNECTIONS
-========================= -->
+<section id="results">
 
-<div class="game-screen" id="linksGame">
+  <div class="results-card">
 
-    <div class="game-header">
+    <div class="results-eyebrow">DAILYBRAIN COMPLETE</div>
 
-        <h2>🧩 Word Links</h2>
+    <h2 class="results-title">Brain Report</h2>
 
-        <button class="close" onclick="closeGames()">
-            Close
-        </button>
-
-    </div>
-
-    <div class="question">
-        Find the four hidden groups
-    </div>
-
-    <div class="clue">
-        Select four words that belong together.
-        You have four mistakes.
-    </div>
-
-    <div class="lives">
-        Mistakes remaining:
-        <strong id="connectionLives">4</strong>
-    </div>
-
-    <div class="connections-grid" id="connectionsGrid"></div>
-
-    <div class="center">
-
-        <button class="play"
-        style="width:220px"
-        onclick="submitConnectionGroup()">
-            Submit Group
-        </button>
-
-    </div>
-
-    <div class="groups" id="foundGroups"></div>
-
-    <div class="message" id="linksMessage"></div>
-
-</div>
-
-
-<!-- =========================
-     RESULT
-========================= -->
-
-<div class="result" id="result">
-
-    <h2>🎉 DailyBrain Complete</h2>
-
-    <p style="color:var(--muted);margin-top:8px">
-        You finished today's brain workout.
+    <p class="results-subtitle">
+      Today's six challenges are complete.
     </p>
 
-    <div class="final-score">
-        <span id="finalScore">0</span>
+    <div class="final-score" id="finalScore">0</div>
+
+    <div style="color:#9ca7bd">
+      TOTAL SCORE
     </div>
 
-    <div>
-        points
-    </div>
+    <div class="result-grid" id="resultGrid"></div>
 
-    <div class="share-text" id="shareText"></div>
-
-    <button class="share-btn" onclick="shareResult()">
-        📤 Share Result
+    <button class="primary" onclick="shareResult()">
+      Share Result
     </button>
 
-</div>
+  </div>
 
-</div>
-
+</section>
 
 <footer>
-    DailyBrain © 2026
+  DailyBrain • A new challenge every day
 </footer>
 
+</div>
 
 <script>
 
-/* =========================================
-   DATE
-========================================= */
+/* =========================================================
+   GENERAL
+========================================================= */
 
-const today = new Date();
+const completed = {
+  english:false,
+  malay:false,
+  number:false,
+  quick:false,
+  pixel:false,
+  color:false,
+  links:false
+};
 
-const dateKey =
-    today.getFullYear() + "-" +
-    String(today.getMonth()+1).padStart(2,"0") + "-" +
-    String(today.getDate()).padStart(2,"0");
-
-document.getElementById("todayDate").textContent =
-    today.toLocaleDateString(undefined,{
-        weekday:"long",
-        year:"numeric",
-        month:"long",
-        day:"numeric"
-    });
-
-
-/* =========================================
-   STREAK
-========================================= */
-
-let streak =
-    Number(localStorage.getItem("dailyBrainStreak") || 0);
-
-document.getElementById("streak").textContent = streak;
-
-
-/* =========================================
-   GAME STATE
-========================================= */
-
-let completed = {
-    word:false,
-    malay:false,
-    number:false,
-    pixel:false,
-    color:false,
-    links:false
+const scores = {
+  english:0,
+  malay:0,
+  number:0,
+  quick:0,
+  pixel:0,
+  color:0,
+  links:0
 };
 
 let totalScore = 0;
 
+function addScore(game,score){
+  if(completed[game]) return;
 
-/* =========================================
-   WORDLE BOARDS
-========================================= */
+  completed[game]=true;
+  scores[game]=Math.max(0,Math.round(score));
 
-function createBoard(id) {
+  totalScore += scores[game];
 
-    const board = document.getElementById(id);
-
-    board.innerHTML = "";
-
-    for(let i=0;i<30;i++) {
-
-        const box = document.createElement("div");
-
-        box.className = "letter-box";
-
-        board.appendChild(box);
-    }
+  updateStats();
+  checkComplete();
 }
 
-createBoard("wordBoard");
-createBoard("malayBoard");
+function updateStats(){
+  document.getElementById("dailyScore").textContent=totalScore;
+}
+
+function checkComplete(){
+
+  if(Object.values(completed).every(Boolean)){
+
+    const old=parseInt(localStorage.getItem("dailybrainStreak")||"0");
+
+    localStorage.setItem("dailybrainStreak",old+1);
+
+    document.getElementById("streak").textContent=old+1;
+
+    showResults();
+  }
+}
+
+document.getElementById("streak").textContent =
+  localStorage.getItem("dailybrainStreak") || 0;
 
 
-/* =========================================
-   WORD PUZZLES
-========================================= */
+/* =========================================================
+   DAILY WORD SELECTION
+========================================================= */
 
-const englishPuzzles = [
+function dayIndex(length){
 
-    {answer:"CLOUD",clue:"Something you may see in the sky."},
+  const start=new Date(new Date().getFullYear(),0,0);
 
-    {answer:"OCEAN",clue:"A huge body of salt water."},
+  const now=new Date();
 
-    {answer:"PLANT",clue:"Something that grows from a seed."},
+  const diff=now-start;
 
-    {answer:"TIGER",clue:"A large striped wild cat."},
+  const day=Math.floor(diff/86400000);
 
-    {answer:"PIANO",clue:"A musical instrument with keys."},
+  return day % length;
+}
 
-    {answer:"ROBOT",clue:"A machine that can perform tasks."},
 
-    {answer:"APPLE",clue:"A common fruit."},
+/* =========================================================
+   ENGLISH WORDLE
+========================================================= */
 
-    {answer:"BEACH",clue:"A sandy place beside the sea."},
-
-    {answer:"TRAIN",clue:"A vehicle that runs on tracks."},
-
-    {answer:"LIGHT",clue:"The opposite of dark."}
-
+const englishWords=[
+"APPLE","BRAIN","CHAIR","CLOUD","DREAM",
+"EARTH","FLAME","GRAPE","HOUSE","LIGHT",
+"MUSIC","NIGHT","OCEAN","PIZZA","PLANT",
+"QUIET","RIVER","SMILE","SPACE","STONE",
+"SWEET","TRAIN","WATER","WORLD","YOUTH",
+"BEACH","BLACK","BREAD","CANDY","CROWN",
+"DANCE","FIELD","FRUIT","GREEN","HEART",
+"HONEY","HORSE","LEMON","MONEY","MOUSE",
+"PHONE","PLANE","RAINY","SNAKE","SPORT",
+"TABLE","TIGER","TOAST","TRUCK","WHALE"
 ];
 
+const englishAnswer=englishWords[dayIndex(englishWords.length)];
 
-const englishPuzzle =
-    englishPuzzles[getDayIndex(englishPuzzles.length)];
+const englishAllowed=new Set(englishWords);
 
+function initWordle(lang){
 
-/* =========================================
-   MALAY PUZZLES
-========================================= */
+  const prefix=lang==="english"?"english":"malay";
 
-const malayPuzzles = [
+  const board=document.getElementById(prefix+"Board");
 
-    {
-        answer:"BUNGA",
-        clue:"Sesuatu yang cantik dan tumbuh pada tumbuhan."
-    },
+  board.innerHTML="";
 
-    {
-        answer:"KUCING",
-        clue:"Haiwan peliharaan yang suka mengeong."
-    },
+  for(let r=0;r<6;r++){
 
-    {
-        answer:"MERAH",
-        clue:"Salah satu warna asas."
-    },
+    for(let c=0;c<5;c++){
 
-    {
-        answer:"HUJAN",
-        clue:"Air yang turun dari langit."
-    },
+      const tile=document.createElement("div");
 
-    {
-        answer:"PASIR",
-        clue:"Banyak terdapat di pantai."
-    },
+      tile.className="tile";
 
-    {
-        answer:"KERETA",
-        clue:"Kenderaan yang mempunyai empat roda."
-    },
+      tile.id=`${prefix}-${r}-${c}`;
 
-    {
-        answer:"BUKU",
-        clue:"Sesuatu yang kita baca."
-    },
-
-    {
-        answer:"MALAM",
-        clue:"Waktu selepas petang."
-    },
-
-    {
-        answer:"SUKAN",
-        clue:"Aktiviti seperti bola sepak dan badminton."
-    },
-
-    {
-        answer:"GARAM",
-        clue:"Bahan yang digunakan untuk memberi rasa masin."
+      board.appendChild(tile);
     }
-
-];
-
-
-/*
-Important:
-Only five-letter Malay answers are used.
-*/
-
-const validMalayPuzzles =
-    malayPuzzles.filter(x => x.answer.length === 5);
-
-const malayPuzzle =
-    validMalayPuzzles[
-        getDayIndex(validMalayPuzzles.length)
-    ];
-
-
-/* =========================================
-   DAY INDEX
-========================================= */
-
-function getDayIndex(length) {
-
-    const start =
-        new Date(today.getFullYear(),0,0);
-
-    const diff = today - start;
-
-    const oneDay =
-        1000*60*60*24;
-
-    return Math.floor(diff/oneDay) % length;
+  }
 }
 
-
-/* =========================================
-   WORDLE STATE
-========================================= */
-
-let wordRow = 0;
-let malayRow = 0;
-
-let wordKeyState = {};
-let malayKeyState = {};
+initWordle("english");
 
 
-document.getElementById("wordClue").textContent =
-    "Clue: " + englishPuzzle.clue;
+let englishRow=0;
+let englishCurrent="";
 
-document.getElementById("malayClue").textContent =
-    "Petunjuk: " + malayPuzzle.clue;
+function renderWordle(prefix,row,guess,answer){
 
+  const result=[];
 
-/* =========================================
-   KEYBOARD
-========================================= */
+  const remaining=answer.split("");
 
-function createKeyboard(containerId, state, inputId, checkFunction) {
+  for(let i=0;i<5;i++){
 
-    const container =
-        document.getElementById(containerId);
+    if(guess[i]===answer[i]){
 
-    container.innerHTML = "";
+      result[i]="correct";
 
-    const rows = [
-        "QWERTYUIOP",
-        "ASDFGHJKL",
-        "ZXCVBNM"
-    ];
+      remaining[i]=null;
+    }
+  }
 
-    rows.forEach((row,index) => {
+  for(let i=0;i<5;i++){
 
-        const div =
-            document.createElement("div");
+    if(result[i]) continue;
 
-        div.className = "key-row";
+    const index=remaining.indexOf(guess[i]);
 
-        if(index === 2) {
+    if(index!==-1){
 
-            const enter =
-                document.createElement("button");
+      result[i]="present";
 
-            enter.className =
-                "key enter-key";
+      remaining[index]=null;
 
-            enter.textContent = "ENTER";
+    }else{
 
-            enter.onclick = checkFunction;
+      result[i]="wrong";
+    }
+  }
 
-            div.appendChild(enter);
-        }
+  for(let i=0;i<5;i++){
 
-        row.split("").forEach(letter => {
+    const tile=document.getElementById(`${prefix}-${row}-${i}`);
 
-            const key =
-                document.createElement("button");
+    tile.textContent=guess[i];
 
-            key.className = "key";
+    tile.classList.add(result[i]);
+  }
 
-            key.textContent = letter;
-
-            key.dataset.letter = letter;
-
-            key.onclick = () => {
-
-                const input =
-                    document.getElementById(inputId);
-
-                if(input.disabled) return;
-
-                if(input.value.length < 5) {
-
-                    input.value += letter;
-
-                }
-
-            };
-
-            div.appendChild(key);
-
-        });
-
-
-        if(index === 2) {
-
-            const back =
-                document.createElement("button");
-
-            back.className =
-                "key back-key";
-
-            back.textContent = "⌫";
-
-            back.onclick = () => {
-
-                const input =
-                    document.getElementById(inputId);
-
-                input.value =
-                    input.value.slice(0,-1);
-
-            };
-
-            div.appendChild(back);
-        }
-
-
-        container.appendChild(div);
-
-    });
-
+  return result;
 }
 
+function updateWordleKeyboard(prefix,guess,result){
 
-createKeyboard(
-    "englishKeypad",
-    wordKeyState,
-    "wordInput",
-    checkWord
-);
+  for(let i=0;i<5;i++){
 
-createKeyboard(
-    "malayKeypad",
-    malayKeyState,
-    "malayInput",
-    checkMalay
-);
+    const key=document.querySelector(
+      `[data-prefix="${prefix}"][data-key="${guess[i]}"]`
+    );
 
+    if(!key) continue;
 
-/* =========================================
-   WORDLE EVALUATION
-========================================= */
-
-function evaluateGuess(guess, answer) {
-
-    const result =
-        Array(5).fill("absent");
-
-    const remaining =
-        answer.split("");
-
-    for(let i=0;i<5;i++) {
-
-        if(guess[i] === answer[i]) {
-
-            result[i] = "correct";
-
-            remaining[i] = null;
-        }
-
+    if(result[i]==="correct"){
+      key.classList.remove("present","wrong");
+      key.classList.add("correct");
     }
-
-    for(let i=0;i<5;i++) {
-
-        if(result[i] === "correct") continue;
-
-        const index =
-            remaining.indexOf(guess[i]);
-
-        if(index !== -1) {
-
-            result[i] = "present";
-
-            remaining[index] = null;
-        }
+    else if(result[i]==="present" && !key.classList.contains("correct")){
+      key.classList.remove("wrong");
+      key.classList.add("present");
     }
+    else if(!key.classList.contains("correct") &&
+            !key.classList.contains("present")){
 
-    return result;
+      key.classList.add("wrong");
+    }
+  }
 }
 
+function submitEnglish(){
 
-/* =========================================
-   UPDATE KEYPAD
-========================================= */
+  if(englishCurrent.length!==5) return;
 
-function updateKeyboard(containerId, state) {
+  const guess=englishCurrent.toUpperCase();
 
-    document
-        .getElementById(containerId)
-        .querySelectorAll(".key")
-        .forEach(key => {
+  if(!englishAllowed.has(guess)){
 
-            const letter =
-                key.dataset.letter;
+    document.getElementById("englishMessage").textContent=
+      "Not in the English word list.";
 
-            if(!letter) return;
+    return;
+  }
 
-            key.classList.remove(
-                "correct",
-                "present",
-                "absent"
+  const result=renderWordle(
+    "english",
+    englishRow,
+    guess,
+    englishAnswer
+  );
+
+  updateWordleKeyboard("english",guess,result);
+
+  if(guess===englishAnswer){
+
+    addScore("english",(6-englishRow)*100);
+
+    document.getElementById("englishMessage").textContent=
+      "Correct! 🎉";
+
+    return;
+  }
+
+  englishRow++;
+
+  englishCurrent="";
+
+  if(englishRow>=6){
+
+    document.getElementById("englishMessage").textContent=
+      `The word was ${englishAnswer}.`;
+
+    addScore("english",0);
+  }
+}
+
+function createKeyboard(prefix,submit){
+
+  const container=document.getElementById(prefix+"Keyboard");
+
+  const rows=[
+    "QWERTYUIOP",
+    "ASDFGHJKL",
+    "ZXCVBNM"
+  ];
+
+  rows.forEach((letters,index)=>{
+
+    const row=document.createElement("div");
+
+    row.className="key-row";
+
+    if(index===2){
+
+      const enter=document.createElement("button");
+
+      enter.className="key wide";
+
+      enter.textContent="ENTER";
+
+      enter.onclick=submit;
+
+      row.appendChild(enter);
+    }
+
+    for(const letter of letters){
+
+      const key=document.createElement("button");
+
+      key.className="key";
+
+      key.textContent=letter;
+
+      key.dataset.prefix=prefix;
+      key.dataset.key=letter;
+
+      key.onclick=()=>{
+
+        if(prefix==="english"){
+
+          if(englishCurrent.length<5){
+
+            englishCurrent+=letter;
+
+            const tile=document.getElementById(
+              `english-${englishRow}-${englishCurrent.length-1}`
             );
 
-            if(state[letter]) {
+            tile.textContent=letter;
+          }
 
-                key.classList.add(state[letter]);
+        }else{
 
-            }
+          if(malayCurrent.length<5){
 
-        });
+            malayCurrent+=letter;
+
+            const tile=document.getElementById(
+              `malay-${malayRow}-${malayCurrent.length-1}`
+            );
+
+            tile.textContent=letter;
+          }
+        }
+
+      };
+
+      row.appendChild(key);
+    }
+
+    if(index===2){
+
+      const back=document.createElement("button");
+
+      back.className="key wide";
+
+      back.textContent="⌫";
+
+      back.onclick=()=>{
+
+        if(prefix==="english"){
+
+          if(englishCurrent.length){
+
+            const tile=document.getElementById(
+              `english-${englishRow}-${englishCurrent.length-1}`
+            );
+
+            tile.textContent="";
+
+            englishCurrent=englishCurrent.slice(0,-1);
+          }
+
+        }else{
+
+          if(malayCurrent.length){
+
+            const tile=document.getElementById(
+              `malay-${malayRow}-${malayCurrent.length-1}`
+            );
+
+            tile.textContent="";
+
+            malayCurrent=malayCurrent.slice(0,-1);
+          }
+        }
+      };
+
+      row.appendChild(back);
+    }
+
+    container.appendChild(row);
+  });
 }
 
+createKeyboard("english",submitEnglish);
 
-/* =========================================
-   ENGLISH WORD
-========================================= */
 
-function checkWord() {
+/* =========================================================
+   MALAY WORDLE
+========================================================= */
 
-    const input =
-        document.getElementById("wordInput");
+const malayWords=[
+"ADIK","AYAM","BAJU","BATU","BOLA",
+"BUKU","BURUNG","CINTA","DUNIA","GARAM",
+"GURU","HUJAN","IKAN","JALAN","KAKAK",
+"KAMAR","KASIH","KAYU","KERIS","KOPI",
+"LAPAN","LELAKI","MAKAN","MALAM","MANIS",
+"MERAH","MURID","NASI","PAGI","PAPAN",
+"PASAR","PISANG","PULAU","RUMAH","SABUN",
+"SALAM","SAYUR","SEKOLAH","SUNGAI","TAMAN",
+"TANGAN","TEMAN","TELUR","TIDUR","TULIS",
+"UDARA","WAKTU","WARNA"
+];
 
-    const guess =
-        input.value.trim().toUpperCase();
+const validMalayWords=malayWords
+  .filter(w=>w.length===5);
 
-    const message =
-        document.getElementById("wordMessage");
+const malayAnswer=
+  validMalayWords[dayIndex(validMalayWords.length)];
 
-    if(guess.length !== 5) {
+const malayAllowed=new Set(validMalayWords);
 
-        message.textContent =
-            "Enter exactly 5 letters.";
+let malayRow=0;
+let malayCurrent="";
 
-        return;
-    }
+initWordle("malay");
 
-    if(wordRow >= 6) return;
+function submitMalay(){
 
-    const result =
-        evaluateGuess(
-            guess,
-            englishPuzzle.answer
-        );
+  if(malayCurrent.length!==5) return;
 
-    const boxes =
-        document
-        .getElementById("wordBoard")
-        .children;
+  const guess=malayCurrent.toUpperCase();
 
-    for(let i=0;i<5;i++) {
+  if(!malayAllowed.has(guess)){
 
-        const box =
-            boxes[wordRow*5+i];
+    document.getElementById("malayMessage").textContent=
+      "Perkataan tidak terdapat dalam senarai.";
 
-        box.textContent = guess[i];
+    return;
+  }
 
-        box.classList.add(result[i]);
+  const result=renderWordle(
+    "malay",
+    malayRow,
+    guess,
+    malayAnswer
+  );
 
-        const old =
-            wordKeyState[guess[i]];
+  updateWordleKeyboard("malay",guess,result);
 
-        if(
-            result[i] === "correct" ||
-            (!old && result[i] === "present") ||
-            (!old && result[i] === "absent")
-        ) {
+  if(guess===malayAnswer){
 
-            wordKeyState[guess[i]] =
-                result[i];
+    addScore("malay",(6-malayRow)*100);
 
-        }
+    document.getElementById("malayMessage").textContent=
+      "Betul! 🎉";
 
-        if(
-            old === "present" &&
-            result[i] === "absent"
-        ) {
-            wordKeyState[guess[i]] = "present";
-        }
+    return;
+  }
 
-    }
+  malayRow++;
 
-    updateKeyboard(
-        "englishKeypad",
-        wordKeyState
-    );
+  malayCurrent="";
 
-    wordRow++;
+  if(malayRow>=6){
 
-    input.value = "";
+    document.getElementById("malayMessage").textContent=
+      `Jawapan: ${malayAnswer}`;
 
-    if(guess === englishPuzzle.answer) {
-
-        message.textContent =
-            "🟩 Correct!";
-
-        completed.word = true;
-
-        totalScore +=
-            700 - wordRow*40;
-
-        input.disabled = true;
-
-        checkAllGames();
-
-    } else if(wordRow >= 6) {
-
-        message.textContent =
-            "The word was " +
-            englishPuzzle.answer + ".";
-
-        input.disabled = true;
-
-        checkAllGames();
-
-    } else {
-
-        message.textContent =
-            "Keep going!";
-    }
-
+    addScore("malay",0);
+  }
 }
 
+createKeyboard("malay",submitMalay);
 
-/* =========================================
-   MALAY WORD
-========================================= */
 
-function checkMalay() {
+/* =========================================================
+   KEYBOARD SUPPORT
+========================================================= */
 
-    const input =
-        document.getElementById("malayInput");
+document.addEventListener("keydown",e=>{
 
-    const guess =
-        input.value.trim().toUpperCase();
+  const key=e.key.toUpperCase();
 
-    const message =
-        document.getElementById("malayMessage");
+  if(key==="ENTER"){
 
-    if(guess.length !== 5) {
+    if(document.activeElement?.id==="quickInput"){
+      submitQuickfire();
+    }
+    else{
+      submitEnglish();
 
-        message.textContent =
-            "Masukkan 5 huruf.";
-
-        return;
+      if(malayCurrent.length===5)
+        submitMalay();
     }
 
-    if(malayRow >= 6) return;
+    return;
+  }
 
-    const result =
-        evaluateGuess(
-            guess,
-            malayPuzzle.answer
-        );
+  if(key==="BACKSPACE"){
 
-    const boxes =
-        document
-        .getElementById("malayBoard")
-        .children;
+    if(malayCurrent.length){
 
-    for(let i=0;i<5;i++) {
+      const tile=document.getElementById(
+        `malay-${malayRow}-${malayCurrent.length-1}`
+      );
 
-        const box =
-            boxes[malayRow*5+i];
+      tile.textContent="";
 
-        box.textContent = guess[i];
-
-        box.classList.add(result[i]);
-
-        const old =
-            malayKeyState[guess[i]];
-
-        if(
-            result[i] === "correct" ||
-            (!old && result[i] === "present") ||
-            (!old && result[i] === "absent")
-        ) {
-
-            malayKeyState[guess[i]] =
-                result[i];
-
-        }
-
-        if(
-            old === "present" &&
-            result[i] === "absent"
-        ) {
-            malayKeyState[guess[i]] = "present";
-        }
-
+      malayCurrent=malayCurrent.slice(0,-1);
     }
 
-    updateKeyboard(
-        "malayKeypad",
-        malayKeyState
-    );
+    if(englishCurrent.length){
 
-    malayRow++;
+      const tile=document.getElementById(
+        `english-${englishRow}-${englishCurrent.length-1}`
+      );
 
-    input.value = "";
+      tile.textContent="";
 
-    if(guess === malayPuzzle.answer) {
-
-        message.textContent =
-            "🟩 Betul!";
-
-        completed.malay = true;
-
-        totalScore +=
-            700 - malayRow*40;
-
-        input.disabled = true;
-
-        checkAllGames();
-
-    } else if(malayRow >= 6) {
-
-        message.textContent =
-            "Jawapannya ialah " +
-            malayPuzzle.answer + ".";
-
-        input.disabled = true;
-
-        checkAllGames();
-
-    } else {
-
-        message.textContent =
-            "Cuba lagi!";
+      englishCurrent=englishCurrent.slice(0,-1);
     }
 
-}
+    return;
+  }
+
+  if(/^[A-Z]$/.test(key)){
+
+    if(englishCurrent.length<5 &&
+       !document.activeElement.matches("input")){
+
+      englishCurrent+=key;
+
+      document.getElementById(
+        `english-${englishRow}-${englishCurrent.length-1}`
+      ).textContent=key;
+    }
+
+  }
+
+});
 
 
-/* =========================================
+/* =========================================================
    NUMBER CHAIN
-========================================= */
+========================================================= */
 
-const numberPuzzles = [
-
-    {
-        sequence:"2 → 6 → 12 → 20 → ?",
-        answer:30
-    },
-
-    {
-        sequence:"3 → 6 → 12 → 24 → ?",
-        answer:48
-    },
-
-    {
-        sequence:"1 → 4 → 9 → 16 → ?",
-        answer:25
-    },
-
-    {
-        sequence:"1 → 3 → 6 → 10 → ?",
-        answer:15
-    },
-
-    {
-        sequence:"2 → 5 → 11 → 23 → ?",
-        answer:47
-    },
-
-    {
-        sequence:"5 → 8 → 14 → 26 → ?",
-        answer:50
-    },
-
-    {
-        sequence:"100 → 50 → 25 → 12.5 → ?",
-        answer:6.25
-    },
-
-    {
-        sequence:"1 → 2 → 6 → 24 → ?",
-        answer:120
-    },
-
-    {
-        sequence:"7 → 10 → 16 → 28 → ?",
-        answer:52
-    },
-
-    {
-        sequence:"2 → 3 → 5 → 8 → 12 → ?",
-        answer:17
-    }
-
+const numberPuzzles=[
+  {a:[2,4,6,8,"?"],answer:10},
+  {a:[3,6,12,24,"?"],answer:48},
+  {a:[5,10,20,40,"?"],answer:80},
+  {a:[1,4,9,16,"?"],answer:25},
+  {a:[2,5,10,17,"?"],answer:26},
+  {a:[10,20,40,80,"?"],answer:160},
+  {a:[81,27,9,3,"?"],answer:1},
+  {a:[4,8,16,32,"?"],answer:64},
+  {a:[7,14,21,28,"?"],answer:35},
+  {a:[100,90,80,70,"?"],answer:60}
 ];
 
-const numberPuzzle =
-    numberPuzzles[
-        getDayIndex(numberPuzzles.length)
+const numberPuzzle=
+  numberPuzzles[dayIndex(numberPuzzles.length)];
+
+document.getElementById("sequence").innerHTML=
+  numberPuzzle.a.map(n=>
+    `<div class="num-box ${n==="?"?"question":""}">${n}</div>`
+  ).join("");
+
+let numberAttempts=0;
+
+function checkNumber(){
+
+  const value=parseInt(
+    document.getElementById("numberAnswer").value
+  );
+
+  if(value===numberPuzzle.answer){
+
+    document.getElementById("numberMessage").textContent=
+      "Correct! 🔥";
+
+    addScore("number",Math.max(100,300-numberAttempts*100));
+
+  }else{
+
+    numberAttempts++;
+
+    document.getElementById("numberMessage").textContent=
+      numberAttempts>=3
+      ?`Answer: ${numberPuzzle.answer}`
+      :"Not quite. Try again.";
+
+    if(numberAttempts>=3)
+      addScore("number",0);
+  }
+}
+
+
+/* =========================================================
+   QUICKFIRE
+========================================================= */
+
+const quickfireCategories=[
+  {
+    name:"FOODS",
+    words:["PIZZA","BURGER","RAMEN","SUSHI","NOODLES","RICE","CAKE","BREAD"]
+  },
+  {
+    name:"ANIMALS",
+    words:["CAT","DOG","TIGER","LION","HORSE","SHARK","WHALE","BEAR"]
+  },
+  {
+    name:"SPORTS",
+    words:["FOOTBALL","TENNIS","BASKETBALL","RUGBY","GOLF","BOXING","HOCKEY"]
+  },
+  {
+    name:"THINGS AT SCHOOL",
+    words:["BOOK","PEN","DESK","CHAIR","TEACHER","BOARD","BAG","PENCIL"]
+  },
+  {
+    name:"COUNTRIES",
+    words:["SINGAPORE","MALAYSIA","JAPAN","INDIA","FRANCE","CANADA","BRAZIL"]
+  }
+];
+
+let quickRunning=false;
+let quickScore=0;
+let quickTime=30;
+let quickInterval;
+let quickCategoryIndex=0;
+let quickUsed=[];
+
+function startQuickfire(){
+
+  quickRunning=true;
+  quickScore=0;
+  quickTime=30;
+  quickCategoryIndex=0;
+  quickUsed=[];
+
+  document.getElementById("quickScore").textContent=0;
+  document.getElementById("quickTimer").textContent=30;
+
+  document.getElementById("quickInput").disabled=false;
+  document.getElementById("quickInput").focus();
+
+  document.getElementById("quickStart").disabled=true;
+
+  showQuickCategory();
+
+  quickInterval=setInterval(()=>{
+
+    quickTime--;
+
+    document.getElementById("quickTimer").textContent=quickTime;
+
+    if(quickTime<=0)
+      endQuickfire();
+
+  },1000);
+}
+
+function showQuickCategory(){
+
+  const cat=
+    quickfireCategories[quickCategoryIndex %
+    quickfireCategories.length];
+
+  document.getElementById("quickCategory").textContent=
+    cat.name;
+
+  document.getElementById("quickPrompt").textContent=
+    "Type an answer";
+}
+
+function submitQuickfire(){
+
+  if(!quickRunning) return;
+
+  const input=document.getElementById("quickInput");
+
+  const answer=input.value.trim().toUpperCase();
+
+  if(!answer) return;
+
+  const cat=
+    quickfireCategories[
+      quickCategoryIndex % quickfireCategories.length
     ];
 
-document.getElementById("numberSequence").textContent =
-    numberPuzzle.sequence;
+  if(cat.words.includes(answer) && !quickUsed.includes(answer)){
 
-let numberAttempts = 3;
+    quickUsed.push(answer);
 
+    quickScore+=10;
 
-function checkNumber() {
+    document.getElementById("quickScore").textContent=
+      quickScore;
 
-    const input =
-        document.getElementById("numberInput");
+    quickCategoryIndex++;
 
-    const message =
-        document.getElementById("numberMessage");
+    showQuickCategory();
 
-    if(input.value === "") {
+  }else{
 
-        message.textContent =
-            "Enter an answer.";
+    document.getElementById("quickMessage").textContent=
+      "Try another answer.";
+  }
 
-        return;
-    }
+  input.value="";
+}
 
-    if(Number(input.value) === numberPuzzle.answer) {
+function endQuickfire(){
 
-        message.textContent =
-            "✅ Correct!";
+  clearInterval(quickInterval);
 
-        completed.number = true;
+  quickRunning=false;
 
-        totalScore +=
-            numberAttempts * 100;
+  document.getElementById("quickInput").disabled=true;
 
-        input.disabled = true;
+  document.getElementById("quickStart").disabled=false;
 
-        checkAllGames();
+  document.getElementById("quickMessage").textContent=
+    `Time's up! You scored ${quickScore}.`;
 
-    } else {
-
-        numberAttempts--;
-
-        if(numberAttempts <= 0) {
-
-            message.textContent =
-                "The answer was " +
-                numberPuzzle.answer + ".";
-
-            input.disabled = true;
-
-            checkAllGames();
-
-        } else {
-
-            message.textContent =
-                "❌ Wrong. Attempts left: " +
-                numberAttempts;
-
-        }
-
-    }
-
+  addScore("quick",quickScore*3);
 }
 
 
-/* =========================================
+/* =========================================================
    ODD PIXEL
-========================================= */
+========================================================= */
 
-let pixelStart = 0;
-let pixelInterval = null;
-let pixelFinished = false;
-let pixelMistakes = 0;
+let pixelStart;
+let pixelMistakes=0;
+let oddIndex;
 
-function startPixelGame() {
+function newPixelRound(){
 
-    if(pixelFinished) return;
+  pixelMistakes=0;
 
-    const grid =
-        document.getElementById("pixelGrid");
+  document.getElementById("pixelMistakes").textContent=0;
 
-    grid.innerHTML = "";
+  const grid=document.getElementById("pixelGrid");
 
-    pixelMistakes = 0;
+  grid.innerHTML="";
 
-    document.getElementById("mistakes").textContent = "0";
+  const baseHue=Math.floor(Math.random()*360);
 
-    const odd =
-        Math.floor(Math.random()*36);
+  const baseSat=65;
 
-    const hue =
-        Math.floor(Math.random()*360);
+  const baseLight=50;
 
-    const saturation =
-        45 + Math.floor(Math.random()*25);
+  oddIndex=Math.floor(Math.random()*36);
 
-    const lightness =
-        45 + Math.floor(Math.random()*15);
+  for(let i=0;i<36;i++){
 
-    const normal =
-        `hsl(${hue},${saturation}%,${lightness}%)`;
+    const tile=document.createElement("div");
 
-    const difference =
-        Math.random() > .5 ? 5 : -5;
+    tile.className="pixel";
 
-    const oddColor =
-        `hsl(${hue},${saturation}%,${lightness+difference}%)`;
+    const odd=i===oddIndex;
 
-    pixelStart = Date.now();
+    const hue=odd
+      ?baseHue+7
+      :baseHue;
 
-    clearInterval(pixelInterval);
+    const light=odd
+      ?baseLight+7
+      :baseLight;
 
-    pixelInterval =
-        setInterval(() => {
+    tile.style.background=
+      `hsl(${hue},${baseSat}%,${light}%)`;
 
-            const seconds =
-                (Date.now()-pixelStart)/1000;
+    tile.onclick=()=>{
 
-            document.getElementById("timer").textContent =
-                seconds.toFixed(2);
+      if(i===oddIndex){
 
-        },50);
+        const elapsed=(Date.now()-pixelStart)/1000;
 
+        document.getElementById("pixelTime").textContent=
+          elapsed.toFixed(1);
 
-    for(let i=0;i<36;i++) {
+        document.getElementById("pixelMessage").textContent=
+          "Found it! 👁️";
 
-        const tile =
-            document.createElement("div");
+        const score=
+          Math.max(50,500-
+          Math.floor(elapsed*30)-
+          pixelMistakes*60);
 
-        tile.className = "pixel";
+        addScore("pixel",score);
 
-        tile.style.background =
-            i === odd ? oddColor : normal;
+      }else{
 
-        tile.onclick = function() {
+        pixelMistakes++;
 
-            if(pixelFinished) return;
+        tile.classList.add("bad");
 
-            if(i === odd) {
+        document.getElementById("pixelMistakes").textContent=
+          pixelMistakes;
+      }
+    };
 
-                pixelFinished = true;
+    grid.appendChild(tile);
+  }
 
-                clearInterval(pixelInterval);
-
-                const time =
-                    (Date.now()-pixelStart)/1000;
-
-                document.getElementById("timer").textContent =
-                    time.toFixed(2);
-
-                document.getElementById("pixelMessage").textContent =
-                    "🎯 Found it in " +
-                    time.toFixed(2) +
-                    " seconds with " +
-                    pixelMistakes +
-                    " mistakes!";
-
-                completed.pixel = true;
-
-                totalScore += Math.max(
-                    100,
-                    600 -
-                    Math.floor(time*40) -
-                    pixelMistakes*70
-                );
-
-                checkAllGames();
-
-            } else {
-
-                pixelMistakes++;
-
-                this.classList.add("wrong");
-
-                document.getElementById("mistakes").textContent =
-                    pixelMistakes;
-
-                document.getElementById("pixelMessage").textContent =
-                    "❌ Wrong tile!";
-            }
-
-        };
-
-        grid.appendChild(tile);
-
-    }
-
+  pixelStart=Date.now();
 }
 
+newPixelRound();
 
-/* =========================================
+
+/* =========================================================
    COLOR RECALL
-========================================= */
+========================================================= */
 
-let targetH = 0;
-let targetS = 0;
-let targetL = 0;
-let colorStarted = false;
+let targetColor={
+  h:Math.floor(Math.random()*361),
+  s:Math.floor(Math.random()*41)+50,
+  l:Math.floor(Math.random()*31)+35
+};
 
+const targetBox=document.getElementById("colorTarget");
 
-function startColorGame() {
+targetBox.style.background=
+  `hsl(${targetColor.h},${targetColor.s}%,${targetColor.l}%)`;
 
-    if(colorStarted) return;
+setTimeout(()=>{
 
-    colorStarted = true;
+  targetBox.style.background="#151b29";
 
-    targetH =
-        Math.floor(Math.random()*361);
+  document.getElementById("colorInstructions").textContent=
+    "Now recreate the colour.";
 
-    targetS =
-        Math.floor(Math.random()*81)+20;
+},3000);
 
-    targetL =
-        Math.floor(Math.random()*61)+20;
+function checkColor(){
 
-    const target =
-        `hsl(${targetH},${targetS}%,${targetL}%)`;
+  const h=+document.getElementById("hue").value;
+  const s=+document.getElementById("sat").value;
+  const l=+document.getElementById("light").value;
 
-    document.getElementById("targetColor").style.background =
-        target;
+  const difference=
+    Math.abs(h-targetColor.h)+
+    Math.abs(s-targetColor.s)+
+    Math.abs(l-targetColor.l);
 
-    document.getElementById("targetHex").textContent =
-        "Memorise it...";
+  const score=
+    Math.max(0,1000-difference*5);
 
-    setTimeout(() => {
+  document.getElementById("colorMessage").textContent=
+    `Similarity score: ${Math.round(score)}`;
 
-        document.getElementById("targetColor").style.background =
-            "#11131a";
-
-        document.getElementById("targetHex").textContent =
-            "Now recreate the colour!";
-
-        document.getElementById("colorControls").style.display =
-            "block";
-
-        updateGuessColor();
-
-    },3000);
-
+  addScore("color",score);
 }
 
 
-function updateGuessColor() {
+/* =========================================================
+   WORD LINKS
+========================================================= */
 
-    const h =
-        Number(document.getElementById("hue").value);
-
-    const s =
-        Number(document.getElementById("sat").value);
-
-    const l =
-        Number(document.getElementById("light").value);
-
-    document.getElementById("hueValue").textContent =
-        h + "°";
-
-    document.getElementById("satValue").textContent =
-        s + "%";
-
-    document.getElementById("lightValue").textContent =
-        l + "%";
-
-    const colour =
-        `hsl(${h},${s}%,${l}%)`;
-
-    document.getElementById("guessColor").style.background =
-        colour;
-
-    document.getElementById("guessHex").textContent =
-        hslToHex(h,s,l);
-
-}
-
-
-["hue","sat","light"].forEach(id => {
-
-    document
-        .getElementById(id)
-        .addEventListener(
-            "input",
-            updateGuessColor
-        );
-
-});
-
-
-function hslToHex(h,s,l) {
-
-    s /= 100;
-    l /= 100;
-
-    const c =
-        (1-Math.abs(2*l-1))*s;
-
-    const x =
-        c*(1-Math.abs((h/60)%2-1));
-
-    const m =
-        l-c/2;
-
-    let r=0,g=0,b=0;
-
-    if(h<60) {
-        r=c; g=x;
-    }
-    else if(h<120) {
-        r=x; g=c;
-    }
-    else if(h<180) {
-        g=c; b=x;
-    }
-    else if(h<240) {
-        g=x; b=c;
-    }
-    else if(h<300) {
-        r=x; b=c;
-    }
-    else {
-        r=c; b=x;
-    }
-
-    r=Math.round((r+m)*255);
-    g=Math.round((g+m)*255);
-    b=Math.round((b+m)*255);
-
-    return "#" +
-        [r,g,b]
-        .map(v =>
-            v.toString(16).padStart(2,"0")
-        )
-        .join("")
-        .toUpperCase();
-
-}
-
-
-function submitColor() {
-
-    const h =
-        Number(document.getElementById("hue").value);
-
-    const s =
-        Number(document.getElementById("sat").value);
-
-    const l =
-        Number(document.getElementById("light").value);
-
-    const hueDifference =
-        Math.min(
-            Math.abs(h-targetH),
-            360-Math.abs(h-targetH)
-        );
-
-    const score =
-        Math.max(
-            0,
-            100 -
-            hueDifference*.35 -
-            Math.abs(s-targetS)*.4 -
-            Math.abs(l-targetL)*.4
-        );
-
-    const rounded =
-        Math.round(score);
-
-    document.getElementById("colorMessage").innerHTML =
-        `🎨 Your colour was <strong>${rounded}%</strong> similar.`;
-
-    totalScore += rounded * 3;
-
-    completed.color = true;
-
-    document
-        .getElementById("colorControls")
-        .style.display = "none";
-
-    checkAllGames();
-
-}
-
-
-/* =========================================
-   WORD LINKS / CONNECTIONS
-========================================= */
-
-const connectionPuzzle = [
-
-    {
-        words:["MARS","JUPITER","VENUS","SATURN"],
-        name:"PLANETS",
-        description:"Planets in our solar system"
-    },
-
-    {
-        words:["BASKET","NET","GOAL","BALL"],
-        name:"FOOTBALL TERMS",
-        description:"Things associated with football"
-    },
-
-    {
-        words:["APPLE","AMAZON","META","TESLA"],
-        name:"TECH COMPANIES",
-        description:"Major technology companies"
-    },
-
-    {
-        words:["BLUE","GREEN","RED","YELLOW"],
-        name:"COLOURS",
-        description:"Basic colours"
-    }
-
+const linkWords=[
+  "MARS","VENUS","EARTH","JUPITER",
+  "APPLE","GOOGLE","AMAZON","META",
+  "RED","BLUE","GREEN","ORANGE",
+  "GOAL","PASS","KICK","STRIKER"
 ];
 
+const linkGroups=[
+  {
+    name:"PLANETS",
+    words:["MARS","VENUS","EARTH","JUPITER"]
+  },
+  {
+    name:"TECH COMPANIES",
+    words:["APPLE","GOOGLE","AMAZON","META"]
+  },
+  {
+    name:"COLOURS",
+    words:["RED","BLUE","GREEN","ORANGE"]
+  },
+  {
+    name:"FOOTBALL TERMS",
+    words:["GOAL","PASS","KICK","STRIKER"]
+  }
+];
 
-let connectionWords = [];
+let selectedLinks=[];
+let foundGroups=[];
+let linkMistakes=0;
 
-connectionPuzzle.forEach(group => {
+function renderLinks(){
 
-    group.words.forEach(word => {
+  const grid=document.getElementById("linksGrid");
 
-        connectionWords.push({
-            word:word,
-            group:group.name
-        });
+  grid.innerHTML="";
 
+  [...linkWords]
+    .sort(()=>Math.random()-.5)
+    .forEach(word=>{
+
+      const button=document.createElement("button");
+
+      button.className="link-word";
+
+      button.textContent=word;
+
+      if(foundGroups.some(g=>g.words.includes(word)))
+        button.classList.add("found");
+
+      button.onclick=()=>selectLink(button,word);
+
+      grid.appendChild(button);
     });
-
-});
-
-
-connectionWords.sort(() => Math.random()-.5);
-
-let selectedConnections = [];
-let foundConnectionGroups = [];
-let connectionMistakes = 4;
-
-
-function setupConnections() {
-
-    const grid =
-        document.getElementById("connectionsGrid");
-
-    grid.innerHTML = "";
-
-    connectionWords.forEach(item => {
-
-        const button =
-            document.createElement("div");
-
-        button.className =
-            "connection-word";
-
-        button.textContent =
-            item.word;
-
-        button.onclick = () => {
-
-            if(button.classList.contains("found"))
-                return;
-
-            if(button.classList.contains("selected")) {
-
-                button.classList.remove("selected");
-
-                selectedConnections =
-                    selectedConnections.filter(
-                        x => x !== item
-                    );
-
-            } else {
-
-                if(selectedConnections.length >= 4) {
-
-                    return;
-                }
-
-                button.classList.add("selected");
-
-                selectedConnections.push(item);
-
-            }
-
-        };
-
-        grid.appendChild(button);
-
-    });
-
 }
 
+function selectLink(button,word){
 
-setupConnections();
+  if(button.classList.contains("found"))
+    return;
 
+  if(selectedLinks.includes(word)){
 
-function submitConnectionGroup() {
+    selectedLinks=
+      selectedLinks.filter(x=>x!==word);
 
-    if(selectedConnections.length !== 4) {
+    button.classList.remove("selected");
 
-        document.getElementById("linksMessage").textContent =
-            "Select exactly four words.";
+  }else if(selectedLinks.length<4){
 
-        return;
-    }
+    selectedLinks.push(word);
 
-    const groups =
-        selectedConnections.map(
-            x => x.group
-        );
-
-    const same =
-        groups.every(
-            x => x === groups[0]
-        );
-
-    if(same) {
-
-        const group =
-            connectionPuzzle.find(
-                x => x.name === groups[0]
-            );
-
-        foundConnectionGroups.push(group);
-
-        document.getElementById("foundGroups").innerHTML +=
-            `<div class="group">
-                <strong>${group.name}</strong>
-                <span>${group.description}</span>
-            </div>`;
-
-        document
-            .querySelectorAll(".connection-word")
-            .forEach(button => {
-
-                if(
-                    selectedConnections
-                    .some(x => x.word === button.textContent)
-                ) {
-
-                    button.classList.remove("selected");
-                    button.classList.add("found");
-
-                }
-
-            });
-
-        totalScore += 400;
-
-        selectedConnections = [];
-
-        document.getElementById("linksMessage").textContent =
-            "🟨 Nice! Group found.";
-
-        if(foundConnectionGroups.length === 4) {
-
-            completed.links = true;
-
-            checkAllGames();
-
-        }
-
-    } else {
-
-        connectionMistakes--;
-
-        document.getElementById("connectionLives").textContent =
-            connectionMistakes;
-
-        document.getElementById("linksMessage").textContent =
-            "❌ Not quite. Those words don't form one group.";
-
-        selectedConnections.forEach(item => {
-
-            document
-                .querySelectorAll(".connection-word")
-                .forEach(button => {
-
-                    if(button.textContent === item.word) {
-
-                        button.classList.remove("selected");
-
-                    }
-
-                });
-
-        });
-
-        selectedConnections = [];
-
-        if(connectionMistakes <= 0) {
-
-            document.getElementById("linksMessage").textContent =
-                "Game over — try again tomorrow.";
-
-            completed.links = true;
-
-            checkAllGames();
-
-        }
-
-    }
-
+    button.classList.add("selected");
+  }
 }
 
+function clearSelection(){
 
-/* =========================================
-   OPEN GAME
-========================================= */
+  selectedLinks=[];
 
-function openGame(game) {
-
-    closeGames();
-
-    if(game === "word") {
-
-        document
-            .getElementById("wordGame")
-            .classList.add("active");
-
-    }
-
-    if(game === "malay") {
-
-        document
-            .getElementById("malayGame")
-            .classList.add("active");
-
-    }
-
-    if(game === "number") {
-
-        document
-            .getElementById("numberGame")
-            .classList.add("active");
-
-    }
-
-    if(game === "pixel") {
-
-        document
-            .getElementById("pixelGame")
-            .classList.add("active");
-
-        startPixelGame();
-
-    }
-
-    if(game === "color") {
-
-        document
-            .getElementById("colorGame")
-            .classList.add("active");
-
-        startColorGame();
-
-    }
-
-    if(game === "links") {
-
-        document
-            .getElementById("linksGame")
-            .classList.add("active");
-
-    }
-
-    setTimeout(() => {
-
-        document
-            .querySelector(".game-screen.active")
-            ?.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
-
-    },100);
-
+  document
+    .querySelectorAll(".link-word")
+    .forEach(b=>b.classList.remove("selected"));
 }
 
+function submitGroup(){
 
-/* =========================================
-   CLOSE
-========================================= */
+  if(selectedLinks.length!==4){
 
-function closeGames() {
+    document.getElementById("linksMessage").textContent=
+      "Select exactly four words.";
 
-    document
-        .querySelectorAll(".game-screen")
-        .forEach(game =>
-            game.classList.remove("active")
-        );
+    return;
+  }
 
-    document
-        .getElementById("result")
-        .classList.remove("active");
+  const group=
+    linkGroups.find(g=>
+      g.words.every(w=>selectedLinks.includes(w))
+    );
 
+  if(group){
+
+    foundGroups.push(group);
+
+    document.getElementById("linksMessage").textContent=
+      `Correct: ${group.name}`;
+
+    const groupsBox=document.getElementById("groups");
+
+    const div=document.createElement("div");
+
+    div.className="group";
+
+    div.innerHTML=
+      `<strong>${group.name}</strong>
+       <span>${group.words.join(" • ")}</span>`;
+
+    groupsBox.appendChild(div);
+
+    clearSelection();
+
+    renderLinks();
+
+    if(foundGroups.length===4){
+
+      document.getElementById("finalLink").style.display=
+        "block";
+
+      document.getElementById("linksMessage").textContent=
+        "All groups found. Now solve the Final Link!";
+    }
+
+  }else{
+
+    linkMistakes++;
+
+    document.getElementById("linksMessage").textContent=
+      `Not a group. Mistakes: ${linkMistakes}/4`;
+
+    clearSelection();
+
+    if(linkMistakes>=4){
+
+      addScore("links",0);
+
+      document.getElementById("linksMessage").textContent=
+        "Game over.";
+
+    }
+  }
 }
 
+function checkFinalLink(){
 
-/* =========================================
-   COMPLETION
-========================================= */
+  const answer=
+    document.getElementById("finalAnswer")
+    .value
+    .trim()
+    .toLowerCase();
 
-function checkAllGames() {
+  /*
+    Final connection:
+    planets + tech companies + colours + football terms
+    all have terms associated with "red".
+    This prototype accepts RED / red.
+  */
 
-    const allDone =
-        Object.values(completed)
-        .every(Boolean);
+  if(answer==="red"){
 
-    if(!allDone) return;
+    document.getElementById("finalMessage").textContent=
+      "Final Link solved! 🧠";
 
-    updateStreak();
+    addScore("links",500);
 
-    document.getElementById("finalScore").textContent =
-        totalScore;
+  }else{
 
-    const share =
-`🧠 DAILYBRAIN
-${dateKey}
+    document.getElementById("finalMessage").textContent=
+      "Not quite. Think of a connection shared by the groups.";
+  }
+}
 
-🇬🇧 Word Grid ✅
-🇲🇾 Kata Hari Ini ✅
-🔢 Number Chain ✅
-👁️ Odd Pixel ✅
-🎨 Color Recall ✅
-🧩 Word Links ✅
+renderLinks();
 
-🏆 ${totalScore} points
-🔥 ${streak} day streak
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+function showResults(){
+
+  const results=document.getElementById("results");
+
+  results.style.display="block";
+
+  document.getElementById("finalScore").textContent=
+    totalScore;
+
+  const data=[
+    ["🇬🇧","Word Grid",scores.english],
+    ["🇲🇾","Kata Hari Ini",scores.malay],
+    ["🔢","Number Chain",scores.number],
+    ["⚡","Quickfire",scores.quick],
+    ["👁️","Odd Pixel",scores.pixel],
+    ["🎨","Color Recall",scores.color],
+    ["🧩","Word Links",scores.links]
+  ];
+
+  document.getElementById("resultGrid").innerHTML=
+    data.map(x=>`
+      <div class="result-item">
+        <div class="result-icon">${x[0]}</div>
+        <div class="result-name">${x[1]}</div>
+        <div class="result-score">${x[2]}</div>
+      </div>
+    `).join("");
+
+  results.scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function shareResult(){
+
+  const text=
+`🧠 DailyBrain
+Daily Challenge Complete!
+
+🇬🇧 Word Grid: ${scores.english}
+🇲🇾 Kata Hari Ini: ${scores.malay}
+🔢 Number Chain: ${scores.number}
+⚡ Quickfire: ${scores.quick}
+👁️ Odd Pixel: ${scores.pixel}
+🎨 Color Recall: ${scores.color}
+🧩 Word Links: ${scores.links}
+
+🏆 Total: ${totalScore}
+🔥 Streak: ${localStorage.getItem("dailybrainStreak")||0}
 
 Can you beat me?`;
 
-    document.getElementById("shareText").textContent =
-        share;
+  if(navigator.share){
 
-    document
-        .getElementById("result")
-        .classList.add("active");
-
-}
-
-
-/* =========================================
-   STREAK UPDATE
-========================================= */
-
-function updateStreak() {
-
-    const last =
-        localStorage.getItem(
-            "dailyBrainLastCompleted"
-        );
-
-    if(last === dateKey) return;
-
-    const yesterday =
-        new Date();
-
-    yesterday.setDate(
-        yesterday.getDate()-1
-    );
-
-    const yesterdayKey =
-        yesterday.getFullYear()+"-"+ 
-        String(yesterday.getMonth()+1).padStart(2,"0")+"-"+ 
-        String(yesterday.getDate()).padStart(2,"0");
-
-    if(last === yesterdayKey) {
-
-        streak++;
-
-    } else {
-
-        streak = 1;
-
-    }
-
-    localStorage.setItem(
-        "dailyBrainStreak",
-        streak
-    );
-
-    localStorage.setItem(
-        "dailyBrainLastCompleted",
-        dateKey
-    );
-
-    document.getElementById("streak").textContent =
-        streak;
-
-}
-
-
-/* =========================================
-   SHARE
-========================================= */
-
-async function shareResult() {
-
-    const text =
-        document
-        .getElementById("shareText")
-        .textContent;
-
-    if(navigator.share) {
-
-        try {
-
-            await navigator.share({
-                title:"My DailyBrain Result",
-                text:text
-            });
-
-        } catch(e) {}
-
-    } else {
-
-        try {
-
-            await navigator.clipboard.writeText(text);
-
-            alert(
-                "Result copied! Paste it into WhatsApp or Telegram."
-            );
-
-        } catch(e) {
-
-            alert(text);
-
-        }
-
-    }
-
-}
-
-
-/* =========================================
-   ENTER KEY
-========================================= */
-
-document
-    .getElementById("wordInput")
-    .addEventListener("keydown",e => {
-
-        if(e.key === "Enter")
-            checkWord();
-
+    navigator.share({
+      title:"DailyBrain",
+      text
     });
 
-document
-    .getElementById("malayInput")
-    .addEventListener("keydown",e => {
+  }else{
 
-        if(e.key === "Enter")
-            checkMalay();
+    navigator.clipboard.writeText(text);
 
-    });
-
-document
-    .getElementById("numberInput")
-    .addEventListener("keydown",e => {
-
-        if(e.key === "Enter")
-            checkNumber();
-
-    });
+    alert("Result copied!");
+  }
+}
 
 </script>
 
