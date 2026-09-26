@@ -1,1 +1,100 @@
-
+{
+  "categories": [
+    {
+      "name": "Animals",
+      "answers": ["cat","dog","lion","tiger","bear","wolf","fox","deer","horse","cow","goat","sheep","pig","rabbit","mouse","rat","elephant","giraffe","zebra","monkey","gorilla","panda","koala","kangaroo","camel","donkey","chicken","duck","goose","eagle","hawk","owl","penguin","parrot","shark","whale","dolphin","seal","turtle","snake","lizard","frog","crocodile","alligator","ant","bee","butterfly","spider","crab","lobster","octopus"]
+    },
+    {
+      "name": "Countries",
+      "answers": ["singapore","malaysia","indonesia","thailand","vietnam","philippines","japan","china","korea","india","australia","newzealand","canada","america","mexico","brazil","argentina","chile","peru","france","germany","italy","spain","portugal","england","ireland","scotland","norway","sweden","finland","denmark","iceland","russia","turkey","egypt","kenya","nigeria","morocco","southafrica","greece","switzerland","austria","belgium","netherlands","poland"]
+    },
+    {
+      "name": "Foods",
+      "answers": ["pizza","burger","pasta","ramen","sushi","noodles","rice","bread","toast","pancake","waffle","omelette","chicken","beef","pork","steak","salad","soup","curry","satay","laksa","rendang","nasi","prata","roti","dumpling","taco","burrito","nachos","sandwich","hotdog","fries","popcorn","cookie","cake","brownie","donut","muffin","cheese","yogurt","apple","banana","orange","mango","watermelon","grape","strawberry","pineapple","coconut"]
+    },
+    {
+      "name": "Sports",
+      "answers": ["football","soccer","basketball","tennis","badminton","volleyball","baseball","cricket","rugby","golf","boxing","wrestling","swimming","running","cycling","hockey","skiing","surfing","archery","fencing","rowing","diving","karate","judo","gymnastics","skating","bowling","snooker","darts","athletics"]
+    },
+    {
+      "name": "Colours",
+      "answers": ["red","blue","green","yellow","orange","purple","pink","black","white","brown","grey","gray","gold","silver","cyan","magenta","maroon","navy","teal","beige","violet","indigo","turquoise","lime","coral","scarlet","crimson","bronze"]
+    },
+    {
+      "name": "School Subjects",
+      "answers": ["math","mathematics","english","science","physics","chemistry","biology","history","geography","economics","business","accounting","computing","art","music","literature","design","engineering","pe","sports","malay","chinese","french","psychology"]
+    },
+    {
+      "name": "Technology",
+      "answers": ["phone","laptop","computer","tablet","keyboard","mouse","monitor","camera","printer","router","server","robot","drone","console","controller","headphones","speaker","charger","battery","internet","website","browser","app","software","hardware","ai","iphone","android","samsung","apple"]
+    },
+    {
+      "name": "Vehicles",
+      "answers": ["car","bus","train","plane","airplane","helicopter","boat","ship","ferry","bicycle","bike","motorcycle","scooter","truck","van","taxi","ambulance","firetruck","tractor","submarine","rocket"]
+    },
+    {
+      "name": "Clothing",
+      "answers": ["shirt","tshirt","pants","jeans","shorts","jacket","coat","hoodie","sweater","suit","tie","dress","skirt","socks","shoes","boots","sandals","slides","cap","hat","scarf","gloves","belt"]
+    },
+    {
+      "name": "Body Parts",
+      "answers": ["head","hair","face","eye","ear","nose","mouth","tooth","tongue","neck","shoulder","arm","elbow","hand","finger","chest","back","stomach","leg","knee","foot","toe","ankle","heart","brain"]
+    },
+    {
+      "name": "Things in a House",
+      "answers": ["table","chair","sofa","bed","desk","lamp","television","tv","fridge","freezer","oven","stove","microwave","sink","toilet","shower","mirror","door","window","curtain","carpet","clock","fan","pillow","blanket","wardrobe","shelf","drawer"]
+    },
+    {
+      "name": "Things at the Beach",
+      "answers": ["sand","water","sea","ocean","wave","shell","crab","fish","boat","surfboard","towel","umbrella","sunscreen","swimsuit","ball","bucket","sun","island","rock","coral"]
+    },
+    {
+      "name": "Space",
+      "answers": ["sun","moon","earth","mars","venus","mercury","jupiter","saturn","uranus","neptune","pluto","planet","star","comet","asteroid","galaxy","universe","rocket","satellite","meteor","orbit","blackhole"]
+    },
+    {
+      "name": "Jobs",
+      "answers": ["doctor","nurse","teacher","engineer","lawyer","pilot","chef","driver","police","firefighter","farmer","artist","actor","singer","dancer","designer","programmer","developer","architect","dentist","accountant","manager","soldier","journalist","photographer"]
+    },
+    {
+      "name": "Musical Instruments",
+      "answers": ["piano","guitar","violin","drums","flute","trumpet","saxophone","clarinet","cello","harp","organ","keyboard","bass","ukulele","trombone","tuba","oboe","banjo","accordion","tambourine"]
+    },
+    {
+      "name": "Fruits",
+      "answers": ["apple","banana","orange","mango","grape","watermelon","strawberry","blueberry","raspberry","blackberry","pineapple","papaya","guava","kiwi","lemon","lime","peach","pear","plum","cherry","apricot","melon","coconut","durian","dragonfruit","avocado"]
+    },
+    {
+      "name": "Countries in Asia",
+      "answers": ["singapore","malaysia","indonesia","thailand","vietnam","philippines","japan","china","korea","india","pakistan","bangladesh","nepal","bhutan","myanmar","cambodia","laos","brunei","timor","mongolia","taiwan"]
+    },
+    {
+      "name": "Football Terms",
+      "answers": ["goal","ball","kick","pass","tackle","header","corner","penalty","keeper","striker","defender","midfielder","winger","referee","offside","foul","yellow","red","stadium","league","cup","coach","manager","dribble","cross","assist"]
+    },
+    {
+      "name": "Brands",
+      "answers": ["apple","samsung","nike","adidas","puma","reebok","gucci","prada","chanel","dior","sony","google","microsoft","amazon","toyota","honda","bmw","mercedes","audi","ferrari","tesla","lego","coca","pepsi"]
+    },
+    {
+      "name": "Things You Can Drink",
+      "answers": ["water","coffee","tea","juice","milk","soda","cola","lemonade","smoothie","shake","cocoa","chocolate","latte","espresso","mocha","cappuccino","matcha","soup"]
+    },
+    {
+      "name": "Things That Fly",
+      "answers": ["bird","eagle","owl","parrot","butterfly","bee","fly","mosquito","bat","plane","helicopter","drone","rocket","kite"]
+    },
+    {
+      "name": "Things That Are Round",
+      "answers": ["ball","circle","coin","wheel","ring","plate","clock","globe","orange","apple","moon","sun","bubble","button","pizza"]
+    },
+    {
+      "name": "Things That Are Cold",
+      "answers": ["ice","snow","winter","freezer","fridge","icecream","snowman","penguin","antarctica","sorbet","iceberg"]
+    },
+    {
+      "name": "Things That Are Hot",
+      "answers": ["fire","sun","lava","oven","stove","chili","pepper","coffee","tea","steam","desert","volcano"]
+    }
+  ]
+}
