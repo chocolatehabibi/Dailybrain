@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DailyBrain</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<title>DailyBrain — Daily Brain Games</title>
+<meta name="description" content="Play five quick daily brain games. Test your words, speed, memory, vision and logic.">
 
 <style>
 *{
@@ -17,12 +15,9 @@
 }
 
 body{
-    background:
-        radial-gradient(circle at top left,#172554 0%,transparent 35%),
-        radial-gradient(circle at bottom right,#312e81 0%,transparent 35%),
-        #070b16;
-    color:#f8fafc;
-    font-family:Manrope,Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#090b10;
+    color:#fff;
     min-height:100vh;
 }
 
@@ -30,185 +25,221 @@ button{
     font-family:inherit;
 }
 
-.app{
-    width:min(1100px,94%);
-    margin:auto;
-    padding:22px 0 50px;
-}
-
-header{
+.header{
+    height:70px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    margin-bottom:35px;
+    justify-content:space-between;
+    padding:0 30px;
+    border-bottom:1px solid #222631;
+    background:#0c0f15;
 }
 
 .logo{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:28px;
-    font-weight:700;
+    font-size:24px;
+    font-weight:800;
     letter-spacing:-1px;
 }
 
 .logo span{
-    color:#818cf8;
+    color:#6c63ff;
 }
 
 .streak{
-    background:#111827;
-    border:1px solid #263249;
-    padding:9px 14px;
-    border-radius:999px;
+    color:#aaa;
     font-size:14px;
-    font-weight:700;
 }
 
-.screen{
-    display:none;
+.streak strong{
+    color:#fff;
 }
 
-.screen.active{
-    display:block;
+.container{
+    width:min(1000px,92%);
+    margin:auto;
 }
 
 .hero{
     text-align:center;
-    margin-bottom:35px;
+    padding:55px 20px 35px;
 }
 
 .hero h1{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(38px,7vw,68px);
-    line-height:1;
-    margin-bottom:15px;
+    font-size:52px;
+    margin-bottom:12px;
 }
 
 .hero p{
-    color:#94a3b8;
-    font-size:16px;
+    color:#9da3b4;
+    font-size:17px;
 }
 
 .games-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
+    gap:18px;
+    padding-bottom:40px;
 }
 
 .game-card{
-    border:1px solid #263249;
-    background:rgba(15,23,42,.88);
-    border-radius:22px;
+    background:#11151d;
+    border:1px solid #252b37;
+    border-radius:18px;
     padding:25px;
     cursor:pointer;
     transition:.2s;
-    position:relative;
-    overflow:hidden;
 }
 
 .game-card:hover{
-    transform:translateY(-4px);
-    border-color:#6366f1;
-    background:#111a30;
-}
-
-.game-card.locked{
-    opacity:.72;
+    transform:translateY(-3px);
+    border-color:#4c5568;
 }
 
 .game-icon{
-    font-size:34px;
-    margin-bottom:18px;
+    font-size:30px;
+    margin-bottom:15px;
 }
 
 .game-card h2{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:24px;
+    font-size:22px;
     margin-bottom:7px;
 }
 
 .game-card p{
-    color:#94a3b8;
+    color:#9299aa;
     line-height:1.5;
 }
 
-.card-status{
-    margin-top:17px;
-    color:#818cf8;
-    font-weight:800;
+.game-card .status{
+    margin-top:18px;
     font-size:13px;
+    color:#6c63ff;
+    font-weight:bold;
 }
 
-.game-wrap{
-    max-width:700px;
+.game-card.completed{
+    opacity:.65;
+    cursor:default;
+}
+
+.game-card.completed:hover{
+    transform:none;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.screen{
+    min-height:calc(100vh - 70px);
+    padding:40px 15px;
+}
+
+.game-screen{
+    width:min(700px,100%);
     margin:auto;
+    text-align:center;
 }
 
-.game-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.back-btn{
-    background:#111827;
-    border:1px solid #263249;
-    color:white;
-    padding:9px 14px;
-    border-radius:10px;
+.back{
+    background:none;
+    border:0;
+    color:#9299aa;
     cursor:pointer;
+    margin-bottom:25px;
+    font-size:14px;
 }
 
 .game-title{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:28px;
+    font-size:36px;
+    margin-bottom:8px;
 }
 
-.stat{
-    background:#111827;
-    border:1px solid #263249;
-    padding:8px 13px;
-    border-radius:10px;
-    font-size:13px;
-    font-weight:800;
+.game-subtitle{
+    color:#9299aa;
+    margin-bottom:30px;
 }
 
-.instructions{
+.game-stat{
+    margin:15px 0 25px;
+    color:#bbb;
+    font-weight:bold;
+}
+
+.result-screen{
     text-align:center;
-    color:#94a3b8;
-    margin-bottom:20px;
+    width:min(650px,100%);
+    margin:auto;
+    padding:50px 20px;
+}
+
+.result-icon{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+.result-title{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.result-score{
+    font-size:76px;
+    font-weight:900;
+    color:#6c63ff;
+    margin:20px 0;
+}
+
+.result-score small{
+    font-size:25px;
+    color:#777;
+}
+
+.result-message{
+    color:#aaa;
+    font-size:17px;
+    margin-bottom:25px;
+}
+
+.result-stats{
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    margin:25px 0 35px;
+}
+
+.result-stat strong{
+    display:block;
+    font-size:25px;
+}
+
+.result-stat span{
+    color:#777;
+    font-size:13px;
 }
 
 .primary-btn{
-    border:none;
-    background:linear-gradient(135deg,#6366f1,#8b5cf6);
+    border:0;
+    border-radius:12px;
+    padding:14px 25px;
+    background:#6c63ff;
     color:white;
-    padding:13px 22px;
-    border-radius:13px;
-    font-weight:800;
+    font-size:16px;
+    font-weight:bold;
     cursor:pointer;
-    font-size:15px;
-    transition:.2s;
 }
 
 .primary-btn:hover{
-    transform:translateY(-2px);
+    background:#7c74ff;
 }
 
-.secondary-btn{
-    border:1px solid #334155;
-    background:#111827;
-    color:white;
-    padding:13px 22px;
-    border-radius:13px;
-    font-weight:800;
-    cursor:pointer;
-}
+/* WORD GRID */
 
-/* WORDLE */
-
-.wordle-board{
-    width:min(350px,90vw);
+.word-board{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    width:310px;
     margin:20px auto;
 }
 
@@ -216,45 +247,38 @@ header{
     display:grid;
     grid-template-columns:repeat(5,1fr);
     gap:7px;
-    margin-bottom:7px;
 }
 
-.tile{
-    aspect-ratio:1;
-    border:2px solid #334155;
-    border-radius:7px;
+.word-tile{
+    width:56px;
+    height:56px;
+    border:2px solid #343b49;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:"Space Grotesk";
-    font-size:28px;
+    font-size:25px;
     font-weight:800;
-    text-transform:uppercase;
-    background:#0b1220;
+    border-radius:5px;
 }
 
-.tile.filled{
-    border-color:#64748b;
+.word-tile.correct{
+    background:#3b8f55;
+    border-color:#3b8f55;
 }
 
-.tile.correct{
-    background:#16a34a;
-    border-color:#16a34a;
+.word-tile.present{
+    background:#a78332;
+    border-color:#a78332;
 }
 
-.tile.present{
-    background:#ca8a04;
-    border-color:#ca8a04;
-}
-
-.tile.absent{
-    background:#374151;
-    border-color:#374151;
+.word-tile.absent{
+    background:#343840;
+    border-color:#343840;
 }
 
 .keyboard{
-    width:min(520px,96vw);
-    margin:20px auto 0;
+    width:min(520px,100%);
+    margin:25px auto;
 }
 
 .key-row{
@@ -265,386 +289,193 @@ header{
 }
 
 .key{
-    height:48px;
+    background:#f1f1f1;
+    color:#111;
+    border:0;
+    border-radius:5px;
+    height:52px;
     min-width:38px;
-    padding:0 9px;
-    border:1px solid #cbd5e1;
-    border-radius:7px;
-    background:#f8fafc;
-    color:#111827;
-    font-weight:800;
+    font-weight:bold;
     cursor:pointer;
 }
 
 .key.wide{
-    min-width:60px;
+    min-width:65px;
     font-size:11px;
 }
 
 .key.correct{
-    background:#16a34a;
+    background:#3b8f55;
     color:white;
-    border-color:#16a34a;
 }
 
 .key.present{
-    background:#ca8a04;
+    background:#a78332;
     color:white;
-    border-color:#ca8a04;
 }
 
 .key.absent{
-    background:#374151;
+    background:#343840;
     color:white;
-    border-color:#374151;
 }
 
 /* QUICKFIRE */
 
-.quickfire-box{
-    text-align:center;
-    background:#111827;
-    border:1px solid #263249;
-    border-radius:22px;
-    padding:35px 20px;
+.quick-category{
+    font-size:26px;
+    font-weight:bold;
+    margin:25px 0 15px;
 }
 
-.timer{
-    font-family:"Space Grotesk";
-    font-size:58px;
-    font-weight:700;
-    margin-bottom:20px;
-}
-
-.category{
-    color:#818cf8;
-    font-size:15px;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-.quick-question{
-    font-family:"Space Grotesk";
-    font-size:30px;
-    margin:12px 0 25px;
+.quick-timer{
+    font-size:45px;
+    font-weight:900;
+    color:#6c63ff;
 }
 
 .quick-input{
-    width:min(450px,90%);
-    background:#0b1220;
-    border:2px solid #334155;
+    width:min(500px,100%);
+    padding:16px;
+    border-radius:10px;
+    border:1px solid #343b49;
+    background:#11151d;
     color:white;
-    padding:15px;
-    border-radius:12px;
     font-size:18px;
-    text-align:center;
     outline:none;
-}
-
-.quick-input:focus{
-    border-color:#6366f1;
-}
-
-.quick-score{
-    margin-top:20px;
-    color:#94a3b8;
+    margin:20px 0 10px;
 }
 
 /* ODD PIXEL */
 
 .odd-grid{
-    width:min(390px,90vw);
     display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:5px;
+    grid-template-columns:repeat(8,1fr);
+    width:min(500px,100%);
     margin:25px auto;
+    gap:5px;
 }
 
-.odd-cell{
+.odd-square{
     aspect-ratio:1;
-    border-radius:5px;
+    border-radius:4px;
     cursor:pointer;
-}
-
-.odd-info{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:15px;
 }
 
 /* COLOR */
 
 .color-box{
-    width:min(330px,80vw);
-    aspect-ratio:1;
-    border-radius:25px;
+    width:230px;
+    height:150px;
     margin:25px auto;
-    border:3px solid #334155;
+    border-radius:15px;
+    border:3px solid #333;
 }
 
-.sliders{
-    width:min(500px,90%);
+.color-sliders{
+    width:min(500px,100%);
     margin:auto;
 }
 
-.slider-line{
-    display:grid;
-    grid-template-columns:45px 1fr 45px;
-    gap:10px;
+.slider-row{
+    display:flex;
     align-items:center;
-    margin:13px 0;
+    gap:12px;
+    margin:15px 0;
 }
 
-.slider-line input{
-    width:100%;
+.slider-row label{
+    width:25px;
+    font-weight:bold;
 }
 
-.slider-number{
-    text-align:right;
-    color:#cbd5e1;
-    font-weight:700;
+.slider-row input{
+    flex:1;
 }
 
-/* WORD LINKS */
+/* LINKS */
 
 .links-grid{
-    width:min(520px,94vw);
-    margin:20px auto;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:8px;
+    gap:10px;
+    width:min(650px,100%);
+    margin:25px auto;
 }
 
-.link-cell{
-    min-height:90px;
-    background:#111827;
-    border:2px solid #334155;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:8px;
+.link-word{
+    padding:18px 5px;
+    border:1px solid #343b49;
+    background:#11151d;
+    border-radius:10px;
     cursor:pointer;
-    font-weight:800;
-    font-size:14px;
-    transition:.15s;
+    font-weight:bold;
 }
 
-.link-cell.selected{
-    border-color:#818cf8;
-    background:#1e1b4b;
+.link-word.selected{
+    background:#6c63ff;
+    border-color:#6c63ff;
 }
 
-.link-cell.solved{
-    background:#14532d;
-    border-color:#22c55e;
+.link-groups{
+    margin-top:25px;
 }
 
-.link-controls{
-    text-align:center;
+.link-group{
+    padding:15px;
+    border-radius:10px;
+    margin:8px 0;
+    background:#181d27;
 }
 
-.selected-count{
-    color:#94a3b8;
-    margin-bottom:15px;
-}
-
-/* KATAPANTAT */
-
-.kata-ad-space{
-    width:100%;
-    min-height:90px;
-    border:1px dashed #334155;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#475569;
-    font-size:12px;
-    margin-bottom:20px;
-}
-
-.kata-card{
-    background:#111827;
-    border:1px solid #263249;
-    border-radius:22px;
-    padding:30px 20px;
-    text-align:center;
-}
-
-/* RESULTS */
-
-.individual-result{
-    max-width:650px;
-    margin:30px auto;
-    text-align:center;
-    background:rgba(15,23,42,.94);
-    border:1px solid #334155;
-    border-radius:30px;
-    padding:50px 25px;
-    box-shadow:0 25px 80px rgba(0,0,0,.35);
-}
-
-.result-emoji{
-    font-size:62px;
-    margin-bottom:15px;
-}
-
-.result-title{
-    font-family:"Space Grotesk";
-    font-size:42px;
-    margin-bottom:8px;
-}
-
-.result-subtitle{
-    color:#94a3b8;
-    margin-bottom:25px;
-}
-
-.big-score{
-    font-family:"Space Grotesk";
-    font-size:76px;
-    line-height:1;
-    font-weight:700;
+.final-score{
+    font-size:75px;
+    font-weight:900;
+    color:#6c63ff;
     margin:20px 0;
 }
 
-.score-label{
-    color:#64748b;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:2px;
+.final-list{
+    margin:25px auto;
+    width:min(550px,100%);
 }
 
-.result-stats{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
-    margin:25px 0 30px;
-}
-
-.result-stat{
-    min-width:120px;
-    padding:14px;
-    background:#0b1220;
-    border:1px solid #263249;
-    border-radius:14px;
-}
-
-.result-stat strong{
-    display:block;
-    font-size:22px;
-    margin-bottom:3px;
-}
-
-.result-stat span{
-    color:#64748b;
-    font-size:12px;
-}
-
-/* FINAL RESULTS */
-
-.final-result{
-    max-width:850px;
-    margin:auto;
-}
-
-.final-result h1{
-    font-family:"Space Grotesk";
-    font-size:48px;
-    text-align:center;
-    margin-bottom:10px;
-}
-
-.final-result > p{
-    text-align:center;
-    color:#94a3b8;
-    margin-bottom:30px;
-}
-
-.total-score{
-    text-align:center;
-    background:#111827;
-    border:1px solid #334155;
-    border-radius:25px;
-    padding:35px;
-    margin-bottom:20px;
-}
-
-.total-number{
-    font-family:"Space Grotesk";
-    font-size:75px;
-    font-weight:700;
-}
-
-.result-list{
-    display:grid;
-    gap:10px;
-}
-
-.result-row{
+.final-item{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    background:#111827;
-    border:1px solid #263249;
-    border-radius:15px;
-    padding:17px;
+    padding:14px;
+    border-bottom:1px solid #252b37;
 }
 
-.result-row-name{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    font-weight:800;
-}
+@media(max-width:650px){
 
-.result-row-score{
-    font-family:"Space Grotesk";
-    font-size:22px;
-    font-weight:700;
-}
+    .header{
+        padding:0 17px;
+    }
 
-@media(max-width:700px){
+    .hero h1{
+        font-size:40px;
+    }
 
     .games-grid{
         grid-template-columns:1fr;
     }
 
-    .game-top{
-        gap:8px;
-    }
-
-    .game-title{
-        font-size:22px;
+    .word-tile{
+        width:50px;
+        height:50px;
     }
 
     .key{
-        min-width:28px;
-        height:44px;
-        padding:0 5px;
+        min-width:30px;
+        height:45px;
     }
 
-    .key.wide{
-        min-width:48px;
+    .links-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .link-cell{
-        min-height:72px;
-        font-size:12px;
-    }
-
-    .result-title{
-        font-size:34px;
-    }
-
-    .big-score{
-        font-size:65px;
+    .result-score{
+        font-size:60px;
     }
 }
 </style>
@@ -652,328 +483,169 @@ header{
 
 <body>
 
-<div class="app">
-
-<header>
+<header class="header">
     <div class="logo">Daily<span>Brain</span></div>
-    <div class="streak" id="streakDisplay">🔥 Streak: 0</div>
+    <div class="streak">🔥 Streak: <strong id="streakValue">0</strong></div>
 </header>
-
 
 <!-- HOME -->
 
-<section id="homeScreen" class="screen active">
+<section id="homeScreen" class="screen">
+    <div class="container">
 
-    <div class="hero">
-        <h1>Train Your Brain.</h1>
-        <p>Six quick challenges. One daily brain workout.</p>
-    </div>
+        <div class="hero">
+            <h1>Five minutes. Five challenges.</h1>
+            <p>Complete today's five daily brain games and see your score.</p>
+        </div>
 
-    <div class="games-grid">
+        <div class="games-grid">
 
-        <div class="game-card" id="card-wordle"
-             onclick="openGame('wordle')">
+            <div class="game-card" id="card-wordle" onclick="openGame('wordle')">
+                <div class="game-icon">🇬🇧</div>
+                <h2>Word Grid</h2>
+                <p>Find today's five-letter English word.</p>
+                <div class="status" id="status-wordle"></div>
+            </div>
 
-            <div class="game-icon">🇬🇧</div>
+            <div class="game-card" id="card-quickfire" onclick="openGame('quickfire')">
+                <div class="game-icon">⚡</div>
+                <h2>Quickfire</h2>
+                <p>Answer as many category questions as possible in 30 seconds.</p>
+                <div class="status" id="status-quickfire"></div>
+            </div>
 
-            <h2>Word Grid</h2>
+            <div class="game-card" id="card-odd" onclick="openGame('odd')">
+                <div class="game-icon">👁️</div>
+                <h2>Odd Pixel</h2>
+                <p>Find the slightly different square using your eyes.</p>
+                <div class="status" id="status-odd"></div>
+            </div>
 
-            <p>
-                Guess today's five-letter English word.
-            </p>
+            <div class="game-card" id="card-color" onclick="openGame('color')">
+                <div class="game-icon">🎨</div>
+                <h2>Color Recall</h2>
+                <p>Memorise a colour and recreate it as accurately as possible.</p>
+                <div class="status" id="status-color"></div>
+            </div>
 
-            <div class="card-status"
-                 id="status-wordle">
-                PLAY NOW →
+            <div class="game-card" id="card-links">
+                <div class="game-icon">🧩</div>
+                <h2>Word Links</h2>
+                <p>Find four groups of four connected words.</p>
+                <div class="status" id="status-links"></div>
             </div>
 
         </div>
 
-
-        <div class="game-card" id="card-kata"
-             onclick="openGame('kata')">
-
-            <div class="game-icon">🇲🇾</div>
-
-            <h2>KataPantat</h2>
-
-            <p>
-                Guess today's five-letter Malay word.
-            </p>
-
-            <div class="card-status"
-                 id="status-kata">
-                PLAY NOW →
-            </div>
-
-        </div>
-
-
-        <div class="game-card" id="card-quickfire"
-             onclick="openGame('quickfire')">
-
-            <div class="game-icon">⚡</div>
-
-            <h2>Quickfire</h2>
-
-            <p>
-                Answer as many categories as possible in 30 seconds.
-            </p>
-
-            <div class="card-status"
-                 id="status-quickfire">
-                PLAY NOW →
-            </div>
-
-        </div>
-
-
-        <div class="game-card" id="card-odd"
-             onclick="openGame('odd')">
-
-            <div class="game-icon">👁️</div>
-
-            <h2>Odd Pixel</h2>
-
-            <p>
-                Find the different square as quickly as possible.
-            </p>
-
-            <div class="card-status"
-                 id="status-odd">
-                PLAY NOW →
-            </div>
-
-        </div>
-
-
-        <div class="game-card" id="card-color"
-             onclick="openGame('color')">
-
-            <div class="game-icon">🎨</div>
-
-            <h2>Color Recall</h2>
-
-            <p>
-                Memorise one colour and recreate it.
-            </p>
-
-            <div class="card-status"
-                 id="status-color">
-                PLAY NOW →
-            </div>
-
-        </div>
-
-
-        <div class="game-card" id="card-links"
-             onclick="openGame('links')">
-
-            <div class="game-icon">🧩</div>
-
-            <h2>Word Links</h2>
-
-            <p>
-                Find four groups of four connected words.
-            </p>
-
-            <div class="card-status"
-                 id="status-links">
-                PLAY NOW →
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- GAME -->
-
-<section id="gameScreen" class="screen">
-
-    <div class="game-wrap">
-
-        <div class="game-top">
-
-            <button class="back-btn"
-                    onclick="goHome()">
-                ← Home
+        <div style="text-align:center;">
+            <button class="primary-btn hidden" id="finalButton" onclick="showFinalResults()">
+                View Final Results
             </button>
-
-            <div class="game-title"
-                 id="gameTitle"></div>
-
-            <div class="stat"
-                 id="gameStat"></div>
-
         </div>
 
-        <div id="gameContent"></div>
+    </div>
+</section>
+
+<!-- GAME SCREEN -->
+
+<section id="gameScreen" class="screen hidden">
+
+    <div class="game-screen">
+
+        <button class="back" onclick="goHome()">← Back to DailyBrain</button>
+
+        <h1 class="game-title" id="gameTitle"></h1>
+        <p class="game-subtitle" id="gameSubtitle"></p>
+
+        <div id="gameArea"></div>
 
     </div>
 
 </section>
 
+<!-- RESULT SCREEN -->
 
-<!-- INDIVIDUAL RESULT -->
+<section id="resultScreen" class="screen hidden">
 
-<section id="individualResultScreen"
-         class="screen">
+    <div class="result-screen">
 
-    <div class="individual-result">
+        <div class="result-icon" id="resultIcon">🎉</div>
 
-        <div class="result-emoji"
-             id="individualEmoji">
-            🎉
+        <h1 class="result-title" id="resultTitle">Nice Work!</h1>
+
+        <div class="result-score">
+            <span id="resultScore">0</span>
+            <small>/100</small>
         </div>
 
-        <div class="result-title"
-             id="individualTitle">
-            Congrats!
-        </div>
+        <p class="result-message" id="resultMessage"></p>
 
-        <div class="result-subtitle"
-             id="individualSubtitle">
-            Great performance.
-        </div>
+        <div class="result-stats" id="resultStats"></div>
 
-        <div class="score-label">
-            YOUR SCORE
-        </div>
-
-        <div class="big-score"
-             id="individualScore">
-            85
-        </div>
-
-        <div class="score-label">
-            / 100
-        </div>
-
-        <div class="result-stats"
-             id="individualStats">
-        </div>
-
-        <button class="primary-btn"
-                onclick="returnFromIndividualResult()">
-            Continue →
+        <button class="primary-btn" onclick="returnFromIndividualResult()">
+            Continue
         </button>
 
     </div>
 
 </section>
 
+<!-- FINAL -->
 
-<!-- FINAL RESULTS -->
+<section id="finalScreen" class="screen hidden">
 
-<section id="finalResultScreen"
-         class="screen">
+    <div class="result-screen">
 
-    <div class="final-result">
+        <div class="result-icon">🧠</div>
 
-        <h1>🏆 DailyBrain Complete!</h1>
+        <h1 class="result-title">DailyBrain Complete</h1>
 
-        <p>
-            You finished all six challenges.
-        </p>
+        <p class="game-subtitle">You finished all five challenges.</p>
 
-        <div class="total-score">
-
-            <div class="score-label">
-                TOTAL SCORE
-            </div>
-
-            <div class="total-number"
-                 id="finalScore">
-                0/600
-            </div>
-
+        <div class="final-score">
+            <span id="finalScore">0</span>
+            <small>/500</small>
         </div>
 
-        <div class="result-list"
-             id="finalList">
-        </div>
+        <div class="final-list" id="finalList"></div>
 
-        <div style="text-align:center;margin-top:25px;">
-
-            <button class="primary-btn"
-                    onclick="goHome()">
-                Back to DailyBrain
-            </button>
-
-        </div>
+        <button class="primary-btn" onclick="goHome()">
+            Back to DailyBrain
+        </button>
 
     </div>
 
 </section>
 
-</div>
-
-
 <script>
 
-/* =========================================================
-   GAME STATE
-========================================================= */
-
 const GAME_NAMES = {
-
     wordle:"Word Grid",
-
-    kata:"KataPantat",
-
     quickfire:"Quickfire",
-
     odd:"Odd Pixel",
-
     color:"Color Recall",
-
     links:"Word Links"
-
 };
 
 const GAME_ICONS = {
-
     wordle:"🇬🇧",
-
-    kata:"🇲🇾",
-
     quickfire:"⚡",
-
     odd:"👁️",
-
     color:"🎨",
-
     links:"🧩"
-
 };
 
-
 let completedGames =
-    JSON.parse(
-        localStorage.getItem(
-            "dailyBrainCompleted"
-        ) || "{}"
-    );
-
+    JSON.parse(localStorage.getItem("dailyBrainCompleted") || "{}");
 
 let scores =
-    JSON.parse(
-        localStorage.getItem(
-            "dailyBrainScores"
-        ) || "{}"
-    );
+    JSON.parse(localStorage.getItem("dailyBrainScores") || "{}");
 
-
-let currentGame = null;
-
-let currentResultGame = null;
-
+/* Remove old KataPantat progress from the old DailyBrain version. */
+delete completedGames.kata;
+delete scores.kata;
 
 function saveState(){
-
     localStorage.setItem(
         "dailyBrainCompleted",
         JSON.stringify(completedGames)
@@ -983,251 +655,48 @@ function saveState(){
         "dailyBrainScores",
         JSON.stringify(scores)
     );
-
 }
 
+saveState();
 
-function updateHome(){
-
-    Object.keys(GAME_NAMES)
-        .forEach(game=>{
-
-            const status =
-                document.getElementById(
-                    "status-"+game
-                );
-
-            const card =
-                document.getElementById(
-                    "card-"+game
-                );
-
-            if(completedGames[game]){
-
-                status.textContent =
-                    "✓ COMPLETED • " +
-                    scores[game] +
-                    "/100";
-
-                card.classList.add("locked");
-
-            }else{
-
-                status.textContent =
-                    "PLAY NOW →";
-
-                card.classList.remove(
-                    "locked"
-                );
-
-            }
-
-        });
-
-
-    const streak =
-        Number(
-            localStorage.getItem(
-                "dailyBrainStreak"
-            ) || 0
-        );
-
-
-    document.getElementById(
-        "streakDisplay"
-    ).textContent =
-        "🔥 Streak: " + streak;
-
+function dailyBrainCompletedCount(){
+    return Object.keys(GAME_NAMES)
+        .filter(game => completedGames[game])
+        .length;
 }
-
-
-function hideScreens(){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(
-            s=>s.classList.remove("active")
-        );
-
-}
-
-
-function showScreen(id){
-
-    hideScreens();
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-    window.scrollTo(0,0);
-
-}
-
-
-function goHome(){
-
-    updateHome();
-
-    showScreen(
-        "homeScreen"
-    );
-
-}
-
-
-function openGame(game){
-
-    currentGame = game;
-
-    if(completedGames[game]){
-
-        currentResultGame = game;
-
-        showIndividualResult(
-            game,
-            scores[game],
-            true,
-            {}
-        );
-
-        return;
-
-    }
-
-
-    showScreen(
-        "gameScreen"
-    );
-
-
-    document.getElementById(
-        "gameTitle"
-    ).textContent =
-        GAME_NAMES[game];
-
-
-    if(game==="wordle")
-        startWordle("english");
-
-
-    if(game==="kata")
-        startWordle("malay");
-
-
-    if(game==="quickfire")
-        startQuickfire();
-
-
-    if(game==="odd")
-        startOdd();
-
-
-    if(game==="color")
-        startColor();
-
-
-    if(game==="links")
-        startLinks();
-
-}
-
-
-/* =========================================================
-   COMPLETE GAME
-========================================================= */
-
-function completeGame(
-    game,
-    score,
-    stats={}
-){
-
-    score =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                Math.round(score)
-            )
-        );
-
-
-    completedGames[game] = true;
-
-    scores[game] = score;
-
-    saveState();
-
-    currentResultGame = game;
-
-    updateStreak();
-
-    showIndividualResult(
-        game,
-        score,
-        false,
-        stats
-    );
-
-}
-
 
 function updateStreak(){
 
-    const today =
-        new Date()
-            .toISOString()
-            .slice(0,10);
-
+    const today = new Date().toISOString().slice(0,10);
 
     const last =
-        localStorage.getItem(
-            "dailyBrainLastDate"
-        );
-
+        localStorage.getItem("dailyBrainLastDate");
 
     let streak =
-        Number(
-            localStorage.getItem(
-                "dailyBrainStreak"
-            ) || 0
-        );
-
+        Number(localStorage.getItem("dailyBrainStreak") || 0);
 
     if(last !== today){
 
         if(last){
 
-            const previous =
-                new Date(last);
-
-            const current =
-                new Date(today);
+            const previous = new Date(last);
+            const current = new Date(today);
 
             const difference =
                 Math.round(
-                    (current-previous) /
+                    (current - previous) /
                     (1000*60*60*24)
                 );
 
-
-            if(difference===1){
-
+            if(difference === 1){
                 streak++;
-
             }else{
-
-                streak=1;
-
+                streak = 1;
             }
 
         }else{
-
-            streak=1;
-
+            streak = 1;
         }
-
 
         localStorage.setItem(
             "dailyBrainLastDate",
@@ -1238,276 +707,150 @@ function updateStreak(){
             "dailyBrainStreak",
             streak
         );
-
     }
 
+    document.getElementById("streakValue").textContent =
+        streak;
 }
 
+updateStreak();
 
-/* =========================================================
-   INDIVIDUAL RESULT
-========================================================= */
+function refreshHome(){
+
+    Object.keys(GAME_NAMES).forEach(game => {
+
+        const card =
+            document.getElementById("card-" + game);
+
+        const status =
+            document.getElementById("status-" + game);
+
+        if(completedGames[game]){
+
+            card.classList.add("completed");
+
+            status.textContent =
+                "✓ Completed — " +
+                scores[game] +
+                "/100";
+
+            card.onclick = null;
+
+        }else{
+
+            card.classList.remove("completed");
+
+            status.textContent =
+                "Play today's challenge →";
+
+            card.onclick = () =>
+                openGame(game);
+        }
+    });
+
+    if(dailyBrainCompletedCount() === 5){
+        document.getElementById("finalButton")
+            .classList.remove("hidden");
+    }else{
+        document.getElementById("finalButton")
+            .classList.add("hidden");
+    }
+}
+
+function showOnly(id){
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(el => el.classList.add("hidden"));
+
+    document
+        .getElementById(id)
+        .classList.remove("hidden");
+}
+
+function goHome(){
+
+    showOnly("homeScreen");
+
+    refreshHome();
+}
+
+function openGame(game){
+
+    if(completedGames[game]){
+        return;
+    }
+
+    showOnly("gameScreen");
+
+    if(game === "wordle"){
+        startWordle();
+    }
+
+    if(game === "quickfire"){
+        startQuickfire();
+    }
+
+    if(game === "odd"){
+        startOdd();
+    }
+
+    if(game === "color"){
+        startColor();
+    }
+
+    if(game === "links"){
+        startLinks();
+    }
+}
 
 function showIndividualResult(
     game,
     score,
-    alreadyCompleted,
+    message,
     stats
 ){
 
-    document.getElementById(
-        "individualScore"
-    ).textContent = score;
+    completedGames[game] = true;
+    scores[game] = score;
 
+    saveState();
 
-    let title;
-    let emoji;
-    let subtitle;
+    document.getElementById("resultIcon")
+        .textContent = GAME_ICONS[game];
 
+    document.getElementById("resultScore")
+        .textContent = score;
 
-    if(score>=80){
+    if(score >= 80){
 
-        title="Congrats!";
-        emoji="🎉";
-        subtitle=
-            "Excellent brain work.";
+        document.getElementById("resultTitle")
+            .textContent = "Congrats!";
 
-    }else if(score>=50){
+    }else if(score >= 50){
 
-        title="Nice Work!";
-        emoji="🧠";
-        subtitle=
-            "Solid performance. Keep going.";
+        document.getElementById("resultTitle")
+            .textContent = "Nice Work!";
 
     }else{
 
-        title="Too Bad!";
-        emoji="😮";
-        subtitle=
-            "Don't worry — you've got the next challenge.";
+        document.getElementById("resultTitle")
+            .textContent = "Too Bad!";
 
     }
 
+    document.getElementById("resultMessage")
+        .textContent = message;
 
-    if(alreadyCompleted){
+    document.getElementById("resultStats")
+        .innerHTML = stats;
 
-        title="Already Completed";
-        emoji="🔒";
-        subtitle=
-            "This daily challenge has already been completed.";
-
-    }
-
-
-    document.getElementById(
-        "individualTitle"
-    ).textContent = title;
-
-
-    document.getElementById(
-        "individualEmoji"
-    ).textContent = emoji;
-
-
-    document.getElementById(
-        "individualSubtitle"
-    ).textContent = subtitle;
-
-
-    let html="";
-
-
-    if(game==="wordle" ||
-       game==="kata"){
-
-        html+=`
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.guesses ?? "—"}
-                </strong>
-
-                <span>
-                    GUESSES
-                </span>
-
-            </div>
-
-        `;
-
-
-        if(stats.answer){
-
-            html+=`
-
-                <div class="result-stat">
-
-                    <strong>
-                        ${stats.answer.toUpperCase()}
-                    </strong>
-
-                    <span>
-                        ANSWER
-                    </span>
-
-                </div>
-
-            `;
-
-        }
-
-    }
-
-
-    if(game==="quickfire"){
-
-        html+=`
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.correct ?? 0}
-                </strong>
-
-                <span>
-                    CORRECT
-                </span>
-
-            </div>
-
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.attempts ?? 0}
-                </strong>
-
-                <span>
-                    ATTEMPTS
-                </span>
-
-            </div>
-
-        `;
-
-    }
-
-
-    if(game==="odd"){
-
-        html+=`
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.time ?? 0}s
-                </strong>
-
-                <span>
-                    TIME
-                </span>
-
-            </div>
-
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.mistakes ?? 0}
-                </strong>
-
-                <span>
-                    MISTAKES
-                </span>
-
-            </div>
-
-        `;
-
-    }
-
-
-    if(game==="color"){
-
-        html+=`
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.accuracy ?? 0}%
-                </strong>
-
-                <span>
-                    ACCURACY
-                </span>
-
-            </div>
-
-        `;
-
-    }
-
-
-    if(game==="links"){
-
-        html+=`
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.groups ?? 0}/4
-                </strong>
-
-                <span>
-                    GROUPS
-                </span>
-
-            </div>
-
-
-            <div class="result-stat">
-
-                <strong>
-                    ${stats.mistakes ?? 0}/3
-                </strong>
-
-                <span>
-                    MISTAKES
-                </span>
-
-            </div>
-
-        `;
-
-    }
-
-
-    document.getElementById(
-        "individualStats"
-    ).innerHTML=html;
-
-
-    showScreen(
-        "individualResultScreen"
-    );
-
+    showOnly("resultScreen");
 }
-
-
-/* =========================================================
-   AFTER INDIVIDUAL RESULT
-========================================================= */
 
 function returnFromIndividualResult(){
 
-    const completedCount =
-        Object.keys(
-            completedGames
-        ).length;
-
-
-    if(completedCount>=6){
+    if(dailyBrainCompletedCount() >= 5){
 
         showFinalResults();
 
@@ -1516,622 +859,244 @@ function returnFromIndividualResult(){
         goHome();
 
     }
-
 }
-
-
-/* =========================================================
-   FINAL RESULTS
-========================================================= */
 
 function showFinalResults(){
 
-    let total=0;
+    if(dailyBrainCompletedCount() < 5){
+        goHome();
+        return;
+    }
 
-    let html="";
+    let total = 0;
 
+    let html = "";
 
-    Object.keys(GAME_NAMES)
-        .forEach(game=>{
+    Object.keys(GAME_NAMES).forEach(game => {
 
-            const score =
-                Number(
-                    scores[game] || 0
-                );
+        const score =
+            Number(scores[game] || 0);
 
+        total += score;
 
-            total+=score;
+        html += `
+            <div class="final-item">
+                <span>
+                    ${GAME_ICONS[game]}
+                    ${GAME_NAMES[game]}
+                </span>
+                <strong>${score}/100</strong>
+            </div>
+        `;
+    });
 
+    document.getElementById("finalScore")
+        .textContent = total;
 
-            html+=`
+    document.getElementById("finalList")
+        .innerHTML = html;
 
-                <div class="result-row">
-
-                    <div class="result-row-name">
-
-                        <span>
-                            ${GAME_ICONS[game]}
-                        </span>
-
-                        <span>
-                            ${GAME_NAMES[game]}
-                        </span>
-
-                    </div>
-
-
-                    <div class="result-row-score">
-
-                        ${score}/100
-
-                    </div>
-
-                </div>
-
-            `;
-
-        });
-
-
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        total+"/600";
-
-
-    document.getElementById(
-        "finalList"
-    ).innerHTML=html;
-
-
-    showScreen(
-        "finalResultScreen"
-    );
-
+    showOnly("finalScreen");
 }
 
 
-/* =========================================================
-   WORDLE + KATAPANTAT
-========================================================= */
+/* =====================================================
+   WORD GRID
+===================================================== */
 
-let wordleLanguage="english";
+let wordleAnswer = "";
+let wordleGuesses = [];
+let wordleCurrent = "";
+let wordleDictionary = [];
 
-let wordleAnswer="";
+async function startWordle(){
 
-let wordleAllowed=[];
+    document.getElementById("gameTitle")
+        .textContent = "Word Grid";
 
-let wordleGuesses=[];
+    document.getElementById("gameSubtitle")
+        .textContent =
+        "Find today's five-letter English word.";
 
-let wordleCurrent="";
-
-let wordleGameOver=false;
-
-
-const fallbackEnglish=[
-
-"about","after","again","apple","beach",
-"black","brain","bread","bring","brown",
-"chair","chess","child","clean","clear",
-"clock","cloud","dance","dream","drink",
-"earth","eight","every","field","first",
-"flame","floor","focus","fresh","fruit",
-"glass","green","happy","heart","house",
-"human","laugh","light","money","music",
-"night","ocean","party","phone","plant",
-"point","power","quick","radio","river",
-"robot","round","school","score","shape",
-"short","smart","smile","sound","space",
-"sport","start","steam","stone","study",
-"sweet","table","think","three","train",
-"water","white","world","write","young"
-
-];
-
-
-const fallbackMalay=[
-
-"besar","bunga","bulan","burung","cinta",
-"dapat","datang","duduk","dunia","emas",
-"enam","garam","hujan","hitam","indah",
-"jalan","jauh","kawan","kecil","kerja",
-"kertas","ketua","kunci","lapan","lebar",
-"malam","masak","merah","minum","murah",
-"orang","pahit","papan","pasar","pedas",
-"penuh","pintu","pisang","pulau","rumah",
-"sabar","sakit","salam","satu","senang",
-"singa","sungai","taman","tanah","tangan",
-"tahun","telur","tengah","tidur","tinggi",
-"tujuh","tulis","udara","ular","empat",
-"usaha","warna","waktu"
-
-];
-
-
-async function loadWordDictionary(
-    language
-){
-
-    const localFile =
-        language==="english"
-        ? "dictionaries/english5.txt"
-        : "dictionaries/malay5.txt";
-
-
-    const fallback =
-        language==="english"
-        ? fallbackEnglish
-        : fallbackMalay;
-
+    wordleGuesses = [];
+    wordleCurrent = "";
 
     try{
 
         const response =
-            await fetch(
-                localFile+
-                "?v="+Date.now()
-            );
+            await fetch("dictionaries/english5.txt");
 
+        const text =
+            await response.text();
 
-        if(response.ok){
+        wordleDictionary =
+            text
+            .split(/\r?\n/)
+            .map(w => w.trim().toLowerCase())
+            .filter(w => /^[a-z]{5}$/.test(w));
 
-            const text =
-                await response.text();
+    }catch(error){
 
+        wordleDictionary = [
+            "apple",
+            "brain",
+            "plant",
+            "house",
+            "water",
+            "light",
+            "sound",
+            "world",
+            "train",
+            "green"
+        ];
+    }
 
-            const words =
-                text
-                    .split(/\r?\n/)
-                    .map(
-                        w=>w
-                            .trim()
-                            .toLowerCase()
-                    )
-                    .filter(
-                        w=>/^[a-z]{5}$/.test(w)
-                    );
-
-
-            if(words.length>0){
-
-                return [
-                    ...new Set(words)
-                ];
-
-            }
-
-        }
-
-    }catch(e){}
-
-
-    return fallback;
-
-}
-
-
-function dailyWord(
-    words,
-    offset=0
-){
-
-    const date =
-        new Date();
-
+    const today =
+        new Date().toISOString().slice(0,10);
 
     const seed =
-        date.getFullYear()*10000 +
-        (date.getMonth()+1)*100 +
-        date.getDate();
-
-
-    return words[
-        Math.abs(
-            seed+
-            offset*7919
-        )%words.length
-    ];
-
-}
-
-
-async function startWordle(
-    language
-){
-
-    wordleLanguage=language;
-
-
-    document.getElementById(
-        "gameStat"
-    ).textContent=
-        "6 guesses";
-
-
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
-
-        <div class="instructions">
-            Loading today's word...
-        </div>
-
-    `;
-
-
-    wordleAllowed =
-        await loadWordDictionary(
-            language
+        today
+        .split("-")
+        .join("")
+        .split("")
+        .reduce(
+            (a,b) => a + Number(b),
+            0
         );
-
-
-    const offset =
-        language==="english"
-        ? 0
-        : 37;
-
 
     wordleAnswer =
-        dailyWord(
-            wordleAllowed,
-            offset
-        );
-
-
-    wordleGuesses=[];
-
-    wordleCurrent="";
-
-    wordleGameOver=false;
-
+        wordleDictionary[
+            seed % wordleDictionary.length
+        ] || "brain";
 
     renderWordle();
 
-
-    document.removeEventListener(
-        "keydown",
-        handleWordlePhysicalKey
-    );
-
-
-    document.addEventListener(
-        "keydown",
-        handleWordlePhysicalKey
-    );
-
+    document.onkeydown = wordleKeyboard;
 }
-
 
 function renderWordle(){
 
-    let board="";
-
-
-    for(let r=0;r<6;r++){
-
-        board+=`
-            <div class="word-row">
-        `;
-
-
-        for(let c=0;c<5;c++){
-
-            let letter="";
-
-
-            if(wordleGuesses[r]){
-
-                letter =
-                    wordleGuesses[r]
-                        .word[c] || "";
-
-            }else if(
-                r===wordleGuesses.length
-            ){
-
-                letter =
-                    wordleCurrent[c] || "";
-
-            }
-
-
-            let cls="tile";
-
-
-            if(wordleGuesses[r]){
-
-                cls+=" "+
-                    wordleGuesses[r]
-                        .result[c];
-
-            }else if(letter){
-
-                cls+=" filled";
-
-            }
-
-
-            board+=`
-
-                <div class="${cls}">
-                    ${letter}
-                </div>
-
-            `;
-
-        }
-
-
-        board+=`
-            </div>
-        `;
-
-    }
-
-
-    const keyboardLetters=[
-
-        [
-            "Q","W","E","R","T",
-            "Y","U","I","O","P"
-        ],
-
-        [
-            "A","S","D","F","G",
-            "H","J","K","L"
-        ],
-
-        [
-            "ENTER","Z","X","C",
-            "V","B","N","M","⌫"
-        ]
-
-    ];
-
-
-    let keyboard="";
-
-
-    keyboardLetters.forEach(row=>{
-
-        keyboard+=`
-            <div class="key-row">
-        `;
-
-
-        row.forEach(letter=>{
-
-            let keyClass="key";
-
-
-            const state =
-                getKeyboardState(
-                    letter.toLowerCase()
-                );
-
-
-            if(state){
-
-                keyClass+=" "+state;
-
-            }
-
-
-            if(
-                letter==="ENTER" ||
-                letter==="⌫"
-            ){
-
-                keyClass+=" wide";
-
-            }
-
-
-            keyboard+=`
-
-                <button
-                    class="${keyClass}"
-                    onclick="wordleKey('${letter}')"
-                >
-                    ${letter}
-                </button>
-
-            `;
-
-        });
-
-
-        keyboard+=`
-            </div>
-        `;
-
-    });
-
-
-    const gameName =
-        wordleLanguage==="malay"
-        ? "KataPantat"
-        : "Word Grid";
-
-
-    const description =
-        wordleLanguage==="malay"
-        ? "Guess today's five-letter Malay word."
-        : "Guess today's five-letter English word.";
-
-
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
-
-        ${
-            wordleLanguage==="malay"
-            ? `
-                <div class="kata-ad-space">
-                    AD SPACE — KATAPANTAT
-                </div>
-              `
-            : ""
-        }
-
-
-        <div class="instructions">
-            ${description}
+    let html = `
+        <div class="game-stat">
+            ${wordleGuesses.length}/6 guesses
         </div>
 
-
-        <div class="wordle-board">
-            ${board}
-        </div>
-
-
-        <div class="keyboard">
-            ${keyboard}
-        </div>
-
+        <div class="word-board">
     `;
 
+    for(let row=0; row<6; row++){
+
+        html += `<div class="word-row">`;
+
+        for(let col=0; col<5; col++){
+
+            let letter = "";
+            let result = "";
+
+            if(wordleGuesses[row]){
+
+                letter =
+                    wordleGuesses[row].word[col] || "";
+
+                result =
+                    wordleGuesses[row].result[col] || "";
+            }
+
+            if(
+                row === wordleGuesses.length &&
+                col < wordleCurrent.length
+            ){
+                letter = wordleCurrent[col];
+            }
+
+            html += `
+                <div class="word-tile ${result}">
+                    ${letter.toUpperCase()}
+                </div>
+            `;
+        }
+
+        html += `</div>`;
+    }
+
+    html += `
+        </div>
+
+        <div class="keyboard">
+
+            <div class="key-row">
+                ${keyboardKeys("qwertyuiop")}
+            </div>
+
+            <div class="key-row">
+                ${keyboardKeys("asdfghjkl")}
+            </div>
+
+            <div class="key-row">
+                <button class="key wide" onclick="wordlePress('ENTER')">
+                    ENTER
+                </button>
+
+                ${keyboardKeys("zxcvbnm")}
+
+                <button class="key wide" onclick="wordlePress('BACKSPACE')">
+                    ←
+                </button>
+            </div>
+
+        </div>
+    `;
+
+    document.getElementById("gameArea")
+        .innerHTML = html;
 }
 
+function keyboardKeys(str){
 
-function getKeyboardState(letter){
-
-    for(
-        const guess of wordleGuesses
-    ){
-
-        for(
-            let i=0;
-            i<5;
-            i++
-        ){
-
-            if(
-                guess.word[i]===letter &&
-                guess.result[i]==="correct"
-            ){
-
-                return "correct";
-
-            }
-
-        }
-
-    }
-
-
-    for(
-        const guess of wordleGuesses
-    ){
-
-        for(
-            let i=0;
-            i<5;
-            i++
-        ){
-
-            if(
-                guess.word[i]===letter &&
-                guess.result[i]==="present"
-            ){
-
-                return "present";
-
-            }
-
-        }
-
-    }
-
-
-    for(
-        const guess of wordleGuesses
-    ){
-
-        for(
-            let i=0;
-            i<5;
-            i++
-        ){
-
-            if(
-                guess.word[i]===letter &&
-                guess.result[i]==="absent"
-            ){
-
-                return "absent";
-
-            }
-
-        }
-
-    }
-
-
-    return "";
-
+    return [...str].map(letter => `
+        <button
+            class="key"
+            onclick="wordlePress('${letter}')"
+        >
+            ${letter.toUpperCase()}
+        </button>
+    `).join("");
 }
 
-
-function handleWordlePhysicalKey(e){
+function wordleKeyboard(e){
 
     if(
-        !document
-            .getElementById("gameScreen")
-            .classList.contains("active")
+        document.getElementById("gameScreen")
+            .classList.contains("hidden")
     ){
-
         return;
-
     }
-
 
     if(
-        wordleLanguage!=="english" &&
-        wordleLanguage!=="malay"
+        /^[a-zA-Z]$/.test(e.key)
     ){
-
-        return;
-
+        wordlePress(e.key.toLowerCase());
     }
 
-
-    if(e.key==="Enter"){
-
-        wordleKey("ENTER");
-
-        return;
-
+    if(e.key === "Enter"){
+        wordlePress("ENTER");
     }
 
-
-    if(e.key==="Backspace"){
-
-        wordleKey("⌫");
-
-        return;
-
+    if(e.key === "Backspace"){
+        wordlePress("BACKSPACE");
     }
-
-
-    if(/^[a-zA-Z]$/.test(e.key)){
-
-        wordleKey(
-            e.key.toUpperCase()
-        );
-
-    }
-
 }
 
+function wordlePress(key){
 
-function wordleKey(key){
+    if(key === "ENTER"){
 
-    if(wordleGameOver)
+        submitWordle();
+
         return;
+    }
 
-
-    if(key==="⌫"){
+    if(key === "BACKSPACE"){
 
         wordleCurrent =
             wordleCurrent.slice(0,-1);
@@ -2139,35 +1104,20 @@ function wordleKey(key){
         renderWordle();
 
         return;
-
     }
-
-
-    if(key==="ENTER"){
-
-        submitWordle();
-
-        return;
-
-    }
-
 
     if(
-        /^[A-Z]$/.test(key) &&
-        wordleCurrent.length<5
+        /^[a-z]$/.test(key) &&
+        wordleCurrent.length < 5
     ){
 
-        wordleCurrent +=
-            key.toLowerCase();
+        wordleCurrent += key;
 
         renderWordle();
-
     }
-
 }
 
-
-function evaluateGuess(
+function evaluateWord(
     guess,
     answer
 ){
@@ -2175,1078 +1125,547 @@ function evaluateGuess(
     const result =
         Array(5).fill("absent");
 
-
-    const remaining =
+    const answerLetters =
         answer.split("");
 
+    for(let i=0;i<5;i++){
 
-    for(
-        let i=0;
-        i<5;
-        i++
-    ){
+        if(guess[i] === answer[i]){
 
-        if(
-            guess[i]===answer[i]
-        ){
-
-            result[i]="correct";
-
-            remaining[i]=null;
-
+            result[i] = "correct";
+            answerLetters[i] = null;
         }
-
     }
 
+    for(let i=0;i<5;i++){
 
-    for(
-        let i=0;
-        i<5;
-        i++
-    ){
-
-        if(
-            result[i]==="correct"
-        )
+        if(result[i] === "correct"){
             continue;
-
+        }
 
         const index =
-            remaining.indexOf(
+            answerLetters.indexOf(
                 guess[i]
             );
 
+        if(index !== -1){
 
-        if(index!==-1){
-
-            result[i]="present";
-
-            remaining[index]=null;
-
+            result[i] = "present";
+            answerLetters[index] = null;
         }
-
     }
 
-
     return result;
-
 }
-
 
 function submitWordle(){
 
-    if(wordleCurrent.length!==5)
+    if(wordleCurrent.length !== 5){
         return;
-
-
-    if(
-        !wordleAllowed.includes(
-            wordleCurrent
-        )
-    ){
-
-        document.getElementById(
-            "gameStat"
-        ).textContent=
-            "Not in dictionary";
-
-
-        setTimeout(()=>{
-
-            if(!wordleGameOver){
-
-                document.getElementById(
-                    "gameStat"
-                ).textContent=
-                    (6-wordleGuesses.length)+
-                    " guesses";
-
-            }
-
-        },900);
-
-
-        return;
-
     }
 
+    const guess = wordleCurrent;
 
-    const guess =
-        wordleCurrent;
-
+    if(
+        !wordleDictionary.includes(guess) &&
+        guess !== wordleAnswer
+    ){
+        alert("That word isn't in the word list.");
+        return;
+    }
 
     const result =
-        evaluateGuess(
+        evaluateWord(
             guess,
             wordleAnswer
         );
 
-
     wordleGuesses.push({
-
         word:guess,
-
         result:result
-
     });
 
-
-    wordleCurrent="";
-
+    wordleCurrent = "";
 
     renderWordle();
 
+    const won =
+        guess === wordleAnswer;
 
-    if(
-        guess===wordleAnswer
-    ){
+    const lost =
+        wordleGuesses.length >= 6 && !won;
 
-        wordleGameOver=true;
-
+    if(won){
 
         const score =
             Math.max(
                 30,
-                100-
-                (wordleGuesses.length-1)*14
+                100 -
+                (wordleGuesses.length - 1) * 14
             );
 
+        setTimeout(() => {
 
-        setTimeout(()=>{
-
-            completeGame(
-
-                wordleLanguage==="english"
-                    ? "wordle"
-                    : "kata",
-
+            showIndividualResult(
+                "wordle",
                 score,
-
-                {
-                    guesses:
-                        wordleGuesses.length,
-
-                    answer:
-                        wordleAnswer
-                }
-
+                "You found today's word.",
+                `
+                    <div class="result-stat">
+                        <strong>${wordleGuesses.length}</strong>
+                        <span>Guesses</span>
+                    </div>
+                `
             );
 
-        },650);
+        },500);
 
+    }else if(lost){
 
-        return;
+        setTimeout(() => {
 
-    }
-
-
-    if(
-        wordleGuesses.length>=6
-    ){
-
-        wordleGameOver=true;
-
-
-        setTimeout(()=>{
-
-            completeGame(
-
-                wordleLanguage==="english"
-                    ? "wordle"
-                    : "kata",
-
+            showIndividualResult(
+                "wordle",
                 20,
-
-                {
-                    guesses:6,
-
-                    answer:wordleAnswer
-                }
-
+                "The word was " +
+                wordleAnswer.toUpperCase() +
+                ".",
+                `
+                    <div class="result-stat">
+                        <strong>6</strong>
+                        <span>Guesses</span>
+                    </div>
+                `
             );
 
-        },650);
-
-
-        return;
-
+        },500);
     }
-
-
-    document.getElementById(
-        "gameStat"
-    ).textContent=
-        (6-wordleGuesses.length)+
-        " guesses";
-
 }
 
 
-/* =========================================================
+/* =====================================================
    QUICKFIRE
-========================================================= */
+===================================================== */
 
-const quickfireData=[
+const quickCategories = [
 
-{
-category:"Animals",
-answers:[
-"lion","tiger","elephant","giraffe",
-"zebra","horse","dog","cat","rabbit",
-"monkey","bear","wolf","fox","panda",
-"penguin","dolphin","shark","whale",
-"eagle","snake"
-]
-},
+    {
+        name:"Animals",
+        answers:[
+            "dog","cat","lion","tiger","elephant",
+            "horse","bear","wolf","rabbit","monkey"
+        ]
+    },
 
-{
-category:"Countries",
-answers:[
-"singapore","malaysia","japan","china",
-"india","australia","canada","america",
-"france","germany","italy","spain",
-"brazil","mexico","thailand","indonesia",
-"vietnam","korea","egypt","turkey"
-]
-},
+    {
+        name:"Countries",
+        answers:[
+            "singapore","malaysia","japan","france",
+            "germany","india","brazil","canada",
+            "australia","italy"
+        ]
+    },
 
-{
-category:"Food",
-answers:[
-"pizza","burger","sushi","ramen",
-"noodles","rice","bread","pasta",
-"chicken","steak","curry","sandwich",
-"salad","soup","fries","cheese",
-"apple","banana","mango","cake"
-]
-},
+    {
+        name:"Sports",
+        answers:[
+            "football","soccer","tennis","basketball",
+            "golf","rugby","cricket","hockey",
+            "boxing","baseball"
+        ]
+    },
 
-{
-category:"Sports",
-answers:[
-"football","soccer","basketball","tennis",
-"golf","rugby","cricket","baseball",
-"hockey","boxing","swimming","running",
-"cycling","volleyball","badminton",
-"archery","fencing","rowing","skiing",
-"surfing"
-]
-},
+    {
+        name:"Food",
+        answers:[
+            "pizza","burger","rice","pasta",
+            "sushi","bread","apple","banana",
+            "chicken","noodle"
+        ]
+    },
 
-{
-category:"Colours",
-answers:[
-"red","blue","green","yellow","orange",
-"purple","pink","black","white","brown",
-"grey","gray","gold","silver","beige",
-"maroon","navy","teal","cyan","violet"
-]
-},
+    {
+        name:"Colors",
+        answers:[
+            "red","blue","green","yellow",
+            "orange","purple","pink","black",
+            "white","brown"
+        ]
+    },
 
-{
-category:"Things in School",
-answers:[
-"book","pen","pencil","eraser","ruler",
-"desk","chair","teacher","student",
-"board","locker","bag","computer",
-"paper","calculator","uniform",
-"classroom","library","marker","notebook"
-]
-},
+    {
+        name:"Vehicles",
+        answers:[
+            "car","bus","train","plane",
+            "boat","bike","truck","van",
+            "motorcycle","taxi"
+        ]
+    },
 
-{
-category:"Technology",
-answers:[
-"phone","computer","laptop","tablet",
-"keyboard","mouse","screen","camera",
-"robot","drone","printer","charger",
-"battery","internet","website","software",
-"app","console","server","router"
-]
-},
+    {
+        name:"School Subjects",
+        answers:[
+            "math","science","history","english",
+            "geography","biology","physics",
+            "chemistry","music","art"
+        ]
+    },
 
-{
-category:"Jobs",
-answers:[
-"doctor","teacher","engineer","lawyer",
-"pilot","chef","nurse","driver",
-"farmer","artist","actor","singer",
-"writer","designer","manager","soldier",
-"dentist","architect","scientist","mechanic"
-]
-},
-
-{
-category:"Body Parts",
-answers:[
-"head","hand","foot","arm","leg",
-"eye","ear","nose","mouth","hair",
-"finger","thumb","knee","elbow","heart",
-"brain","neck","back","chest","stomach"
-]
-},
-
-{
-category:"Things in a House",
-answers:[
-"chair","table","sofa","bed","lamp",
-"door","window","mirror","fridge",
-"oven","shower","toilet","pillow",
-"blanket","television","clock","carpet",
-"curtain","shelf","drawer"
-]
-},
-
-{
-category:"Transport",
-answers:[
-"car","bus","train","plane","boat",
-"ship","bicycle","motorcycle","taxi",
-"truck","van","subway","tram","scooter",
-"helicopter","rocket","ferry","kayak",
-"canoe","ambulance"
-]
-},
-
-{
-category:"Fruits",
-answers:[
-"apple","banana","orange","mango",
-"grape","watermelon","pineapple",
-"strawberry","blueberry","raspberry",
-"lemon","lime","peach","pear","plum",
-"cherry","papaya","guava","kiwi",
-"coconut"
-]
-},
-
-{
-category:"Things You Wear",
-answers:[
-"shirt","pants","shorts","shoes",
-"socks","jacket","hat","cap","watch",
-"belt","tie","hoodie","sweater","jeans",
-"uniform","gloves","scarf","boots",
-"sandals","slides"
-]
-},
-
-{
-category:"Nature",
-answers:[
-"tree","flower","river","mountain",
-"ocean","lake","forest","desert",
-"island","cloud","rain","snow","sun",
-"moon","star","wind","fire","rock",
-"grass","beach"
-]
-},
-
-{
-category:"Musical Instruments",
-answers:[
-"guitar","piano","drums","violin",
-"flute","trumpet","saxophone","cello",
-"harp","organ","keyboard","clarinet",
-"trombone","ukulele","bass"
-]
-},
-
-{
-category:"Games",
-answers:[
-"chess","poker","football","tennis",
-"minecraft","roblox","fortnite",
-"valorant","tetris","monopoly",
-"scrabble","uno","pokemon","fifa","golf"
-]
-},
-
-{
-category:"Things With Wheels",
-answers:[
-"car","bus","bicycle","truck",
-"skateboard","scooter","train",
-"motorcycle","wheelchair","cart",
-"rollerblade","stroller"
-]
-},
-
-{
-category:"Countries in Asia",
-answers:[
-"singapore","malaysia","japan","china",
-"india","thailand","vietnam",
-"indonesia","philippines","korea",
-"brunei","cambodia","laos","myanmar",
-"nepal","pakistan","bangladesh"
-]
-},
-
-{
-category:"Things That Are Cold",
-answers:[
-"ice","snow","water","juice",
-"icecream","fridge","freezer",
-"winter","penguin","glacier",
-"popsicle","sorbet"
-]
-},
-
-{
-category:"Things That Are Hot",
-answers:[
-"sun","fire","soup","coffee","tea",
-"pizza","oven","lava","chilli",
-"pepper","steam","desert"
-]
-}
-
+    {
+        name:"Technology",
+        answers:[
+            "computer","phone","keyboard","mouse",
+            "laptop","tablet","camera","robot",
+            "printer","monitor"
+        ]
+    }
 ];
 
-
-let quickCategories=[];
-let quickCategoryIndex=0;
-let quickCurrent=null;
-let quickCorrect=0;
-let quickAttempts=0;
-let quickTime=30;
-let quickTimer=null;
-let quickStarted=false;
-
+let quickTime = 30;
+let quickScore = 0;
+let quickCategoryIndex = 0;
+let quickInterval;
 
 function startQuickfire(){
 
-    clearInterval(quickTimer);
+    document.getElementById("gameTitle")
+        .textContent = "Quickfire";
 
-    quickCategories=[
-        ...quickfireData
-    ];
+    document.getElementById("gameSubtitle")
+        .textContent =
+        "Answer as many as possible in 30 seconds.";
 
-    shuffle(
-        quickCategories
-    );
-
-    quickCategoryIndex=0;
-    quickCorrect=0;
-    quickAttempts=0;
-    quickTime=30;
-    quickStarted=false;
-
-
-    document.getElementById(
-        "gameStat"
-    ).textContent=
-        "30 seconds";
-
-
-    renderQuickfireIntro();
-
-}
-
-
-function renderQuickfireIntro(){
-
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
-
-        <div class="quickfire-box">
-
-            <div class="category">
-                QUICKFIRE
-            </div>
-
-            <div class="quick-question">
-                Answer as many as possible.
-            </div>
-
-            <p style="color:#94a3b8;margin-bottom:25px;">
-                You'll get a new category after every correct answer.
-            </p>
-
-            <button
-                class="primary-btn"
-                onclick="beginQuickfire()"
-            >
-                Start 30 Seconds
-            </button>
-
-        </div>
-
-    `;
-
-}
-
-
-function beginQuickfire(){
-
-    quickStarted=true;
-
-    nextQuickQuestion();
-
-
-    quickTimer=
-        setInterval(()=>{
-
-            quickTime--;
-
-            updateQuickTimer();
-
-
-            if(quickTime<=0){
-
-                clearInterval(
-                    quickTimer
-                );
-
-                endQuickfire();
-
-            }
-
-        },1000);
-
-}
-
-
-function updateQuickTimer(){
-
-    const timer =
-        document.getElementById(
-            "quickTimer"
-        );
-
-
-    if(timer){
-
-        timer.textContent=
-            quickTime;
-
-    }
-
-}
-
-
-function nextQuickQuestion(){
-
-    if(
-        quickCategoryIndex>=
-        quickCategories.length
-    ){
-
-        shuffle(
-            quickCategories
-        );
-
-        quickCategoryIndex=0;
-
-    }
-
-
-    quickCurrent=
-        quickCategories[
-            quickCategoryIndex++
-        ];
-
+    quickTime = 30;
+    quickScore = 0;
+    quickCategoryIndex = 0;
 
     renderQuickfire();
 
+    clearInterval(quickInterval);
 
-    setTimeout(()=>{
+    quickInterval =
+        setInterval(() => {
 
-        const input=
-            document.getElementById(
-                "quickInput"
-            );
+            quickTime--;
 
+            renderQuickfire();
 
-        if(input)
-            input.focus();
+            if(quickTime <= 0){
 
-    },50);
+                clearInterval(quickInterval);
 
+                showIndividualResult(
+                    "quickfire",
+                    Math.min(
+                        100,
+                        quickScore * 10
+                    ),
+                    "Time's up!",
+                    `
+                        <div class="result-stat">
+                            <strong>${quickScore}</strong>
+                            <span>Correct</span>
+                        </div>
+                    `
+                );
+            }
+
+        },1000);
 }
-
 
 function renderQuickfire(){
 
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
+    const category =
+        quickCategories[
+            quickCategoryIndex %
+            quickCategories.length
+        ];
 
-        <div class="quickfire-box">
+    document.getElementById("gameArea")
+        .innerHTML = `
 
-            <div class="timer"
-                 id="quickTimer">
-                ${quickTime}
-            </div>
-
-            <div class="category">
-                ${quickCurrent.category}
-            </div>
-
-            <div class="quick-question">
-                Name something in this category.
-            </div>
-
-            <input
-                class="quick-input"
-                id="quickInput"
-                autocomplete="off"
-                placeholder="Type your answer..."
-                onkeydown="
-                    if(event.key==='Enter')
-                        submitQuickfire()
-                "
-            >
-
-            <div class="quick-score">
-
-                Correct:
-                <strong>
-                    ${quickCorrect}
-                </strong>
-
-                &nbsp; • &nbsp;
-
-                Attempts:
-                <strong>
-                    ${quickAttempts}
-                </strong>
-
-            </div>
-
-            <div style="margin-top:20px;">
-
-                <button
-                    class="primary-btn"
-                    onclick="submitQuickfire()"
-                >
-                    Submit
-                </button>
-
-            </div>
-
+        <div class="quick-timer">
+            ${quickTime}s
         </div>
 
+        <div class="game-stat">
+            Score: ${quickScore}
+        </div>
+
+        <div class="quick-category">
+            Name a ${category.name.slice(0,-1)}
+        </div>
+
+        <input
+            class="quick-input"
+            id="quickInput"
+            autocomplete="off"
+            placeholder="Type an answer..."
+        >
+
+        <br>
+
+        <button
+            class="primary-btn"
+            onclick="submitQuickfire()"
+        >
+            Submit
+        </button>
     `;
 
+    const input =
+        document.getElementById("quickInput");
+
+    input.focus();
+
+    input.onkeydown = e => {
+
+        if(e.key === "Enter"){
+            submitQuickfire();
+        }
+    };
 }
-
-
-function normalizeAnswer(text){
-
-    return text
-        .toLowerCase()
-        .trim()
-        .replace(/[-']/g," ")
-        .replace(/\s+/g," ");
-
-}
-
 
 function submitQuickfire(){
 
-    if(
-        !quickStarted ||
-        quickTime<=0
-    )
+    const input =
+        document.getElementById("quickInput");
+
+    if(!input){
         return;
+    }
 
+    const answer =
+        input.value
+        .trim()
+        .toLowerCase();
 
-    const input=
-        document.getElementById(
-            "quickInput"
-        );
-
-
-    if(!input)
+    if(!answer){
         return;
+    }
 
+    const category =
+        quickCategories[
+            quickCategoryIndex %
+            quickCategories.length
+        ];
 
-    const answer=
-        normalizeAnswer(
-            input.value
-        );
+    if(category.answers.includes(answer)){
 
+        quickScore++;
 
-    if(!answer)
-        return;
+        quickCategoryIndex++;
 
-
-    quickAttempts++;
-
-
-    const accepted=
-        quickCurrent.answers.some(
-            a=>
-                normalizeAnswer(a)===
-                answer
-        );
-
-
-    if(accepted){
-
-        quickCorrect++;
-
-        nextQuickQuestion();
+        renderQuickfire();
 
     }else{
 
-        input.value="";
+        input.value = "";
 
-        input.style.borderColor=
-            "#ef4444";
-
-
-        setTimeout(()=>{
-
-            if(input){
-
-                input.style.borderColor=
-                    "#334155";
-
-            }
-
-        },350);
-
+        input.placeholder =
+            "Try another answer...";
     }
-
 }
 
 
-function endQuickfire(){
-
-    quickStarted=false;
-
-
-    const score=
-        Math.min(
-            100,
-            quickCorrect*10
-        );
-
-
-    completeGame(
-        "quickfire",
-        score,
-        {
-            correct:quickCorrect,
-            attempts:quickAttempts
-        }
-    );
-
-}
-
-
-/* =========================================================
+/* =====================================================
    ODD PIXEL
-========================================================= */
+===================================================== */
 
-let oddRound=0;
-let oddMistakes=0;
-let oddRoundsWon=0;
-let oddLocked=false;
-
-let oddStartTime=0;
-let oddTotalTime=0;
-
+let oddRound = 0;
+let oddMistakes = 0;
+let oddTotalTime = 0;
+let oddRoundStart = 0;
+let oddTimerInterval;
 
 function startOdd(){
 
-    oddRound=0;
+    document.getElementById("gameTitle")
+        .textContent = "Odd Pixel";
 
-    oddMistakes=0;
+    document.getElementById("gameSubtitle")
+        .textContent =
+        "Find the different square. Three rounds.";
 
-    oddRoundsWon=0;
+    oddRound = 0;
+    oddMistakes = 0;
+    oddTotalTime = 0;
 
-    oddLocked=false;
+    startOddRound();
+}
 
-    oddTotalTime=0;
+function startOddRound(){
+
+    clearInterval(oddTimerInterval);
+
+    oddRoundStart =
+        performance.now();
 
     renderOdd();
 
-}
+    oddTimerInterval =
+        setInterval(() => {
 
+            renderOdd();
+
+        },100);
+}
 
 function renderOdd(){
 
-    if(oddRound>=3){
+    const elapsed =
+        (performance.now() -
+        oddRoundStart) / 1000;
 
-        endOdd();
+    const size = 64;
 
-        return;
-
-    }
-
-
-    oddLocked=false;
-
-    oddStartTime=
-        performance.now();
-
-
-    document.getElementById(
-        "gameStat"
-    ).textContent=
-        "Mistakes: "+oddMistakes;
-
-
-    const difference=
-        Math.max(
-            13 -
-            oddRound*2,
-            8
-        );
-
-
-    const base=
-        72 +
-        oddRound*3;
-
-
-    const odd=
+    const oddIndex =
         Math.floor(
-            Math.random()*49
+            Math.random() * size
         );
 
+    window.currentOddIndex =
+        oddIndex;
 
-    let cells="";
+    const baseHue =
+        Math.floor(
+            Math.random() * 360
+        );
 
+    const base =
+        `hsl(${baseHue},70%,55%)`;
 
-    for(
-        let i=0;
-        i<49;
-        i++
-    ){
+    const difference =
+        8 + oddRound * 2;
 
-        const light=
-            i===odd
-            ? base+difference
-            : base;
+    const oddColor =
+        `hsl(${baseHue},70%,${55+difference}%)`;
 
+    let html = `
 
-        cells+=`
-
-            <div
-                class="odd-cell"
-                style="
-                    background:hsl(
-                        225,
-                        70%,
-                        ${light}%
-                    )
-                "
-                onclick="
-                    chooseOdd(
-                        ${i},
-                        ${odd}
-                    )
-                "
-            ></div>
-
-        `;
-
-    }
-
-
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
-
-        <div class="instructions">
-
-            Find the different square.
-            Speed matters, but mistakes are allowed.
-
+        <div class="game-stat">
+            Round ${oddRound + 1}/3
+            · Mistakes: ${oddMistakes}
+            · Time: ${elapsed.toFixed(1)}s
         </div>
-
-
-        <div class="odd-info">
-
-            <div class="stat">
-                Round ${oddRound+1}/3
-            </div>
-
-            <div class="stat">
-                Mistakes: ${oddMistakes}
-            </div>
-
-        </div>
-
 
         <div class="odd-grid">
-            ${cells}
-        </div>
-
     `;
 
+    for(let i=0;i<size;i++){
+
+        html += `
+            <div
+                class="odd-square"
+                style="background:${
+                    i === oddIndex
+                    ? oddColor
+                    : base
+                }"
+                onclick="clickOdd(${i})"
+            ></div>
+        `;
+    }
+
+    html += `</div>`;
+
+    document.getElementById("gameArea")
+        .innerHTML = html;
 }
 
+function clickOdd(index){
 
-function chooseOdd(
-    index,
-    correct
-){
-
-    if(oddLocked)
-        return;
-
-
-    if(index===correct){
-
-        oddLocked=true;
-
-        const roundTime=
-            (
-                performance.now()-
-                oddStartTime
-            )/1000;
-
-
-        oddTotalTime+=
-            roundTime;
-
-
-        oddRoundsWon++;
-
-        oddRound++;
-
-
-        setTimeout(
-            renderOdd,
-            300
-        );
-
-
-    }else{
+    if(index !== window.currentOddIndex){
 
         oddMistakes++;
 
+        renderOdd();
 
-        document.getElementById(
-            "gameStat"
-        ).textContent=
-            "Mistakes: "+
-            oddMistakes;
-
-
-        /* NO LOSS CONDITION.
-           The player can continue
-           making mistakes. */
-
+        return;
     }
 
+    clearInterval(oddTimerInterval);
+
+    const roundTime =
+        (performance.now() -
+        oddRoundStart) / 1000;
+
+    oddTotalTime += roundTime;
+
+    oddRound++;
+
+    if(oddRound >= 3){
+
+        const mistakePenalty =
+            oddMistakes * 7;
+
+        const timePenalty =
+            Math.max(
+                0,
+                Math.round(
+                    oddTotalTime * 2
+                )
+            );
+
+        const score =
+            Math.max(
+                0,
+                100 -
+                mistakePenalty -
+                timePenalty
+            );
+
+        showIndividualResult(
+            "odd",
+            score,
+            "All three odd pixels found.",
+            `
+                <div class="result-stat">
+                    <strong>${oddMistakes}</strong>
+                    <span>Mistakes</span>
+                </div>
+
+                <div class="result-stat">
+                    <strong>${oddTotalTime.toFixed(1)}s</strong>
+                    <span>Total Time</span>
+                </div>
+            `
+        );
+
+    }else{
+
+        startOddRound();
+    }
 }
 
 
-function endOdd(){
+/* =====================================================
+   COLOR RECALL
+===================================================== */
 
-    /*
-       Base score:
-       - 100 for perfect
-       - mistakes reduce score
-       - slower completion reduces score
-    */
-
-    const mistakePenalty=
-        oddMistakes*7;
-
-
-    const timePenalty=
-        Math.max(
-            0,
-            Math.round(
-                oddTotalTime*2
-            )
-        );
-
-
-    const score=
-        Math.max(
-            0,
-            100 -
-            mistakePenalty -
-            timePenalty
-        );
-
-
-    completeGame(
-        "odd",
-        score,
-        {
-            time:
-                Number(
-                    oddTotalTime.toFixed(1)
-                ),
-
-            mistakes:
-                oddMistakes
-        }
-    );
-
-}
-
-
-/* =========================================================
-   COLOR RECALL — ONE ROUND
-========================================================= */
-
-let colorRound=0;
-let targetColor=null;
-let colorPhase="display";
-
+let targetColor = null;
 
 function startColor(){
 
-    colorRound=0;
+    document.getElementById("gameTitle")
+        .textContent = "Color Recall";
 
-    startColorRound();
+    document.getElementById("gameSubtitle")
+        .textContent =
+        "Memorise the colour. You only get one round.";
 
-}
-
-
-function startColorRound(){
-
-    colorPhase="display";
-
-
-    targetColor={
-
-        r:
-            Math.floor(
-                Math.random()*256
-            ),
-
-        g:
-            Math.floor(
-                Math.random()*256
-            ),
-
-        b:
-            Math.floor(
-                Math.random()*256
-            )
-
+    targetColor = {
+        r:Math.floor(Math.random()*256),
+        g:Math.floor(Math.random()*256),
+        b:Math.floor(Math.random()*256)
     };
 
+    document.getElementById("gameArea")
+        .innerHTML = `
 
-    document.getElementById(
-        "gameStat"
-    ).textContent=
-        "1 round";
-
-
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
-
-        <div class="instructions">
-
-            Memorise the colour.
-
+        <div class="game-stat">
+            Memorise this colour...
         </div>
-
 
         <div
             class="color-box"
@@ -3257,787 +1676,440 @@ function startColorRound(){
                     ${targetColor.b}
                 )
             "
+            id="targetColorBox"
         ></div>
 
-
-        <div style="
-            text-align:center;
-            color:#94a3b8;
-        ">
-
-            You have 4 seconds...
-
-        </div>
-
+        <p id="colorCountdown">
+            4
+        </p>
     `;
 
+    let count = 4;
 
-    setTimeout(
-        showColorControls,
-        4000
-    );
+    const countdown =
+        setInterval(() => {
 
+            count--;
+
+            const el =
+                document.getElementById(
+                    "colorCountdown"
+                );
+
+            if(el){
+                el.textContent = count;
+            }
+
+            if(count <= 0){
+
+                clearInterval(countdown);
+
+                showColorInput();
+            }
+
+        },1000);
 }
 
+function showColorInput(){
 
-function showColorControls(){
+    document.getElementById("gameArea")
+        .innerHTML = `
 
-    colorPhase="input";
-
-
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
-
-        <div class="instructions">
-
+        <div class="game-stat">
             Recreate the colour.
-
         </div>
-
 
         <div
             class="color-box"
-            id="colorPreview"
-            style="
-                background:rgb(
-                    128,
-                    128,
-                    128
-                )
-            "
+            id="guessColorBox"
+            style="background:rgb(128,128,128)"
         ></div>
 
+        <div class="color-sliders">
 
-        <div class="sliders">
-
-            <div class="slider-line">
-
-                <strong>R</strong>
-
+            <div class="slider-row">
+                <label>R</label>
                 <input
+                    type="range"
+                    min="0"
+                    max="255"
+                    value="128"
                     id="redSlider"
+                    oninput="updateColorGuess()"
+                >
+                <span id="redValue">128</span>
+            </div>
+
+            <div class="slider-row">
+                <label>G</label>
+                <input
                     type="range"
                     min="0"
                     max="255"
                     value="128"
-                    oninput="updateColorPreview()"
-                >
-
-                <span
-                    class="slider-number"
-                    id="redValue"
-                >
-                    128
-                </span>
-
-            </div>
-
-
-            <div class="slider-line">
-
-                <strong>G</strong>
-
-                <input
                     id="greenSlider"
-                    type="range"
-                    min="0"
-                    max="255"
-                    value="128"
-                    oninput="updateColorPreview()"
+                    oninput="updateColorGuess()"
                 >
-
-                <span
-                    class="slider-number"
-                    id="greenValue"
-                >
-                    128
-                </span>
-
+                <span id="greenValue">128</span>
             </div>
 
-
-            <div class="slider-line">
-
-                <strong>B</strong>
-
+            <div class="slider-row">
+                <label>B</label>
                 <input
-                    id="blueSlider"
                     type="range"
                     min="0"
                     max="255"
                     value="128"
-                    oninput="updateColorPreview()"
+                    id="blueSlider"
+                    oninput="updateColorGuess()"
                 >
-
-                <span
-                    class="slider-number"
-                    id="blueValue"
-                >
-                    128
-                </span>
-
+                <span id="blueValue">128</span>
             </div>
 
         </div>
 
-
-        <div style="
-            text-align:center;
-            margin-top:25px;
-        ">
-
-            <button
-                class="primary-btn"
-                onclick="submitColor()"
-            >
-                Check Colour
-            </button>
-
-        </div>
-
+        <button
+            class="primary-btn"
+            onclick="submitColor()"
+        >
+            Submit Colour
+        </button>
     `;
-
-
-    updateColorPreview();
-
 }
 
+function updateColorGuess(){
 
-function updateColorPreview(){
-
-    const r=
+    const r =
         Number(
             document.getElementById(
                 "redSlider"
             ).value
         );
 
-
-    const g=
+    const g =
         Number(
             document.getElementById(
                 "greenSlider"
             ).value
         );
 
-
-    const b=
+    const b =
         Number(
             document.getElementById(
                 "blueSlider"
             ).value
         );
-
 
     document.getElementById(
         "redValue"
-    ).textContent=r;
-
+    ).textContent = r;
 
     document.getElementById(
         "greenValue"
-    ).textContent=g;
-
+    ).textContent = g;
 
     document.getElementById(
         "blueValue"
-    ).textContent=b;
-
+    ).textContent = b;
 
     document.getElementById(
-        "colorPreview"
-    ).style.background=
+        "guessColorBox"
+    ).style.background =
         `rgb(${r},${g},${b})`;
-
 }
-
 
 function submitColor(){
 
-    if(colorPhase!=="input")
-        return;
-
-
-    const r=
+    const r =
         Number(
             document.getElementById(
                 "redSlider"
             ).value
         );
 
-
-    const g=
+    const g =
         Number(
             document.getElementById(
                 "greenSlider"
             ).value
         );
 
-
-    const b=
+    const b =
         Number(
             document.getElementById(
                 "blueSlider"
             ).value
         );
 
-
-    const distance=
+    const distance =
         Math.sqrt(
-
-            Math.pow(
-                r-targetColor.r,
-                2
-            )+
-
-            Math.pow(
-                g-targetColor.g,
-                2
-            )+
-
-            Math.pow(
-                b-targetColor.b,
-                2
-            )
-
+            Math.pow(r-targetColor.r,2) +
+            Math.pow(g-targetColor.g,2) +
+            Math.pow(b-targetColor.b,2)
         );
 
-
-    const maxDistance=
+    const maxDistance =
         Math.sqrt(
-            3*Math.pow(255,2)
+            255*255*3
         );
 
-
-    const accuracy=
+    const accuracy =
         Math.max(
-
             0,
-
-            Math.round(
-                (
-                    1-
-                    distance/
-                    maxDistance
-                )*100
-            )
-
+            100 -
+            (distance/maxDistance)*100
         );
 
+    const score =
+        Math.round(accuracy);
 
-    colorRound=1;
-
-    colorPhase="finished";
-
-
-    completeGame(
+    showIndividualResult(
         "color",
-        accuracy,
-        {
-            accuracy:accuracy
-        }
+        score,
+        "One shot. One colour.",
+        `
+            <div class="result-stat">
+                <strong>${score}%</strong>
+                <span>Accuracy</span>
+            </div>
+        `
     );
-
 }
 
 
-/* =========================================================
+/* =====================================================
    WORD LINKS
-========================================================= */
+===================================================== */
 
-const linksPuzzles=[
+const linksGroups = [
 
-[
     {
-        name:"Animals",
+        name:"Things with Keys",
         words:[
-            "LION",
-            "TIGER",
-            "BEAR",
-            "WOLF"
+            "Keyboard",
+            "Piano",
+            "Lock",
+            "Car"
         ]
     },
 
     {
-        name:"School",
+        name:"Planets",
         words:[
-            "PEN",
-            "BOOK",
-            "RULER",
-            "DESK"
+            "Mars",
+            "Earth",
+            "Venus",
+            "Jupiter"
         ]
     },
 
     {
-        name:"Colours",
+        name:"Things That Fly",
         words:[
-            "RED",
-            "BLUE",
-            "GREEN",
-            "PINK"
-        ]
-    },
-
-    {
-        name:"Transport",
-        words:[
-            "BUS",
-            "TRAIN",
-            "CAR",
-            "TAXI"
-        ]
-    }
-],
-
-[
-    {
-        name:"Fruit",
-        words:[
-            "APPLE",
-            "PEAR",
-            "MANGO",
-            "GRAPE"
+            "Eagle",
+            "Plane",
+            "Helicopter",
+            "Rocket"
         ]
     },
 
     {
         name:"Sports",
         words:[
-            "GOLF",
-            "TENNIS",
-            "RUGBY",
-            "CRICKET"
-        ]
-    },
-
-    {
-        name:"Body",
-        words:[
-            "HAND",
-            "FOOT",
-            "EYE",
-            "EAR"
-        ]
-    },
-
-    {
-        name:"Nature",
-        words:[
-            "TREE",
-            "RIVER",
-            "LAKE",
-            "CLOUD"
+            "Football",
+            "Tennis",
+            "Cricket",
+            "Golf"
         ]
     }
-],
-
-[
-    {
-        name:"Food",
-        words:[
-            "PIZZA",
-            "PASTA",
-            "RICE",
-            "BREAD"
-        ]
-    },
-
-    {
-        name:"Technology",
-        words:[
-            "PHONE",
-            "MOUSE",
-            "SCREEN",
-            "ROUTER"
-        ]
-    },
-
-    {
-        name:"Clothing",
-        words:[
-            "SHIRT",
-            "JEANS",
-            "SOCKS",
-            "SHOES"
-        ]
-    },
-
-    {
-        name:"Jobs",
-        words:[
-            "DOCTOR",
-            "CHEF",
-            "PILOT",
-            "NURSE"
-        ]
-    }
-]
-
 ];
 
-
-let linksPuzzle;
-let linksWords=[];
-let linksSelected=[];
-let linksSolved=[];
-let linksMistakes=0;
-let linksGroupCount=0;
-let linksLocked=false;
-
+let linksWords = [];
+let linksSelected = [];
+let linksMistakes = 0;
+let linksFound = 0;
 
 function startLinks(){
 
-    const puzzleIndex=
-        Math.floor(
-            Math.random()*
-            linksPuzzles.length
-        );
+    document.getElementById("gameTitle")
+        .textContent = "Word Links";
 
+    document.getElementById("gameSubtitle")
+        .textContent =
+        "Find four groups of four. Three mistakes ends the game.";
 
-    linksPuzzle=
-        linksPuzzles[
-            puzzleIndex
-        ];
+    linksSelected = [];
+    linksMistakes = 0;
+    linksFound = 0;
 
-
-    linksWords=
-        linksPuzzle
-            .flatMap(
-                g=>g.words
-            )
-            .map(word=>({
-
-                word:word,
-
-                group:
-                    linksPuzzle.findIndex(
-                        g=>g.words.includes(word)
-                    )
-
-            }));
-
-
-    shuffle(
-        linksWords
-    );
-
-
-    linksSelected=[];
-
-    linksSolved=[];
-
-    linksMistakes=0;
-
-    linksGroupCount=0;
-
-    linksLocked=false;
-
+    linksWords =
+        linksGroups
+        .flatMap(group => group.words)
+        .sort(() => Math.random()-0.5);
 
     renderLinks();
-
 }
-
 
 function renderLinks(){
 
-    document.getElementById(
-        "gameStat"
-    ).textContent=
-        "Mistakes: "+
-        linksMistakes+
-        "/3";
+    let html = `
 
-
-    let grid="";
-
-
-    linksWords.forEach(
-        (item,index)=>{
-
-            let cls="link-cell";
-
-
-            if(
-                linksSelected.includes(
-                    index
-                )
-            ){
-
-                cls+=" selected";
-
-            }
-
-
-            if(
-                linksSolved.includes(
-                    index
-                )
-            ){
-
-                cls+=" solved";
-
-            }
-
-
-            grid+=`
-
-                <div
-                    class="${cls}"
-                    onclick="
-                        selectLink(${index})
-                    "
-                >
-                    ${item.word}
-                </div>
-
-            `;
-
-        }
-    );
-
-
-    document.getElementById(
-        "gameContent"
-    ).innerHTML=`
-
-        <div class="instructions">
-
-            Find four groups of four connected words.
-
+        <div class="game-stat">
+            Mistakes: ${linksMistakes}/3
         </div>
-
-
-        <div class="odd-info">
-
-            <div class="stat">
-                Groups:
-                ${linksGroupCount}/4
-            </div>
-
-
-            <div class="stat">
-                Mistakes:
-                ${linksMistakes}/3
-            </div>
-
-        </div>
-
 
         <div class="links-grid">
-            ${grid}
-        </div>
-
-
-        <div class="link-controls">
-
-            <div class="selected-count">
-                ${linksSelected.length}/4 selected
-            </div>
-
-
-            <button
-                class="primary-btn"
-                onclick="checkLinks()"
-            >
-                Check Group
-            </button>
-
-        </div>
-
     `;
 
-}
-
-
-function selectLink(index){
-
-    if(linksLocked)
-        return;
-
-
-    if(
-        linksSolved.includes(index)
-    )
-        return;
-
-
-    if(
-        linksSelected.includes(index)
-    ){
-
-        linksSelected=
-            linksSelected.filter(
-                x=>x!==index
-            );
-
-    }else{
+    linksWords.forEach(word => {
 
         if(
-            linksSelected.length>=4
-        )
-            return;
+            !linksSelected.includes(word) &&
+            !linksGroups.some(
+                (group,index) =>
+                    group.words.includes(word) &&
+                    linksFound > index
+            )
+        ){
 
+            html += `
+                <div
+                    class="link-word"
+                    onclick="selectLinkWord('${word}')"
+                    id="link-${word}"
+                >
+                    ${word}
+                </div>
+            `;
+        }
+    });
 
-        linksSelected.push(index);
+    html += `
+        </div>
 
-    }
+        <button
+            class="primary-btn"
+            onclick="checkLinks()"
+        >
+            Check Group
+        </button>
 
+        <div class="link-groups">
+            ${linksGroups.slice(0,linksFound).map(group => `
+                <div class="link-group">
+                    <strong>${group.name}</strong><br>
+                    ${group.words.join(" · ")}
+                </div>
+            `).join("")}
+        </div>
+    `;
 
-    renderLinks();
+    document.getElementById("gameArea")
+        .innerHTML = html;
 
+    linksSelected.forEach(word => {
+
+        const element =
+            document.getElementById(
+                "link-" + word
+            );
+
+        if(element){
+            element.classList.add("selected");
+        }
+    });
 }
 
+function selectLinkWord(word){
+
+    if(linksSelected.includes(word)){
+        linksSelected =
+            linksSelected.filter(
+                w => w !== word
+            );
+    }else if(linksSelected.length < 4){
+        linksSelected.push(word);
+    }
+
+    renderLinks();
+}
 
 function checkLinks(){
 
-    if(linksLocked)
+    if(linksSelected.length !== 4){
         return;
+    }
 
-
-    if(
-        linksSelected.length!==4
-    )
-        return;
-
-
-    const groups=
-        linksSelected.map(
-            i=>linksWords[i].group
+    const correctGroup =
+        linksGroups.find(
+            group =>
+                group.words.length ===
+                linksSelected.length &&
+                group.words.every(
+                    word =>
+                        linksSelected.includes(word)
+                )
         );
 
+    if(correctGroup){
 
-    const allSame=
-        groups.every(
-            g=>g===groups[0]
-        );
+        const index =
+            linksGroups.indexOf(correctGroup);
 
+        linksFound++;
 
-    if(allSame){
+        linksSelected = [];
 
-        linksSolved.push(
-            ...linksSelected
-        );
+        if(linksFound >= linksGroups.length){
 
+            const score =
+                Math.max(
+                    0,
+                    100 -
+                    linksMistakes * 5
+                );
 
-        linksSelected=[];
-
-        linksGroupCount++;
-
-
-        if(
-            linksGroupCount>=4
-        ){
-
-            linksLocked=true;
-
-
-            setTimeout(
-                endLinks,
-                500
+            showIndividualResult(
+                "links",
+                score,
+                "You found all four groups.",
+                `
+                    <div class="result-stat">
+                        <strong>${linksMistakes}</strong>
+                        <span>Mistakes</span>
+                    </div>
+                `
             );
 
-        }else{
-
-            renderLinks();
-
+            return;
         }
 
     }else{
 
         linksMistakes++;
 
-        linksSelected=[];
+        linksSelected = [];
 
+        if(linksMistakes >= 3){
 
-        if(
-            linksMistakes>=3
-        ){
-
-            linksLocked=true;
-
-
-            setTimeout(
-                endLinks,
-                500
+            showIndividualResult(
+                "links",
+                0,
+                "Three mistakes. Better luck tomorrow.",
+                `
+                    <div class="result-stat">
+                        <strong>3</strong>
+                        <span>Mistakes</span>
+                    </div>
+                `
             );
 
-        }else{
-
-            renderLinks();
-
+            return;
         }
-
     }
 
+    renderLinks();
 }
-
-
-function endLinks(){
-
-    const score=
-        Math.max(
-            0,
-            linksGroupCount*25 -
-            linksMistakes*5
-        );
-
-
-    completeGame(
-        "links",
-        score,
-        {
-            groups:
-                linksGroupCount,
-
-            mistakes:
-                linksMistakes
-        }
-    );
-
-}
-
-
-/* =========================================================
-   UTILITY
-========================================================= */
-
-function shuffle(array){
-
-    for(
-        let i=array.length-1;
-        i>0;
-        i--
-    ){
-
-        const j=
-            Math.floor(
-                Math.random()*
-                (i+1)
-            );
-
-
-        [
-            array[i],
-            array[j]
-        ]=[
-            array[j],
-            array[i]
-        ];
-
-    }
-
-
-    return array;
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
-
-updateHome();
 
 </script>
 
