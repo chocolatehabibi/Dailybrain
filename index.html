@@ -453,7 +453,30 @@ header{
     margin-bottom:15px;
 }
 
-/* INDIVIDUAL RESULTS */
+/* KATAPANTAT */
+
+.kata-ad-space{
+    width:100%;
+    min-height:90px;
+    border:1px dashed #334155;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#475569;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+.kata-card{
+    background:#111827;
+    border:1px solid #263249;
+    border-radius:22px;
+    padding:30px 20px;
+    text-align:center;
+}
+
+/* RESULTS */
 
 .individual-result{
     max-width:650px;
@@ -587,11 +610,8 @@ header{
     font-weight:700;
 }
 
-.hidden{
-    display:none!important;
-}
-
 @media(max-width:700px){
+
     .games-grid{
         grid-template-columns:1fr;
     }
@@ -639,6 +659,7 @@ header{
     <div class="streak" id="streakDisplay">🔥 Streak: 0</div>
 </header>
 
+
 <!-- HOME -->
 
 <section id="homeScreen" class="screen active">
@@ -650,62 +671,143 @@ header{
 
     <div class="games-grid">
 
-        <div class="game-card" id="card-wordle" onclick="openGame('wordle')">
+        <div class="game-card" id="card-wordle"
+             onclick="openGame('wordle')">
+
             <div class="game-icon">🇬🇧</div>
+
             <h2>Word Grid</h2>
-            <p>Guess today's five-letter English word.</p>
-            <div class="card-status" id="status-wordle">PLAY NOW →</div>
+
+            <p>
+                Guess today's five-letter English word.
+            </p>
+
+            <div class="card-status"
+                 id="status-wordle">
+                PLAY NOW →
+            </div>
+
         </div>
 
-        <div class="game-card" id="card-malay" onclick="openGame('malay')">
+
+        <div class="game-card" id="card-kata"
+             onclick="openGame('kata')">
+
             <div class="game-icon">🇲🇾</div>
-            <h2>Kata Hari Ini</h2>
-            <p>Guess today's five-letter Malay word.</p>
-            <div class="card-status" id="status-malay">PLAY NOW →</div>
+
+            <h2>KataPantat</h2>
+
+            <p>
+                Guess today's five-letter Malay word.
+            </p>
+
+            <div class="card-status"
+                 id="status-kata">
+                PLAY NOW →
+            </div>
+
         </div>
 
-        <div class="game-card" id="card-quickfire" onclick="openGame('quickfire')">
+
+        <div class="game-card" id="card-quickfire"
+             onclick="openGame('quickfire')">
+
             <div class="game-icon">⚡</div>
+
             <h2>Quickfire</h2>
-            <p>Answer as many categories as possible in 30 seconds.</p>
-            <div class="card-status" id="status-quickfire">PLAY NOW →</div>
+
+            <p>
+                Answer as many categories as possible in 30 seconds.
+            </p>
+
+            <div class="card-status"
+                 id="status-quickfire">
+                PLAY NOW →
+            </div>
+
         </div>
 
-        <div class="game-card" id="card-odd" onclick="openGame('odd')">
+
+        <div class="game-card" id="card-odd"
+             onclick="openGame('odd')">
+
             <div class="game-icon">👁️</div>
+
             <h2>Odd Pixel</h2>
-            <p>Find the different square before your mistakes run out.</p>
-            <div class="card-status" id="status-odd">PLAY NOW →</div>
+
+            <p>
+                Find the different square as quickly as possible.
+            </p>
+
+            <div class="card-status"
+                 id="status-odd">
+                PLAY NOW →
+            </div>
+
         </div>
 
-        <div class="game-card" id="card-color" onclick="openGame('color')">
+
+        <div class="game-card" id="card-color"
+             onclick="openGame('color')">
+
             <div class="game-icon">🎨</div>
+
             <h2>Color Recall</h2>
-            <p>Remember a colour and recreate it.</p>
-            <div class="card-status" id="status-color">PLAY NOW →</div>
+
+            <p>
+                Memorise one colour and recreate it.
+            </p>
+
+            <div class="card-status"
+                 id="status-color">
+                PLAY NOW →
+            </div>
+
         </div>
 
-        <div class="game-card" id="card-links" onclick="openGame('links')">
+
+        <div class="game-card" id="card-links"
+             onclick="openGame('links')">
+
             <div class="game-icon">🧩</div>
+
             <h2>Word Links</h2>
-            <p>Find four groups of four connected words.</p>
-            <div class="card-status" id="status-links">PLAY NOW →</div>
+
+            <p>
+                Find four groups of four connected words.
+            </p>
+
+            <div class="card-status"
+                 id="status-links">
+                PLAY NOW →
+            </div>
+
         </div>
 
     </div>
+
 </section>
 
 
-<!-- GAME SCREEN -->
+<!-- GAME -->
 
 <section id="gameScreen" class="screen">
 
     <div class="game-wrap">
 
         <div class="game-top">
-            <button class="back-btn" onclick="goHome()">← Home</button>
-            <div class="game-title" id="gameTitle"></div>
-            <div class="stat" id="gameStat"></div>
+
+            <button class="back-btn"
+                    onclick="goHome()">
+                ← Home
+            </button>
+
+            <div class="game-title"
+                 id="gameTitle"></div>
+
+            <div class="stat"
+                 id="gameStat"></div>
+
         </div>
 
         <div id="gameContent"></div>
@@ -717,27 +819,45 @@ header{
 
 <!-- INDIVIDUAL RESULT -->
 
-<section id="individualResultScreen" class="screen">
+<section id="individualResultScreen"
+         class="screen">
 
     <div class="individual-result">
 
-        <div class="result-emoji" id="individualEmoji">🎉</div>
+        <div class="result-emoji"
+             id="individualEmoji">
+            🎉
+        </div>
 
-        <div class="result-title" id="individualTitle">Congrats!</div>
+        <div class="result-title"
+             id="individualTitle">
+            Congrats!
+        </div>
 
-        <div class="result-subtitle" id="individualSubtitle">
+        <div class="result-subtitle"
+             id="individualSubtitle">
             Great performance.
         </div>
 
-        <div class="score-label">YOUR SCORE</div>
+        <div class="score-label">
+            YOUR SCORE
+        </div>
 
-        <div class="big-score" id="individualScore">85</div>
+        <div class="big-score"
+             id="individualScore">
+            85
+        </div>
 
-        <div class="score-label">/ 100</div>
+        <div class="score-label">
+            / 100
+        </div>
 
-        <div class="result-stats" id="individualStats"></div>
+        <div class="result-stats"
+             id="individualStats">
+        </div>
 
-        <button class="primary-btn" onclick="returnFromIndividualResult()">
+        <button class="primary-btn"
+                onclick="returnFromIndividualResult()">
             Continue →
         </button>
 
@@ -748,25 +868,41 @@ header{
 
 <!-- FINAL RESULTS -->
 
-<section id="finalResultScreen" class="screen">
+<section id="finalResultScreen"
+         class="screen">
 
     <div class="final-result">
 
         <h1>🏆 DailyBrain Complete!</h1>
 
-        <p>You finished all six challenges.</p>
+        <p>
+            You finished all six challenges.
+        </p>
 
         <div class="total-score">
-            <div class="score-label">TOTAL SCORE</div>
-            <div class="total-number" id="finalScore">0/600</div>
+
+            <div class="score-label">
+                TOTAL SCORE
+            </div>
+
+            <div class="total-number"
+                 id="finalScore">
+                0/600
+            </div>
+
         </div>
 
-        <div class="result-list" id="finalList"></div>
+        <div class="result-list"
+             id="finalList">
+        </div>
 
         <div style="text-align:center;margin-top:25px;">
-            <button class="primary-btn" onclick="goHome()">
+
+            <button class="primary-btn"
+                    onclick="goHome()">
                 Back to DailyBrain
             </button>
+
         </div>
 
     </div>
@@ -779,37 +915,65 @@ header{
 <script>
 
 /* =========================================================
-   DAILY STATE
+   GAME STATE
 ========================================================= */
 
 const GAME_NAMES = {
+
     wordle:"Word Grid",
-    malay:"Kata Hari Ini",
+
+    kata:"KataPantat",
+
     quickfire:"Quickfire",
+
     odd:"Odd Pixel",
+
     color:"Color Recall",
+
     links:"Word Links"
+
 };
 
 const GAME_ICONS = {
+
     wordle:"🇬🇧",
-    malay:"🇲🇾",
+
+    kata:"🇲🇾",
+
     quickfire:"⚡",
+
     odd:"👁️",
+
     color:"🎨",
+
     links:"🧩"
+
 };
 
+
 let completedGames =
-    JSON.parse(localStorage.getItem("dailyBrainCompleted") || "{}");
+    JSON.parse(
+        localStorage.getItem(
+            "dailyBrainCompleted"
+        ) || "{}"
+    );
+
 
 let scores =
-    JSON.parse(localStorage.getItem("dailyBrainScores") || "{}");
+    JSON.parse(
+        localStorage.getItem(
+            "dailyBrainScores"
+        ) || "{}"
+    );
+
 
 let currentGame = null;
+
 let currentResultGame = null;
 
+
 function saveState(){
+
     localStorage.setItem(
         "dailyBrainCompleted",
         JSON.stringify(completedGames)
@@ -819,53 +983,74 @@ function saveState(){
         "dailyBrainScores",
         JSON.stringify(scores)
     );
+
 }
+
 
 function updateHome(){
 
-    Object.keys(GAME_NAMES).forEach(game => {
+    Object.keys(GAME_NAMES)
+        .forEach(game=>{
 
-        const status =
-            document.getElementById("status-" + game);
+            const status =
+                document.getElementById(
+                    "status-"+game
+                );
 
-        const card =
-            document.getElementById("card-" + game);
+            const card =
+                document.getElementById(
+                    "card-"+game
+                );
 
-        if(completedGames[game]){
+            if(completedGames[game]){
 
-            status.textContent =
-                "✓ COMPLETED • " + scores[game] + "/100";
+                status.textContent =
+                    "✓ COMPLETED • " +
+                    scores[game] +
+                    "/100";
 
-            card.classList.add("locked");
+                card.classList.add("locked");
 
-        }else{
+            }else{
 
-            status.textContent = "PLAY NOW →";
-            card.classList.remove("locked");
+                status.textContent =
+                    "PLAY NOW →";
 
-        }
+                card.classList.remove(
+                    "locked"
+                );
 
-    });
+            }
 
-    const total =
-        Object.values(scores).reduce(
-            (sum,x)=>sum + Number(x || 0),0
-        );
+        });
+
 
     const streak =
-        Number(localStorage.getItem("dailyBrainStreak") || 0);
+        Number(
+            localStorage.getItem(
+                "dailyBrainStreak"
+            ) || 0
+        );
 
-    document.getElementById("streakDisplay").textContent =
+
+    document.getElementById(
+        "streakDisplay"
+    ).textContent =
         "🔥 Streak: " + streak;
+
 }
+
 
 function hideScreens(){
 
     document
         .querySelectorAll(".screen")
-        .forEach(s=>s.classList.remove("active"));
+        .forEach(
+            s=>s.classList.remove("active")
+        );
 
 }
+
 
 function showScreen(id){
 
@@ -876,20 +1061,24 @@ function showScreen(id){
         .classList.add("active");
 
     window.scrollTo(0,0);
+
 }
+
 
 function goHome(){
 
     updateHome();
-    showScreen("homeScreen");
+
+    showScreen(
+        "homeScreen"
+    );
 
 }
+
 
 function openGame(game){
 
     currentGame = game;
-
-    /* Completed games cannot be replayed */
 
     if(completedGames[game]){
 
@@ -903,19 +1092,43 @@ function openGame(game){
         );
 
         return;
+
     }
 
-    showScreen("gameScreen");
 
-    document.getElementById("gameTitle").textContent =
+    showScreen(
+        "gameScreen"
+    );
+
+
+    document.getElementById(
+        "gameTitle"
+    ).textContent =
         GAME_NAMES[game];
 
-    if(game === "wordle") startWordle("english");
-    if(game === "malay") startWordle("malay");
-    if(game === "quickfire") startQuickfire();
-    if(game === "odd") startOdd();
-    if(game === "color") startColor();
-    if(game === "links") startLinks();
+
+    if(game==="wordle")
+        startWordle("english");
+
+
+    if(game==="kata")
+        startWordle("malay");
+
+
+    if(game==="quickfire")
+        startQuickfire();
+
+
+    if(game==="odd")
+        startOdd();
+
+
+    if(game==="color")
+        startColor();
+
+
+    if(game==="links")
+        startLinks();
 
 }
 
@@ -924,11 +1137,24 @@ function openGame(game){
    COMPLETE GAME
 ========================================================= */
 
-function completeGame(game,score,stats={}){
+function completeGame(
+    game,
+    score,
+    stats={}
+){
 
-    score = Math.max(0,Math.min(100,Math.round(score)));
+    score =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                Math.round(score)
+            )
+        );
+
 
     completedGames[game] = true;
+
     scores[game] = score;
 
     saveState();
@@ -943,17 +1169,31 @@ function completeGame(game,score,stats={}){
         false,
         stats
     );
+
 }
+
 
 function updateStreak(){
 
-    const today = new Date().toISOString().slice(0,10);
+    const today =
+        new Date()
+            .toISOString()
+            .slice(0,10);
+
 
     const last =
-        localStorage.getItem("dailyBrainLastDate");
+        localStorage.getItem(
+            "dailyBrainLastDate"
+        );
+
 
     let streak =
-        Number(localStorage.getItem("dailyBrainStreak") || 0);
+        Number(
+            localStorage.getItem(
+                "dailyBrainStreak"
+            ) || 0
+        );
+
 
     if(last !== today){
 
@@ -967,18 +1207,27 @@ function updateStreak(){
 
             const difference =
                 Math.round(
-                    (current-previous)/(1000*60*60*24)
+                    (current-previous) /
+                    (1000*60*60*24)
                 );
 
-            if(difference === 1){
+
+            if(difference===1){
+
                 streak++;
+
             }else{
-                streak = 1;
+
+                streak=1;
+
             }
 
         }else{
-            streak = 1;
+
+            streak=1;
+
         }
+
 
         localStorage.setItem(
             "dailyBrainLastDate",
@@ -989,7 +1238,9 @@ function updateStreak(){
             "dailyBrainStreak",
             streak
         );
+
     }
+
 }
 
 
@@ -1004,143 +1255,242 @@ function showIndividualResult(
     stats
 ){
 
-    document.getElementById("individualScore")
-        .textContent = score;
+    document.getElementById(
+        "individualScore"
+    ).textContent = score;
+
 
     let title;
     let emoji;
     let subtitle;
 
-    if(score >= 80){
 
-        title = "Congrats!";
-        emoji = "🎉";
-        subtitle = "Excellent brain work.";
+    if(score>=80){
 
-    }else if(score >= 50){
+        title="Congrats!";
+        emoji="🎉";
+        subtitle=
+            "Excellent brain work.";
 
-        title = "Nice Work!";
-        emoji = "🧠";
-        subtitle = "Solid performance. Keep going.";
+    }else if(score>=50){
+
+        title="Nice Work!";
+        emoji="🧠";
+        subtitle=
+            "Solid performance. Keep going.";
 
     }else{
 
-        title = "Too Bad!";
-        emoji = "😮";
-        subtitle = "Don't worry — you've got the next challenge.";
+        title="Too Bad!";
+        emoji="😮";
+        subtitle=
+            "Don't worry — you've got the next challenge.";
 
     }
 
+
     if(alreadyCompleted){
 
-        title = "Already Completed";
-        emoji = "🔒";
-        subtitle =
+        title="Already Completed";
+        emoji="🔒";
+        subtitle=
             "This daily challenge has already been completed.";
 
     }
 
-    document.getElementById("individualTitle")
-        .textContent = title;
 
-    document.getElementById("individualEmoji")
-        .textContent = emoji;
+    document.getElementById(
+        "individualTitle"
+    ).textContent = title;
 
-    document.getElementById("individualSubtitle")
-        .textContent = subtitle;
 
-    let statsHTML = "";
+    document.getElementById(
+        "individualEmoji"
+    ).textContent = emoji;
 
-    if(game === "wordle" || game === "malay"){
 
-        statsHTML += `
+    document.getElementById(
+        "individualSubtitle"
+    ).textContent = subtitle;
+
+
+    let html="";
+
+
+    if(game==="wordle" ||
+       game==="kata"){
+
+        html+=`
+
             <div class="result-stat">
-                <strong>${stats.guesses ?? "—"}</strong>
-                <span>GUESSES</span>
+
+                <strong>
+                    ${stats.guesses ?? "—"}
+                </strong>
+
+                <span>
+                    GUESSES
+                </span>
+
             </div>
+
         `;
+
 
         if(stats.answer){
 
-            statsHTML += `
+            html+=`
+
                 <div class="result-stat">
-                    <strong>${stats.answer.toUpperCase()}</strong>
-                    <span>ANSWER</span>
+
+                    <strong>
+                        ${stats.answer.toUpperCase()}
+                    </strong>
+
+                    <span>
+                        ANSWER
+                    </span>
+
                 </div>
+
             `;
 
         }
 
     }
 
-    if(game === "quickfire"){
 
-        statsHTML += `
-            <div class="result-stat">
-                <strong>${stats.correct ?? 0}</strong>
-                <span>CORRECT</span>
-            </div>
+    if(game==="quickfire"){
+
+        html+=`
 
             <div class="result-stat">
-                <strong>${stats.attempts ?? 0}</strong>
-                <span>ATTEMPTS</span>
+
+                <strong>
+                    ${stats.correct ?? 0}
+                </strong>
+
+                <span>
+                    CORRECT
+                </span>
+
             </div>
+
+
+            <div class="result-stat">
+
+                <strong>
+                    ${stats.attempts ?? 0}
+                </strong>
+
+                <span>
+                    ATTEMPTS
+                </span>
+
+            </div>
+
         `;
 
     }
 
-    if(game === "odd"){
 
-        statsHTML += `
-            <div class="result-stat">
-                <strong>${stats.roundsWon ?? 0}/3</strong>
-                <span>ROUNDS</span>
-            </div>
+    if(game==="odd"){
+
+        html+=`
 
             <div class="result-stat">
-                <strong>${stats.mistakes ?? 0}/3</strong>
-                <span>MISTAKES</span>
+
+                <strong>
+                    ${stats.time ?? 0}s
+                </strong>
+
+                <span>
+                    TIME
+                </span>
+
             </div>
+
+
+            <div class="result-stat">
+
+                <strong>
+                    ${stats.mistakes ?? 0}
+                </strong>
+
+                <span>
+                    MISTAKES
+                </span>
+
+            </div>
+
         `;
 
     }
 
-    if(game === "color"){
 
-        statsHTML += `
-            <div class="result-stat">
-                <strong>${stats.accuracy ?? 0}%</strong>
-                <span>ACCURACY</span>
-            </div>
+    if(game==="color"){
+
+        html+=`
 
             <div class="result-stat">
-                <strong>${stats.rounds ?? 0}</strong>
-                <span>ROUNDS</span>
+
+                <strong>
+                    ${stats.accuracy ?? 0}%
+                </strong>
+
+                <span>
+                    ACCURACY
+                </span>
+
             </div>
+
         `;
 
     }
 
-    if(game === "links"){
 
-        statsHTML += `
-            <div class="result-stat">
-                <strong>${stats.groups ?? 0}/4</strong>
-                <span>GROUPS</span>
-            </div>
+    if(game==="links"){
+
+        html+=`
 
             <div class="result-stat">
-                <strong>${stats.mistakes ?? 0}/3</strong>
-                <span>MISTAKES</span>
+
+                <strong>
+                    ${stats.groups ?? 0}/4
+                </strong>
+
+                <span>
+                    GROUPS
+                </span>
+
             </div>
+
+
+            <div class="result-stat">
+
+                <strong>
+                    ${stats.mistakes ?? 0}/3
+                </strong>
+
+                <span>
+                    MISTAKES
+                </span>
+
+            </div>
+
         `;
 
     }
 
-    document.getElementById("individualStats")
-        .innerHTML = statsHTML;
 
-    showScreen("individualResultScreen");
+    document.getElementById(
+        "individualStats"
+    ).innerHTML=html;
+
+
+    showScreen(
+        "individualResultScreen"
+    );
 
 }
 
@@ -1152,9 +1502,12 @@ function showIndividualResult(
 function returnFromIndividualResult(){
 
     const completedCount =
-        Object.keys(completedGames).length;
+        Object.keys(
+            completedGames
+        ).length;
 
-    if(completedCount >= 6){
+
+    if(completedCount>=6){
 
         showFinalResults();
 
@@ -1173,170 +1526,273 @@ function returnFromIndividualResult(){
 
 function showFinalResults(){
 
-    let total = 0;
+    let total=0;
 
-    let html = "";
+    let html="";
 
-    Object.keys(GAME_NAMES).forEach(game => {
 
-        const score =
-            Number(scores[game] || 0);
+    Object.keys(GAME_NAMES)
+        .forEach(game=>{
 
-        total += score;
+            const score =
+                Number(
+                    scores[game] || 0
+                );
 
-        html += `
-            <div class="result-row">
-                <div class="result-row-name">
-                    <span>${GAME_ICONS[game]}</span>
-                    <span>${GAME_NAMES[game]}</span>
+
+            total+=score;
+
+
+            html+=`
+
+                <div class="result-row">
+
+                    <div class="result-row-name">
+
+                        <span>
+                            ${GAME_ICONS[game]}
+                        </span>
+
+                        <span>
+                            ${GAME_NAMES[game]}
+                        </span>
+
+                    </div>
+
+
+                    <div class="result-row-score">
+
+                        ${score}/100
+
+                    </div>
+
                 </div>
 
-                <div class="result-row-score">
-                    ${score}/100
-                </div>
-            </div>
-        `;
+            `;
 
-    });
+        });
 
-    document.getElementById("finalScore")
-        .textContent = total + "/600";
 
-    document.getElementById("finalList")
-        .innerHTML = html;
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        total+"/600";
 
-    showScreen("finalResultScreen");
+
+    document.getElementById(
+        "finalList"
+    ).innerHTML=html;
+
+
+    showScreen(
+        "finalResultScreen"
+    );
+
 }
 
 
 /* =========================================================
-   WORDLE
+   WORDLE + KATAPANTAT
 ========================================================= */
 
-let wordleLanguage = "english";
-let wordleAnswer = "";
-let wordleAllowed = [];
-let wordleGuesses = [];
-let wordleCurrent = "";
-let wordleGameOver = false;
+let wordleLanguage="english";
 
-const fallbackEnglish = [
-"about","after","again","apple","beach","black","brain",
-"bread","bring","brown","chair","chess","child","clean",
-"clear","clock","cloud","dance","dream","drink","earth",
-"eight","every","field","first","flame","floor","focus",
-"fresh","fruit","glass","green","happy","heart","house",
-"human","laugh","light","money","music","night","ocean",
-"party","phone","plant","point","power","quick","radio",
-"river","robot","round","school","score","shape","short",
-"smart","smile","sound","space","sport","start","steam",
-"stone","study","sweet","table","think","three","train",
+let wordleAnswer="";
+
+let wordleAllowed=[];
+
+let wordleGuesses=[];
+
+let wordleCurrent="";
+
+let wordleGameOver=false;
+
+
+const fallbackEnglish=[
+
+"about","after","again","apple","beach",
+"black","brain","bread","bring","brown",
+"chair","chess","child","clean","clear",
+"clock","cloud","dance","dream","drink",
+"earth","eight","every","field","first",
+"flame","floor","focus","fresh","fruit",
+"glass","green","happy","heart","house",
+"human","laugh","light","money","music",
+"night","ocean","party","phone","plant",
+"point","power","quick","radio","river",
+"robot","round","school","score","shape",
+"short","smart","smile","sound","space",
+"sport","start","steam","stone","study",
+"sweet","table","think","three","train",
 "water","white","world","write","young"
+
 ];
 
-const fallbackMalay = [
-"besar","bunga","bulan","burung","cinta","dapat","datang",
-"duduk","dunia","emas","enam","garam","hujan","hitam",
-"indah","jalan","jauh","kawan","kecil","kerja","kertas",
-"ketua","kunci","lapan","lebar","lelaki","malam","masak",
-"merah","minum","murah","orang","pahit","papan","pasar",
-"pedas","penuh","pintu","pisang","pulau","rumah","sabar",
-"sakit","salam","satu","sekolah","senang","singa","sungai",
-"taman","tanah","tangan","tahun","telur","tengah","tidur",
-"tinggi","tujuh","tulis","udara","ular","empat","usaha",
-"warna","waktu"
+
+const fallbackMalay=[
+
+"besar","bunga","bulan","burung","cinta",
+"dapat","datang","duduk","dunia","emas",
+"enam","garam","hujan","hitam","indah",
+"jalan","jauh","kawan","kecil","kerja",
+"kertas","ketua","kunci","lapan","lebar",
+"malam","masak","merah","minum","murah",
+"orang","pahit","papan","pasar","pedas",
+"penuh","pintu","pisang","pulau","rumah",
+"sabar","sakit","salam","satu","senang",
+"singa","sungai","taman","tanah","tangan",
+"tahun","telur","tengah","tidur","tinggi",
+"tujuh","tulis","udara","ular","empat",
+"usaha","warna","waktu"
+
 ];
 
-async function loadWordDictionary(language){
 
-    let localFile =
-        language === "english"
+async function loadWordDictionary(
+    language
+){
+
+    const localFile =
+        language==="english"
         ? "dictionaries/english5.txt"
         : "dictionaries/malay5.txt";
 
-    let fallback =
-        language === "english"
+
+    const fallback =
+        language==="english"
         ? fallbackEnglish
         : fallbackMalay;
+
 
     try{
 
         const response =
-            await fetch(localFile + "?v=" + Date.now());
+            await fetch(
+                localFile+
+                "?v="+Date.now()
+            );
+
 
         if(response.ok){
 
             const text =
                 await response.text();
 
+
             const words =
                 text
                     .split(/\r?\n/)
-                    .map(w=>w.trim().toLowerCase())
-                    .filter(w=>/^[a-z]{5}$/.test(w));
+                    .map(
+                        w=>w
+                            .trim()
+                            .toLowerCase()
+                    )
+                    .filter(
+                        w=>/^[a-z]{5}$/.test(w)
+                    );
 
-            if(words.length > 0){
-                return [...new Set(words)];
+
+            if(words.length>0){
+
+                return [
+                    ...new Set(words)
+                ];
+
             }
+
         }
 
     }catch(e){}
 
+
     return fallback;
+
 }
 
-function dailyWord(words, offset=0){
+
+function dailyWord(
+    words,
+    offset=0
+){
 
     const date =
         new Date();
+
 
     const seed =
         date.getFullYear()*10000 +
         (date.getMonth()+1)*100 +
         date.getDate();
 
+
     return words[
-        Math.abs(seed + offset*7919) % words.length
+        Math.abs(
+            seed+
+            offset*7919
+        )%words.length
     ];
 
 }
 
-async function startWordle(language){
 
-    wordleLanguage = language;
+async function startWordle(
+    language
+){
 
-    document.getElementById("gameStat")
-        .textContent = "6 guesses";
+    wordleLanguage=language;
 
-    document.getElementById("gameContent")
-        .innerHTML = `
-            <div class="instructions">
-                Loading today's word...
-            </div>
-        `;
+
+    document.getElementById(
+        "gameStat"
+    ).textContent=
+        "6 guesses";
+
+
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
+
+        <div class="instructions">
+            Loading today's word...
+        </div>
+
+    `;
+
 
     wordleAllowed =
-        await loadWordDictionary(language);
+        await loadWordDictionary(
+            language
+        );
 
-    if(wordleAllowed.length === 0){
-
-        wordleAllowed =
-            language === "english"
-            ? fallbackEnglish
-            : fallbackMalay;
-    }
 
     const offset =
-        language === "english" ? 0 : 37;
+        language==="english"
+        ? 0
+        : 37;
+
 
     wordleAnswer =
-        dailyWord(wordleAllowed,offset);
+        dailyWord(
+            wordleAllowed,
+            offset
+        );
 
-    wordleGuesses = [];
-    wordleCurrent = "";
-    wordleGameOver = false;
+
+    wordleGuesses=[];
+
+    wordleCurrent="";
+
+    wordleGameOver=false;
+
 
     renderWordle();
+
+
+    document.removeEventListener(
+        "keydown",
+        handleWordlePhysicalKey
+    );
+
 
     document.addEventListener(
         "keydown",
@@ -1345,113 +1801,217 @@ async function startWordle(language){
 
 }
 
+
 function renderWordle(){
 
-    let board = "";
+    let board="";
+
 
     for(let r=0;r<6;r++){
 
-        board += `<div class="word-row">`;
+        board+=`
+            <div class="word-row">
+        `;
+
 
         for(let c=0;c<5;c++){
 
-            let letter =
-                wordleGuesses[r]?.word?.[c] ||
-                (r === wordleGuesses.length
-                    ? wordleCurrent[c] || ""
-                    : "");
+            let letter="";
 
-            let cls = "tile";
 
             if(wordleGuesses[r]){
-                cls += " " +
-                    wordleGuesses[r].result[c];
-            }else if(letter){
-                cls += " filled";
+
+                letter =
+                    wordleGuesses[r]
+                        .word[c] || "";
+
+            }else if(
+                r===wordleGuesses.length
+            ){
+
+                letter =
+                    wordleCurrent[c] || "";
+
             }
 
-            board += `
+
+            let cls="tile";
+
+
+            if(wordleGuesses[r]){
+
+                cls+=" "+
+                    wordleGuesses[r]
+                        .result[c];
+
+            }else if(letter){
+
+                cls+=" filled";
+
+            }
+
+
+            board+=`
+
                 <div class="${cls}">
                     ${letter}
                 </div>
+
             `;
 
         }
 
-        board += `</div>`;
+
+        board+=`
+            </div>
+        `;
+
     }
 
-    const keyboardLetters = [
-        ["Q","W","E","R","T","Y","U","I","O","P"],
-        ["A","S","D","F","G","H","J","K","L"],
-        ["ENTER","Z","X","C","V","B","N","M","⌫"]
+
+    const keyboardLetters=[
+
+        [
+            "Q","W","E","R","T",
+            "Y","U","I","O","P"
+        ],
+
+        [
+            "A","S","D","F","G",
+            "H","J","K","L"
+        ],
+
+        [
+            "ENTER","Z","X","C",
+            "V","B","N","M","⌫"
+        ]
+
     ];
 
-    let keyboard = "";
+
+    let keyboard="";
+
 
     keyboardLetters.forEach(row=>{
 
-        keyboard += `<div class="key-row">`;
+        keyboard+=`
+            <div class="key-row">
+        `;
+
 
         row.forEach(letter=>{
 
-            let keyClass = "key";
+            let keyClass="key";
 
-            const lower = letter.toLowerCase();
 
             const state =
-                getKeyboardState(lower);
+                getKeyboardState(
+                    letter.toLowerCase()
+                );
+
 
             if(state){
-                keyClass += " " + state;
+
+                keyClass+=" "+state;
+
             }
 
-            if(letter==="ENTER" || letter==="⌫"){
-                keyClass += " wide";
+
+            if(
+                letter==="ENTER" ||
+                letter==="⌫"
+            ){
+
+                keyClass+=" wide";
+
             }
 
-            keyboard += `
+
+            keyboard+=`
+
                 <button
                     class="${keyClass}"
                     onclick="wordleKey('${letter}')"
                 >
                     ${letter}
                 </button>
+
             `;
 
         });
 
-        keyboard += `</div>`;
-    });
 
-    document.getElementById("gameContent")
-        .innerHTML = `
-            <div class="instructions">
-                Guess the five-letter word.
-            </div>
-
-            <div class="wordle-board">
-                ${board}
-            </div>
-
-            <div class="keyboard">
-                ${keyboard}
+        keyboard+=`
             </div>
         `;
 
+    });
+
+
+    const gameName =
+        wordleLanguage==="malay"
+        ? "KataPantat"
+        : "Word Grid";
+
+
+    const description =
+        wordleLanguage==="malay"
+        ? "Guess today's five-letter Malay word."
+        : "Guess today's five-letter English word.";
+
+
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
+
+        ${
+            wordleLanguage==="malay"
+            ? `
+                <div class="kata-ad-space">
+                    AD SPACE — KATAPANTAT
+                </div>
+              `
+            : ""
+        }
+
+
+        <div class="instructions">
+            ${description}
+        </div>
+
+
+        <div class="wordle-board">
+            ${board}
+        </div>
+
+
+        <div class="keyboard">
+            ${keyboard}
+        </div>
+
+    `;
+
 }
+
 
 function getKeyboardState(letter){
 
-    for(const guess of wordleGuesses){
+    for(
+        const guess of wordleGuesses
+    ){
 
-        for(let i=0;i<5;i++){
+        for(
+            let i=0;
+            i<5;
+            i++
+        ){
 
-            if(guess.word[i] === letter){
+            if(
+                guess.word[i]===letter &&
+                guess.result[i]==="correct"
+            ){
 
-                if(guess.result[i] === "correct"){
-                    return "correct";
-                }
+                return "correct";
 
             }
 
@@ -1459,38 +2019,59 @@ function getKeyboardState(letter){
 
     }
 
-    for(const guess of wordleGuesses){
 
-        for(let i=0;i<5;i++){
+    for(
+        const guess of wordleGuesses
+    ){
+
+        for(
+            let i=0;
+            i<5;
+            i++
+        ){
 
             if(
-                guess.word[i] === letter &&
-                guess.result[i] === "present"
+                guess.word[i]===letter &&
+                guess.result[i]==="present"
             ){
+
                 return "present";
+
             }
 
         }
 
     }
 
-    for(const guess of wordleGuesses){
 
-        for(let i=0;i<5;i++){
+    for(
+        const guess of wordleGuesses
+    ){
+
+        for(
+            let i=0;
+            i<5;
+            i++
+        ){
 
             if(
-                guess.word[i] === letter &&
-                guess.result[i] === "absent"
+                guess.word[i]===letter &&
+                guess.result[i]==="absent"
             ){
+
                 return "absent";
+
             }
 
         }
 
     }
+
 
     return "";
+
 }
+
 
 function handleWordlePhysicalKey(e){
 
@@ -1499,132 +2080,200 @@ function handleWordlePhysicalKey(e){
             .getElementById("gameScreen")
             .classList.contains("active")
     ){
+
         return;
+
     }
+
 
     if(
-        wordleLanguage !== "english" &&
-        wordleLanguage !== "malay"
+        wordleLanguage!=="english" &&
+        wordleLanguage!=="malay"
     ){
+
         return;
+
     }
 
-    if(e.key === "Enter"){
+
+    if(e.key==="Enter"){
+
         wordleKey("ENTER");
+
         return;
+
     }
 
-    if(e.key === "Backspace"){
+
+    if(e.key==="Backspace"){
+
         wordleKey("⌫");
+
         return;
+
     }
+
 
     if(/^[a-zA-Z]$/.test(e.key)){
-        wordleKey(e.key.toUpperCase());
+
+        wordleKey(
+            e.key.toUpperCase()
+        );
+
     }
 
 }
 
+
 function wordleKey(key){
 
-    if(wordleGameOver) return;
+    if(wordleGameOver)
+        return;
 
-    if(key === "⌫"){
+
+    if(key==="⌫"){
 
         wordleCurrent =
             wordleCurrent.slice(0,-1);
 
         renderWordle();
+
         return;
+
     }
 
-    if(key === "ENTER"){
+
+    if(key==="ENTER"){
 
         submitWordle();
 
         return;
+
     }
 
-    if(/^[A-Z]$/.test(key) &&
-       wordleCurrent.length < 5){
 
-        wordleCurrent += key.toLowerCase();
+    if(
+        /^[A-Z]$/.test(key) &&
+        wordleCurrent.length<5
+    ){
+
+        wordleCurrent +=
+            key.toLowerCase();
 
         renderWordle();
+
     }
 
 }
 
-function evaluateGuess(guess,answer){
+
+function evaluateGuess(
+    guess,
+    answer
+){
 
     const result =
         Array(5).fill("absent");
 
+
     const remaining =
         answer.split("");
 
-    /* Correct letters first */
 
-    for(let i=0;i<5;i++){
+    for(
+        let i=0;
+        i<5;
+        i++
+    ){
 
-        if(guess[i] === answer[i]){
+        if(
+            guess[i]===answer[i]
+        ){
 
-            result[i] = "correct";
-            remaining[i] = null;
+            result[i]="correct";
+
+            remaining[i]=null;
 
         }
 
     }
 
-    /* Present letters second */
 
-    for(let i=0;i<5;i++){
+    for(
+        let i=0;
+        i<5;
+        i++
+    ){
 
-        if(result[i] === "correct"){
+        if(
+            result[i]==="correct"
+        )
             continue;
-        }
+
 
         const index =
-            remaining.indexOf(guess[i]);
+            remaining.indexOf(
+                guess[i]
+            );
 
-        if(index !== -1){
 
-            result[i] = "present";
-            remaining[index] = null;
+        if(index!==-1){
+
+            result[i]="present";
+
+            remaining[index]=null;
 
         }
 
     }
 
+
     return result;
+
 }
+
 
 function submitWordle(){
 
-    if(wordleCurrent.length !== 5){
+    if(wordleCurrent.length!==5)
         return;
-    }
 
-    if(!wordleAllowed.includes(wordleCurrent)){
 
-        document.getElementById("gameStat")
-            .textContent = "Not in dictionary";
+    if(
+        !wordleAllowed.includes(
+            wordleCurrent
+        )
+    ){
+
+        document.getElementById(
+            "gameStat"
+        ).textContent=
+            "Not in dictionary";
+
 
         setTimeout(()=>{
 
             if(!wordleGameOver){
 
-                document.getElementById("gameStat")
-                    .textContent =
-                    (6-wordleGuesses.length) + " guesses";
+                document.getElementById(
+                    "gameStat"
+                ).textContent=
+                    (6-wordleGuesses.length)+
+                    " guesses";
+
             }
 
         },900);
 
+
         return;
+
     }
 
-    const guess = wordleCurrent;
+
+    const guess =
+        wordleCurrent;
+
 
     const result =
         evaluateGuess(
@@ -1632,73 +2281,103 @@ function submitWordle(){
             wordleAnswer
         );
 
-    /* CRITICAL:
-       Store the entire guess permanently
-       before allowing another guess.
-    */
 
     wordleGuesses.push({
+
         word:guess,
+
         result:result
+
     });
 
-    wordleCurrent = "";
+
+    wordleCurrent="";
+
 
     renderWordle();
 
-    if(guess === wordleAnswer){
 
-        wordleGameOver = true;
+    if(
+        guess===wordleAnswer
+    ){
+
+        wordleGameOver=true;
+
 
         const score =
-            Math.round(
-                100 -
+            Math.max(
+                30,
+                100-
                 (wordleGuesses.length-1)*14
             );
 
+
         setTimeout(()=>{
 
             completeGame(
-                wordleLanguage === "english"
+
+                wordleLanguage==="english"
                     ? "wordle"
-                    : "malay",
-                Math.max(40,score),
+                    : "kata",
+
+                score,
+
                 {
-                    guesses:wordleGuesses.length,
-                    answer:wordleAnswer
+                    guesses:
+                        wordleGuesses.length,
+
+                    answer:
+                        wordleAnswer
                 }
+
             );
 
         },650);
 
+
         return;
+
     }
 
-    if(wordleGuesses.length >= 6){
 
-        wordleGameOver = true;
+    if(
+        wordleGuesses.length>=6
+    ){
+
+        wordleGameOver=true;
+
 
         setTimeout(()=>{
 
             completeGame(
-                wordleLanguage === "english"
+
+                wordleLanguage==="english"
                     ? "wordle"
-                    : "malay",
+                    : "kata",
+
                 20,
+
                 {
                     guesses:6,
+
                     answer:wordleAnswer
                 }
+
             );
 
         },650);
 
+
         return;
+
     }
 
-    document.getElementById("gameStat")
-        .textContent =
-        (6-wordleGuesses.length) + " guesses";
+
+    document.getElementById(
+        "gameStat"
+    ).textContent=
+        (6-wordleGuesses.length)+
+        " guesses";
 
 }
 
@@ -1707,124 +2386,224 @@ function submitWordle(){
    QUICKFIRE
 ========================================================= */
 
-const quickfireData = [
+const quickfireData=[
 
 {
 category:"Animals",
-answers:["lion","tiger","elephant","giraffe","zebra","horse","dog","cat","rabbit","monkey","bear","wolf","fox","panda","penguin","dolphin","shark","whale","eagle","snake"]
+answers:[
+"lion","tiger","elephant","giraffe",
+"zebra","horse","dog","cat","rabbit",
+"monkey","bear","wolf","fox","panda",
+"penguin","dolphin","shark","whale",
+"eagle","snake"
+]
 },
 
 {
 category:"Countries",
-answers:["singapore","malaysia","japan","china","india","australia","canada","america","france","germany","italy","spain","brazil","mexico","thailand","indonesia","vietnam","korea","egypt","turkey"]
+answers:[
+"singapore","malaysia","japan","china",
+"india","australia","canada","america",
+"france","germany","italy","spain",
+"brazil","mexico","thailand","indonesia",
+"vietnam","korea","egypt","turkey"
+]
 },
 
 {
 category:"Food",
-answers:["pizza","burger","sushi","ramen","noodles","rice","bread","pasta","chicken","steak","curry","sandwich","salad","soup","fries","cheese","apple","banana","mango","cake"]
+answers:[
+"pizza","burger","sushi","ramen",
+"noodles","rice","bread","pasta",
+"chicken","steak","curry","sandwich",
+"salad","soup","fries","cheese",
+"apple","banana","mango","cake"
+]
 },
 
 {
 category:"Sports",
-answers:["football","soccer","basketball","tennis","golf","rugby","cricket","baseball","hockey","boxing","swimming","running","cycling","volleyball","badminton","archery","fencing","rowing","skiing","surfing"]
+answers:[
+"football","soccer","basketball","tennis",
+"golf","rugby","cricket","baseball",
+"hockey","boxing","swimming","running",
+"cycling","volleyball","badminton",
+"archery","fencing","rowing","skiing",
+"surfing"
+]
 },
 
 {
 category:"Colours",
-answers:["red","blue","green","yellow","orange","purple","pink","black","white","brown","grey","gray","gold","silver","beige","maroon","navy","teal","cyan","violet"]
+answers:[
+"red","blue","green","yellow","orange",
+"purple","pink","black","white","brown",
+"grey","gray","gold","silver","beige",
+"maroon","navy","teal","cyan","violet"
+]
 },
 
 {
 category:"Things in School",
-answers:["book","pen","pencil","eraser","ruler","desk","chair","teacher","student","board","locker","bag","computer","paper","calculator","uniform","classroom","library","marker","notebook"]
+answers:[
+"book","pen","pencil","eraser","ruler",
+"desk","chair","teacher","student",
+"board","locker","bag","computer",
+"paper","calculator","uniform",
+"classroom","library","marker","notebook"
+]
 },
 
 {
 category:"Technology",
-answers:["phone","computer","laptop","tablet","keyboard","mouse","screen","camera","robot","drone","printer","charger","battery","internet","website","software","app","console","server","router"]
+answers:[
+"phone","computer","laptop","tablet",
+"keyboard","mouse","screen","camera",
+"robot","drone","printer","charger",
+"battery","internet","website","software",
+"app","console","server","router"
+]
 },
 
 {
 category:"Jobs",
-answers:["doctor","teacher","engineer","lawyer","pilot","chef","nurse","driver","farmer","artist","actor","singer","writer","designer","manager","soldier","dentist","architect","scientist","mechanic"]
+answers:[
+"doctor","teacher","engineer","lawyer",
+"pilot","chef","nurse","driver",
+"farmer","artist","actor","singer",
+"writer","designer","manager","soldier",
+"dentist","architect","scientist","mechanic"
+]
 },
 
 {
 category:"Body Parts",
-answers:["head","hand","foot","arm","leg","eye","ear","nose","mouth","hair","finger","thumb","knee","elbow","heart","brain","neck","back","chest","stomach"]
+answers:[
+"head","hand","foot","arm","leg",
+"eye","ear","nose","mouth","hair",
+"finger","thumb","knee","elbow","heart",
+"brain","neck","back","chest","stomach"
+]
 },
 
 {
 category:"Things in a House",
-answers:["chair","table","sofa","bed","lamp","door","window","mirror","fridge","oven","shower","toilet","pillow","blanket","television","clock","carpet","curtain","shelf","drawer"]
+answers:[
+"chair","table","sofa","bed","lamp",
+"door","window","mirror","fridge",
+"oven","shower","toilet","pillow",
+"blanket","television","clock","carpet",
+"curtain","shelf","drawer"
+]
 },
 
 {
 category:"Transport",
-answers:["car","bus","train","plane","boat","ship","bicycle","motorcycle","taxi","truck","van","subway","tram","scooter","helicopter","rocket","ferry","kayak","canoe","ambulance"]
+answers:[
+"car","bus","train","plane","boat",
+"ship","bicycle","motorcycle","taxi",
+"truck","van","subway","tram","scooter",
+"helicopter","rocket","ferry","kayak",
+"canoe","ambulance"
+]
 },
 
 {
 category:"Fruits",
-answers:["apple","banana","orange","mango","grape","watermelon","pineapple","strawberry","blueberry","raspberry","lemon","lime","peach","pear","plum","cherry","papaya","guava","kiwi","coconut"]
-},
-
-{
-category:"Fast Food",
-answers:["burger","pizza","fries","nuggets","hotdog","taco","wrap","sandwich","wings","donut","cookie","icecream","shake","popcorn","nachos"]
+answers:[
+"apple","banana","orange","mango",
+"grape","watermelon","pineapple",
+"strawberry","blueberry","raspberry",
+"lemon","lime","peach","pear","plum",
+"cherry","papaya","guava","kiwi",
+"coconut"
+]
 },
 
 {
 category:"Things You Wear",
-answers:["shirt","pants","shorts","shoes","socks","jacket","hat","cap","watch","belt","tie","hoodie","sweater","jeans","uniform","gloves","scarf","boots","sandals","slides"]
-},
-
-{
-category:"Musical Instruments",
-answers:["guitar","piano","drums","violin","flute","trumpet","saxophone","cello","harp","organ","keyboard","clarinet","trombone","ukulele","bass"]
+answers:[
+"shirt","pants","shorts","shoes",
+"socks","jacket","hat","cap","watch",
+"belt","tie","hoodie","sweater","jeans",
+"uniform","gloves","scarf","boots",
+"sandals","slides"
+]
 },
 
 {
 category:"Nature",
-answers:["tree","flower","river","mountain","ocean","lake","forest","desert","island","cloud","rain","snow","sun","moon","star","wind","fire","rock","grass","beach"]
+answers:[
+"tree","flower","river","mountain",
+"ocean","lake","forest","desert",
+"island","cloud","rain","snow","sun",
+"moon","star","wind","fire","rock",
+"grass","beach"
+]
 },
 
 {
-category:"Things That Fly",
-answers:["bird","plane","helicopter","drone","rocket","butterfly","bee","eagle","bat","mosquito","fly","kite","balloon","aircraft"]
-},
-
-{
-category:"Movies",
-answers:["avatar","titanic","frozen","batman","superman","spiderman","barbie","cars","alien","rocky","jaws","gladiator","inception","shrek","matrix"]
+category:"Musical Instruments",
+answers:[
+"guitar","piano","drums","violin",
+"flute","trumpet","saxophone","cello",
+"harp","organ","keyboard","clarinet",
+"trombone","ukulele","bass"
+]
 },
 
 {
 category:"Games",
-answers:["chess","poker","football","tennis","minecraft","roblox","fortnite","valorant","tetris","monopoly","scrabble","uno","pokemon","fifa","golf"]
+answers:[
+"chess","poker","football","tennis",
+"minecraft","roblox","fortnite",
+"valorant","tetris","monopoly",
+"scrabble","uno","pokemon","fifa","golf"
+]
 },
 
 {
 category:"Things With Wheels",
-answers:["car","bus","bicycle","truck","skateboard","scooter","train","motorcycle","wheelchair","cart","rollerblade","stroller"]
+answers:[
+"car","bus","bicycle","truck",
+"skateboard","scooter","train",
+"motorcycle","wheelchair","cart",
+"rollerblade","stroller"
+]
 },
 
 {
 category:"Countries in Asia",
-answers:["singapore","malaysia","japan","china","india","thailand","vietnam","indonesia","philippines","korea","brunei","cambodia","laos","myanmar","nepal","pakistan","bangladesh"]
+answers:[
+"singapore","malaysia","japan","china",
+"india","thailand","vietnam",
+"indonesia","philippines","korea",
+"brunei","cambodia","laos","myanmar",
+"nepal","pakistan","bangladesh"
+]
 },
 
 {
 category:"Things That Are Cold",
-answers:["ice","snow","water","juice","icecream","fridge","freezer","winter","penguin","glacier","popsicle","sorbet"]
+answers:[
+"ice","snow","water","juice",
+"icecream","fridge","freezer",
+"winter","penguin","glacier",
+"popsicle","sorbet"
+]
 },
 
 {
 category:"Things That Are Hot",
-answers:["sun","fire","soup","coffee","tea","pizza","oven","lava","chilli","pepper","steam","desert"]
+answers:[
+"sun","fire","soup","coffee","tea",
+"pizza","oven","lava","chilli",
+"pepper","steam","desert"
+]
 }
 
 ];
+
 
 let quickCategories=[];
 let quickCategoryIndex=0;
@@ -1835,70 +2614,91 @@ let quickTime=30;
 let quickTimer=null;
 let quickStarted=false;
 
+
 function startQuickfire(){
 
     clearInterval(quickTimer);
 
-    quickCategories =
-        [...quickfireData];
+    quickCategories=[
+        ...quickfireData
+    ];
 
-    shuffle(quickCategories);
+    shuffle(
+        quickCategories
+    );
 
-    quickCategoryIndex = 0;
-    quickCorrect = 0;
-    quickAttempts = 0;
-    quickTime = 30;
-    quickStarted = false;
+    quickCategoryIndex=0;
+    quickCorrect=0;
+    quickAttempts=0;
+    quickTime=30;
+    quickStarted=false;
 
-    document.getElementById("gameStat")
-        .textContent = "30 seconds";
+
+    document.getElementById(
+        "gameStat"
+    ).textContent=
+        "30 seconds";
+
 
     renderQuickfireIntro();
 
 }
 
+
 function renderQuickfireIntro(){
 
-    document.getElementById("gameContent")
-        .innerHTML = `
-            <div class="quickfire-box">
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
 
-                <div class="category">QUICKFIRE</div>
+        <div class="quickfire-box">
 
-                <div class="quick-question">
-                    Answer as many as possible.
-                </div>
-
-                <p style="color:#94a3b8;margin-bottom:25px;">
-                    You'll get a new category after every correct answer.
-                </p>
-
-                <button class="primary-btn"
-                    onclick="beginQuickfire()">
-                    Start 30 Seconds
-                </button>
-
+            <div class="category">
+                QUICKFIRE
             </div>
-        `;
+
+            <div class="quick-question">
+                Answer as many as possible.
+            </div>
+
+            <p style="color:#94a3b8;margin-bottom:25px;">
+                You'll get a new category after every correct answer.
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="beginQuickfire()"
+            >
+                Start 30 Seconds
+            </button>
+
+        </div>
+
+    `;
 
 }
 
+
 function beginQuickfire(){
 
-    quickStarted = true;
+    quickStarted=true;
 
     nextQuickQuestion();
 
-    quickTimer =
+
+    quickTimer=
         setInterval(()=>{
 
             quickTime--;
 
             updateQuickTimer();
 
-            if(quickTime <= 0){
 
-                clearInterval(quickTimer);
+            if(quickTime<=0){
+
+                clearInterval(
+                    quickTimer
+                );
 
                 endQuickfire();
 
@@ -1908,55 +2708,76 @@ function beginQuickfire(){
 
 }
 
+
 function updateQuickTimer(){
 
     const timer =
-        document.getElementById("quickTimer");
+        document.getElementById(
+            "quickTimer"
+        );
+
 
     if(timer){
-        timer.textContent =
+
+        timer.textContent=
             quickTime;
+
     }
 
 }
 
+
 function nextQuickQuestion(){
 
-    if(quickCategoryIndex >= quickCategories.length){
+    if(
+        quickCategoryIndex>=
+        quickCategories.length
+    ){
 
-        shuffle(quickCategories);
-        quickCategoryIndex = 0;
+        shuffle(
+            quickCategories
+        );
+
+        quickCategoryIndex=0;
 
     }
 
-    quickCurrent =
+
+    quickCurrent=
         quickCategories[
             quickCategoryIndex++
         ];
 
+
     renderQuickfire();
+
 
     setTimeout(()=>{
 
-        const input =
-            document.getElementById("quickInput");
+        const input=
+            document.getElementById(
+                "quickInput"
+            );
 
-        if(input){
+
+        if(input)
             input.focus();
-        }
 
     },50);
 
 }
 
+
 function renderQuickfire(){
 
-    document.getElementById("gameContent")
-        .innerHTML = `
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
 
         <div class="quickfire-box">
 
-            <div class="timer" id="quickTimer">
+            <div class="timer"
+                 id="quickTimer">
                 ${quickTime}
             </div>
 
@@ -1973,26 +2794,45 @@ function renderQuickfire(){
                 id="quickInput"
                 autocomplete="off"
                 placeholder="Type your answer..."
-                onkeydown="if(event.key==='Enter') submitQuickfire()"
+                onkeydown="
+                    if(event.key==='Enter')
+                        submitQuickfire()
+                "
             >
 
             <div class="quick-score">
-                Correct: <strong>${quickCorrect}</strong>
+
+                Correct:
+                <strong>
+                    ${quickCorrect}
+                </strong>
+
                 &nbsp; • &nbsp;
-                Attempts: <strong>${quickAttempts}</strong>
+
+                Attempts:
+                <strong>
+                    ${quickAttempts}
+                </strong>
+
             </div>
 
             <div style="margin-top:20px;">
-                <button class="primary-btn"
-                    onclick="submitQuickfire()">
+
+                <button
+                    class="primary-btn"
+                    onclick="submitQuickfire()"
+                >
                     Submit
                 </button>
+
             </div>
 
         </div>
+
     `;
 
 }
+
 
 function normalizeAnswer(text){
 
@@ -2004,28 +2844,46 @@ function normalizeAnswer(text){
 
 }
 
+
 function submitQuickfire(){
 
-    if(!quickStarted || quickTime <= 0){
+    if(
+        !quickStarted ||
+        quickTime<=0
+    )
         return;
-    }
 
-    const input =
-        document.getElementById("quickInput");
 
-    if(!input) return;
+    const input=
+        document.getElementById(
+            "quickInput"
+        );
 
-    const answer =
-        normalizeAnswer(input.value);
 
-    if(!answer) return;
+    if(!input)
+        return;
+
+
+    const answer=
+        normalizeAnswer(
+            input.value
+        );
+
+
+    if(!answer)
+        return;
+
 
     quickAttempts++;
 
-    const accepted =
+
+    const accepted=
         quickCurrent.answers.some(
-            a=>normalizeAnswer(a)===answer
+            a=>
+                normalizeAnswer(a)===
+                answer
         );
+
 
     if(accepted){
 
@@ -2037,12 +2895,17 @@ function submitQuickfire(){
 
         input.value="";
 
-        input.style.borderColor="#ef4444";
+        input.style.borderColor=
+            "#ef4444";
+
 
         setTimeout(()=>{
 
             if(input){
-                input.style.borderColor="#334155";
+
+                input.style.borderColor=
+                    "#334155";
+
             }
 
         },350);
@@ -2051,15 +2914,18 @@ function submitQuickfire(){
 
 }
 
+
 function endQuickfire(){
 
-    quickStarted = false;
+    quickStarted=false;
 
-    const score =
+
+    const score=
         Math.min(
             100,
             quickCorrect*10
         );
+
 
     completeGame(
         "quickfire",
@@ -2077,75 +2943,124 @@ function endQuickfire(){
    ODD PIXEL
 ========================================================= */
 
-let oddRound = 0;
-let oddMistakes = 0;
-let oddRoundsWon = 0;
-let oddLocked = false;
+let oddRound=0;
+let oddMistakes=0;
+let oddRoundsWon=0;
+let oddLocked=false;
+
+let oddStartTime=0;
+let oddTotalTime=0;
+
 
 function startOdd(){
 
-    oddRound = 0;
-    oddMistakes = 0;
-    oddRoundsWon = 0;
-    oddLocked = false;
+    oddRound=0;
+
+    oddMistakes=0;
+
+    oddRoundsWon=0;
+
+    oddLocked=false;
+
+    oddTotalTime=0;
 
     renderOdd();
 
 }
 
+
 function renderOdd(){
 
-    if(oddRound >= 3){
+    if(oddRound>=3){
 
         endOdd();
+
         return;
+
     }
 
-    oddLocked = false;
 
-    document.getElementById("gameStat")
-        .textContent =
-        `Mistakes: ${oddMistakes}/3`;
+    oddLocked=false;
 
-    const difference =
+    oddStartTime=
+        performance.now();
+
+
+    document.getElementById(
+        "gameStat"
+    ).textContent=
+        "Mistakes: "+oddMistakes;
+
+
+    const difference=
         Math.max(
-            12 - oddRound*2,
+            13 -
+            oddRound*2,
             8
         );
 
-    const base =
-        100 + oddRound*15;
 
-    const odd =
+    const base=
+        72 +
+        oddRound*3;
+
+
+    const odd=
         Math.floor(
             Math.random()*49
         );
 
-    let cells = "";
 
-    for(let i=0;i<49;i++){
+    let cells="";
 
-        const light =
+
+    for(
+        let i=0;
+        i<49;
+        i++
+    ){
+
+        const light=
             i===odd
             ? base+difference
             : base;
 
-        cells += `
+
+        cells+=`
+
             <div
                 class="odd-cell"
-                style="background:hsl(225,70%,${light}%)"
-                onclick="chooseOdd(${i},${odd})"
+                style="
+                    background:hsl(
+                        225,
+                        70%,
+                        ${light}%
+                    )
+                "
+                onclick="
+                    chooseOdd(
+                        ${i},
+                        ${odd}
+                    )
+                "
             ></div>
+
         `;
 
     }
 
-    document.getElementById("gameContent")
-        .innerHTML = `
+
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
 
         <div class="instructions">
-            Find the slightly different square.
+
+            Find the different square.
+            Speed matters, but mistakes are allowed.
+
         </div>
+
 
         <div class="odd-info">
 
@@ -2154,69 +3069,119 @@ function renderOdd(){
             </div>
 
             <div class="stat">
-                Mistakes: ${oddMistakes}/3
+                Mistakes: ${oddMistakes}
             </div>
 
         </div>
 
+
         <div class="odd-grid">
             ${cells}
         </div>
+
     `;
 
 }
 
-function chooseOdd(index,correct){
 
-    if(oddLocked) return;
+function chooseOdd(
+    index,
+    correct
+){
 
-    if(index === correct){
+    if(oddLocked)
+        return;
 
-        oddLocked = true;
+
+    if(index===correct){
+
+        oddLocked=true;
+
+        const roundTime=
+            (
+                performance.now()-
+                oddStartTime
+            )/1000;
+
+
+        oddTotalTime+=
+            roundTime;
+
+
         oddRoundsWon++;
+
         oddRound++;
+
 
         setTimeout(
             renderOdd,
-            350
+            300
         );
+
 
     }else{
 
         oddMistakes++;
 
-        document.getElementById("gameStat")
-            .textContent =
-            `Mistakes: ${oddMistakes}/3`;
 
-        if(oddMistakes >= 3){
+        document.getElementById(
+            "gameStat"
+        ).textContent=
+            "Mistakes: "+
+            oddMistakes;
 
-            oddLocked = true;
 
-            setTimeout(
-                endOdd,
-                450
-            );
-
-        }
+        /* NO LOSS CONDITION.
+           The player can continue
+           making mistakes. */
 
     }
 
 }
 
+
 function endOdd(){
 
-    const score =
-        oddRoundsWon === 3
-        ? Math.max(80,100-oddMistakes*5)
-        : oddRoundsWon*25;
+    /*
+       Base score:
+       - 100 for perfect
+       - mistakes reduce score
+       - slower completion reduces score
+    */
+
+    const mistakePenalty=
+        oddMistakes*7;
+
+
+    const timePenalty=
+        Math.max(
+            0,
+            Math.round(
+                oddTotalTime*2
+            )
+        );
+
+
+    const score=
+        Math.max(
+            0,
+            100 -
+            mistakePenalty -
+            timePenalty
+        );
+
 
     completeGame(
         "odd",
         score,
         {
-            roundsWon:oddRoundsWon,
-            mistakes:oddMistakes
+            time:
+                Number(
+                    oddTotalTime.toFixed(1)
+                ),
+
+            mistakes:
+                oddMistakes
         }
     );
 
@@ -2224,51 +3189,64 @@ function endOdd(){
 
 
 /* =========================================================
-   COLOR RECALL
+   COLOR RECALL — ONE ROUND
 ========================================================= */
 
-let colorRound = 0;
-let colorResults = [];
-let targetColor = null;
-let colorPhase = "display";
+let colorRound=0;
+let targetColor=null;
+let colorPhase="display";
+
 
 function startColor(){
 
-    colorRound = 0;
-    colorResults = [];
+    colorRound=0;
 
     startColorRound();
 
 }
 
+
 function startColorRound(){
 
-    if(colorRound >= 3){
+    colorPhase="display";
 
-        endColor();
-        return;
-    }
 
-    colorPhase = "display";
+    targetColor={
 
-    targetColor = {
+        r:
+            Math.floor(
+                Math.random()*256
+            ),
 
-        r:Math.floor(Math.random()*256),
-        g:Math.floor(Math.random()*256),
-        b:Math.floor(Math.random()*256)
+        g:
+            Math.floor(
+                Math.random()*256
+            ),
+
+        b:
+            Math.floor(
+                Math.random()*256
+            )
 
     };
 
-    document.getElementById("gameStat")
-        .textContent =
-        `Round ${colorRound+1}/3`;
 
-    document.getElementById("gameContent")
-        .innerHTML = `
+    document.getElementById(
+        "gameStat"
+    ).textContent=
+        "1 round";
+
+
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
 
         <div class="instructions">
+
             Memorise the colour.
+
         </div>
+
 
         <div
             class="color-box"
@@ -2281,10 +3259,18 @@ function startColorRound(){
             "
         ></div>
 
-        <div style="text-align:center;color:#94a3b8;">
+
+        <div style="
+            text-align:center;
+            color:#94a3b8;
+        ">
+
             You have 4 seconds...
+
         </div>
+
     `;
+
 
     setTimeout(
         showColorControls,
@@ -2293,27 +3279,42 @@ function startColorRound(){
 
 }
 
+
 function showColorControls(){
 
-    colorPhase = "input";
+    colorPhase="input";
 
-    document.getElementById("gameContent")
-        .innerHTML = `
+
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
 
         <div class="instructions">
+
             Recreate the colour.
+
         </div>
+
 
         <div
             class="color-box"
             id="colorPreview"
-            style="background:rgb(0,0,0)"
+            style="
+                background:rgb(
+                    128,
+                    128,
+                    128
+                )
+            "
         ></div>
+
 
         <div class="sliders">
 
             <div class="slider-line">
+
                 <strong>R</strong>
+
                 <input
                     id="redSlider"
                     type="range"
@@ -2322,12 +3323,21 @@ function showColorControls(){
                     value="128"
                     oninput="updateColorPreview()"
                 >
-                <span class="slider-number"
-                    id="redValue">128</span>
+
+                <span
+                    class="slider-number"
+                    id="redValue"
+                >
+                    128
+                </span>
+
             </div>
 
+
             <div class="slider-line">
+
                 <strong>G</strong>
+
                 <input
                     id="greenSlider"
                     type="range"
@@ -2336,12 +3346,21 @@ function showColorControls(){
                     value="128"
                     oninput="updateColorPreview()"
                 >
-                <span class="slider-number"
-                    id="greenValue">128</span>
+
+                <span
+                    class="slider-number"
+                    id="greenValue"
+                >
+                    128
+                </span>
+
             </div>
 
+
             <div class="slider-line">
+
                 <strong>B</strong>
+
                 <input
                     id="blueSlider"
                     type="range"
@@ -2350,111 +3369,173 @@ function showColorControls(){
                     value="128"
                     oninput="updateColorPreview()"
                 >
-                <span class="slider-number"
-                    id="blueValue">128</span>
+
+                <span
+                    class="slider-number"
+                    id="blueValue"
+                >
+                    128
+                </span>
+
             </div>
 
         </div>
 
-        <div style="text-align:center;margin-top:25px;">
+
+        <div style="
+            text-align:center;
+            margin-top:25px;
+        ">
+
             <button
                 class="primary-btn"
                 onclick="submitColor()"
             >
                 Check Colour
             </button>
+
         </div>
+
     `;
+
 
     updateColorPreview();
 
 }
 
+
 function updateColorPreview(){
 
-    const r =
-        Number(document.getElementById("redSlider").value);
+    const r=
+        Number(
+            document.getElementById(
+                "redSlider"
+            ).value
+        );
 
-    const g =
-        Number(document.getElementById("greenSlider").value);
 
-    const b =
-        Number(document.getElementById("blueSlider").value);
+    const g=
+        Number(
+            document.getElementById(
+                "greenSlider"
+            ).value
+        );
 
-    document.getElementById("redValue")
-        .textContent = r;
 
-    document.getElementById("greenValue")
-        .textContent = g;
+    const b=
+        Number(
+            document.getElementById(
+                "blueSlider"
+            ).value
+        );
 
-    document.getElementById("blueValue")
-        .textContent = b;
 
-    document.getElementById("colorPreview")
-        .style.background =
+    document.getElementById(
+        "redValue"
+    ).textContent=r;
+
+
+    document.getElementById(
+        "greenValue"
+    ).textContent=g;
+
+
+    document.getElementById(
+        "blueValue"
+    ).textContent=b;
+
+
+    document.getElementById(
+        "colorPreview"
+    ).style.background=
         `rgb(${r},${g},${b})`;
 
 }
 
+
 function submitColor(){
 
-    if(colorPhase !== "input") return;
+    if(colorPhase!=="input")
+        return;
 
-    const r =
-        Number(document.getElementById("redSlider").value);
 
-    const g =
-        Number(document.getElementById("greenSlider").value);
-
-    const b =
-        Number(document.getElementById("blueSlider").value);
-
-    const distance =
-        Math.sqrt(
-            Math.pow(r-targetColor.r,2) +
-            Math.pow(g-targetColor.g,2) +
-            Math.pow(b-targetColor.b,2)
+    const r=
+        Number(
+            document.getElementById(
+                "redSlider"
+            ).value
         );
 
-    const maxDistance =
+
+    const g=
+        Number(
+            document.getElementById(
+                "greenSlider"
+            ).value
+        );
+
+
+    const b=
+        Number(
+            document.getElementById(
+                "blueSlider"
+            ).value
+        );
+
+
+    const distance=
+        Math.sqrt(
+
+            Math.pow(
+                r-targetColor.r,
+                2
+            )+
+
+            Math.pow(
+                g-targetColor.g,
+                2
+            )+
+
+            Math.pow(
+                b-targetColor.b,
+                2
+            )
+
+        );
+
+
+    const maxDistance=
         Math.sqrt(
             3*Math.pow(255,2)
         );
 
-    const accuracy =
+
+    const accuracy=
         Math.max(
+
             0,
+
             Math.round(
-                (1-distance/maxDistance)*100
+                (
+                    1-
+                    distance/
+                    maxDistance
+                )*100
             )
+
         );
 
-    colorResults.push(accuracy);
 
-    colorRound++;
+    colorRound=1;
 
-    setTimeout(
-        startColorRound,
-        350
-    );
+    colorPhase="finished";
 
-}
-
-function endColor(){
-
-    const accuracy =
-        Math.round(
-            colorResults.reduce(
-                (a,b)=>a+b,0
-            ) / colorResults.length
-        );
 
     completeGame(
         "color",
         accuracy,
         {
-            accuracy:accuracy,
-            rounds:3
+            accuracy:accuracy
         }
     );
 
@@ -2465,66 +3546,136 @@ function endColor(){
    WORD LINKS
 ========================================================= */
 
-const linksPuzzles = [
+const linksPuzzles=[
 
 [
     {
         name:"Animals",
-        words:["LION","TIGER","BEAR","WOLF"]
+        words:[
+            "LION",
+            "TIGER",
+            "BEAR",
+            "WOLF"
+        ]
     },
+
     {
         name:"School",
-        words:["PEN","BOOK","RULER","DESK"]
+        words:[
+            "PEN",
+            "BOOK",
+            "RULER",
+            "DESK"
+        ]
     },
+
     {
         name:"Colours",
-        words:["RED","BLUE","GREEN","PINK"]
+        words:[
+            "RED",
+            "BLUE",
+            "GREEN",
+            "PINK"
+        ]
     },
+
     {
         name:"Transport",
-        words:["BUS","TRAIN","CAR","TAXI"]
+        words:[
+            "BUS",
+            "TRAIN",
+            "CAR",
+            "TAXI"
+        ]
     }
 ],
 
 [
     {
         name:"Fruit",
-        words:["APPLE","PEAR","MANGO","GRAPE"]
+        words:[
+            "APPLE",
+            "PEAR",
+            "MANGO",
+            "GRAPE"
+        ]
     },
+
     {
         name:"Sports",
-        words:["GOLF","TENNIS","RUGBY","CRICKET"]
+        words:[
+            "GOLF",
+            "TENNIS",
+            "RUGBY",
+            "CRICKET"
+        ]
     },
+
     {
         name:"Body",
-        words:["HAND","FOOT","EYE","EAR"]
+        words:[
+            "HAND",
+            "FOOT",
+            "EYE",
+            "EAR"
+        ]
     },
+
     {
         name:"Nature",
-        words:["TREE","RIVER","LAKE","CLOUD"]
+        words:[
+            "TREE",
+            "RIVER",
+            "LAKE",
+            "CLOUD"
+        ]
     }
 ],
 
 [
     {
         name:"Food",
-        words:["PIZZA","PASTA","RICE","BREAD"]
+        words:[
+            "PIZZA",
+            "PASTA",
+            "RICE",
+            "BREAD"
+        ]
     },
+
     {
         name:"Technology",
-        words:["PHONE","MOUSE","SCREEN","ROUTER"]
+        words:[
+            "PHONE",
+            "MOUSE",
+            "SCREEN",
+            "ROUTER"
+        ]
     },
+
     {
         name:"Clothing",
-        words:["SHIRT","JEANS","SOCKS","SHOES"]
+        words:[
+            "SHIRT",
+            "JEANS",
+            "SOCKS",
+            "SHOES"
+        ]
     },
+
     {
         name:"Jobs",
-        words:["DOCTOR","CHEF","PILOT","NURSE"]
+        words:[
+            "DOCTOR",
+            "CHEF",
+            "PILOT",
+            "NURSE"
+        ]
     }
 ]
 
 ];
+
 
 let linksPuzzle;
 let linksWords=[];
@@ -2534,98 +3685,156 @@ let linksMistakes=0;
 let linksGroupCount=0;
 let linksLocked=false;
 
+
 function startLinks(){
 
-    const puzzleIndex =
+    const puzzleIndex=
         Math.floor(
-            Math.random()*linksPuzzles.length
+            Math.random()*
+            linksPuzzles.length
         );
 
-    linksPuzzle =
-        linksPuzzles[puzzleIndex];
 
-    linksWords =
+    linksPuzzle=
+        linksPuzzles[
+            puzzleIndex
+        ];
+
+
+    linksWords=
         linksPuzzle
-            .flatMap(g=>g.words)
+            .flatMap(
+                g=>g.words
+            )
             .map(word=>({
+
                 word:word,
+
                 group:
                     linksPuzzle.findIndex(
                         g=>g.words.includes(word)
                     )
+
             }));
 
-    shuffle(linksWords);
+
+    shuffle(
+        linksWords
+    );
+
 
     linksSelected=[];
+
     linksSolved=[];
+
     linksMistakes=0;
+
     linksGroupCount=0;
+
     linksLocked=false;
+
 
     renderLinks();
 
 }
 
+
 function renderLinks(){
 
-    document.getElementById("gameStat")
-        .textContent =
-        `Mistakes: ${linksMistakes}/3`;
+    document.getElementById(
+        "gameStat"
+    ).textContent=
+        "Mistakes: "+
+        linksMistakes+
+        "/3";
+
 
     let grid="";
 
-    linksWords.forEach((item,index)=>{
 
-        let cls = "link-cell";
+    linksWords.forEach(
+        (item,index)=>{
 
-        if(linksSelected.includes(index)){
-            cls += " selected";
+            let cls="link-cell";
+
+
+            if(
+                linksSelected.includes(
+                    index
+                )
+            ){
+
+                cls+=" selected";
+
+            }
+
+
+            if(
+                linksSolved.includes(
+                    index
+                )
+            ){
+
+                cls+=" solved";
+
+            }
+
+
+            grid+=`
+
+                <div
+                    class="${cls}"
+                    onclick="
+                        selectLink(${index})
+                    "
+                >
+                    ${item.word}
+                </div>
+
+            `;
+
         }
+    );
 
-        if(linksSolved.includes(index)){
-            cls += " solved";
-        }
 
-        grid += `
-            <div
-                class="${cls}"
-                onclick="selectLink(${index})"
-            >
-                ${item.word}
-            </div>
-        `;
-
-    });
-
-    document.getElementById("gameContent")
-        .innerHTML = `
+    document.getElementById(
+        "gameContent"
+    ).innerHTML=`
 
         <div class="instructions">
+
             Find four groups of four connected words.
+
         </div>
+
 
         <div class="odd-info">
 
             <div class="stat">
-                Groups: ${linksGroupCount}/4
+                Groups:
+                ${linksGroupCount}/4
             </div>
 
+
             <div class="stat">
-                Mistakes: ${linksMistakes}/3
+                Mistakes:
+                ${linksMistakes}/3
             </div>
 
         </div>
+
 
         <div class="links-grid">
             ${grid}
         </div>
+
 
         <div class="link-controls">
 
             <div class="selected-count">
                 ${linksSelected.length}/4 selected
             </div>
+
 
             <button
                 class="primary-btn"
@@ -2635,56 +3844,74 @@ function renderLinks(){
             </button>
 
         </div>
+
     `;
 
 }
 
+
 function selectLink(index){
 
-    if(linksLocked) return;
-
-    if(linksSolved.includes(index)){
+    if(linksLocked)
         return;
-    }
 
-    if(linksSelected.includes(index)){
 
-        linksSelected =
+    if(
+        linksSolved.includes(index)
+    )
+        return;
+
+
+    if(
+        linksSelected.includes(index)
+    ){
+
+        linksSelected=
             linksSelected.filter(
                 x=>x!==index
             );
 
     }else{
 
-        if(linksSelected.length >= 4){
+        if(
+            linksSelected.length>=4
+        )
             return;
-        }
+
 
         linksSelected.push(index);
 
     }
 
+
     renderLinks();
 
 }
 
+
 function checkLinks(){
 
-    if(linksLocked) return;
-
-    if(linksSelected.length !== 4){
+    if(linksLocked)
         return;
-    }
 
-    const groups =
+
+    if(
+        linksSelected.length!==4
+    )
+        return;
+
+
+    const groups=
         linksSelected.map(
             i=>linksWords[i].group
         );
 
-    const allSame =
+
+    const allSame=
         groups.every(
             g=>g===groups[0]
         );
+
 
     if(allSame){
 
@@ -2692,12 +3919,18 @@ function checkLinks(){
             ...linksSelected
         );
 
+
         linksSelected=[];
+
         linksGroupCount++;
 
-        if(linksGroupCount >= 4){
+
+        if(
+            linksGroupCount>=4
+        ){
 
             linksLocked=true;
+
 
             setTimeout(
                 endLinks,
@@ -2716,9 +3949,13 @@ function checkLinks(){
 
         linksSelected=[];
 
-        if(linksMistakes >= 3){
+
+        if(
+            linksMistakes>=3
+        ){
 
             linksLocked=true;
+
 
             setTimeout(
                 endLinks,
@@ -2735,18 +3972,26 @@ function checkLinks(){
 
 }
 
+
 function endLinks(){
 
-    const score =
-        linksGroupCount*25 -
-        linksMistakes*5;
+    const score=
+        Math.max(
+            0,
+            linksGroupCount*25 -
+            linksMistakes*5
+        );
+
 
     completeGame(
         "links",
-        Math.max(0,score),
+        score,
         {
-            groups:linksGroupCount,
-            mistakes:linksMistakes
+            groups:
+                linksGroupCount,
+
+            mistakes:
+                linksMistakes
         }
     );
 
@@ -2759,23 +4004,29 @@ function endLinks(){
 
 function shuffle(array){
 
-    for(let i=array.length-1;i>0;i--){
+    for(
+        let i=array.length-1;
+        i>0;
+        i--
+    ){
 
-        const j =
+        const j=
             Math.floor(
-                Math.random()*(i+1)
+                Math.random()*
+                (i+1)
             );
+
 
         [
             array[i],
             array[j]
-        ] =
-        [
+        ]=[
             array[j],
             array[i]
         ];
 
     }
+
 
     return array;
 
@@ -2783,7 +4034,7 @@ function shuffle(array){
 
 
 /* =========================================================
-   INITIALISE
+   START
 ========================================================= */
 
 updateHome();
